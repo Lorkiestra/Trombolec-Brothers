@@ -190,9 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 7
+  jumpForce: 10
   model: {fileID: 4207323013260681891}
   groundCheckRayLength: 0.5
+  canMove: 1
 --- !u!54 &3499566031315150178
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7029146057363414904}
   serializedVersion: 4
-  m_Mass: 70
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

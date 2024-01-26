@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] private Transform model;
     [SerializeField] private float groundCheckRayLength = 0.5f;
     private bool grounded;
+    public bool canMove = true; 
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +25,7 @@ public class Movement : MonoBehaviour {
     }
 
     void ApplyAdditionalGravity() {
-        if (grounded)
+        if (!canMove || !rb.useGravity || grounded)
             return;
         if (rb.velocity.y > 0f)
             rb.velocity += -Vector3.up * 0.4f;
@@ -33,6 +34,8 @@ public class Movement : MonoBehaviour {
     }
 
     public void Move(Vector2 direction) {
+        if (!canMove)
+            return;
         Vector3 axisFix = new Vector3(direction.x, 0f, direction.y);
         transform.Translate(axisFix * (speed * Time.deltaTime));
     }
@@ -46,7 +49,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void Jump() {
-        if (!grounded)
+        if (!grounded || !canMove)
             return;
 
         rb.velocity = Vector3.up * jumpForce;
