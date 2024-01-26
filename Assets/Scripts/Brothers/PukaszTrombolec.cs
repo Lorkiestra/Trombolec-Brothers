@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PukaszTrombolec : Brothers {
     [SerializeField] private Prop succedObject;
-    [SerializeField] private PropCollector tromba;
     [SerializeField] private float throwForce = 200f;
     [SerializeField] private float succForce = 200f;
     [SerializeField] private float succTerminalVelocity = 10f;
@@ -28,7 +27,6 @@ public class PukaszTrombolec : Brothers {
     }
 
     private void ThrowObject() {
-        Debug.Log($"throw {succedObject.name}");
         succedObject.transform.parent = null;
         succedObject.rb.isKinematic = false;
         succedObject.rb.AddForce(tromba.transform.forward * throwForce, ForceMode.Impulse);
@@ -44,7 +42,6 @@ public class PukaszTrombolec : Brothers {
             prop.rb.useGravity = false;
             prop.rb.AddForce(Vector3.Normalize(tromba.transform.position - prop.transform.position) * succForce);
             prop.rb.velocity = Vector3.ClampMagnitude(prop.rb.velocity, succTerminalVelocity);
-            Debug.Log(Vector3.Distance(prop.transform.position, tromba.transform.position));
             if (Vector3.Distance(prop.transform.position, tromba.transform.position) < succHoldDistance) {
                 HoldObject(prop);
                 return;
