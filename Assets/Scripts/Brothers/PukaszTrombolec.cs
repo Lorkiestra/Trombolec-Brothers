@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PukaszTrombolec : Brothers {
     [SerializeField] private Prop succedObject;
     [SerializeField] private PropCollector tromba;
-    [SerializeField] private float throwForce = 100f;
-    [SerializeField] private float succForce = 30f;
+    [SerializeField] private float throwForce = 200f;
+    [SerializeField] private float succForce = 200f;
+    [SerializeField] private float succTerminalVelocity = 10f;
+    [SerializeField] private float succHoldDistance = 0.7f;
 
     public override void Trombone() {
-        Debug.Log("trombone");
         if (succedObject)
             return;
 
@@ -17,7 +19,6 @@ public class PukaszTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
-        Debug.Log("trombone release");
         RestoreGravity();
         
         if (!succedObject)
@@ -27,20 +28,25 @@ public class PukaszTrombolec : Brothers {
     }
 
     private void ThrowObject() {
+        Debug.Log($"throw {succedObject.name}");
         succedObject.transform.parent = null;
         succedObject.rb.isKinematic = false;
-        succedObject.rb.AddForce(tromba.transform.forward * throwForce);
+        succedObject.rb.AddForce(tromba.transform.forward * throwForce, ForceMode.Impulse);
+        Movement brotherMovement = succedObject.GetComponent<Movement>();
+        if (brotherMovement) {
+            brotherMovement.canMove = true;
+        }
+        succedObject = null;
     }
 
     private void SuccObjects() {
         foreach (Prop prop in tromba.props) {
             prop.rb.useGravity = false;
-            prop.rb.AddForce(-tromba.transform.forward * succForce);
-            if (Vector3.Distance(prop.transform.position, tromba.transform.position) < 0.5f) {
-                succedObject = prop;
-                succedObject.transform.parent = transform;
-                succedObject.rb.isKinematic = true;
-                RestoreGravity();
+            prop.rb.AddForce(Vector3.Normalize(tromba.transform.position - prop.transform.position) * succForce);
+            prop.rb.velocity = Vector3.ClampMagnitude(prop.rb.velocity, succTerminalVelocity);
+            Debug.Log(Vector3.Distance(prop.transform.position, tromba.transform.position));
+            if (Vector3.Distance(prop.transform.position, tromba.transform.position) < succHoldDistance) {
+                HoldObject(prop);
                 return;
             }
         }
@@ -50,5 +56,16 @@ public class PukaszTrombolec : Brothers {
         foreach (Prop prop in tromba.props) {
             prop.rb.useGravity = true;
         }
+    }
+
+    void HoldObject(Prop prop) {
+        succedObject = prop;
+        succedObject.transform.parent = tromba.transform;
+        succedObject.rb.isKinematic = true;
+        Movement brotherMovement = succedObject.GetComponent<Movement>();
+        if (brotherMovement) {
+            brotherMovement.canMove = false;
+        }
+        RestoreGravity();
     }
 }

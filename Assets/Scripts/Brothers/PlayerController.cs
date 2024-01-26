@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void Update() {
 		movement.Move(move);
+	}
+
+	private void FixedUpdate() {
 		if (trombienie)
 			brother.Trombone();
 	}
