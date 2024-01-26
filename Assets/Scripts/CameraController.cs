@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
 public class CameraController : MonoBehaviour {
-    [SerializeReference]
+    [SerializeField]
     private FollowPlayers playersMidPoint;
 
     [SerializeField]

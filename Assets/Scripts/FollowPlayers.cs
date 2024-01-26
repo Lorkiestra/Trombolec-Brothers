@@ -15,6 +15,8 @@ public class FollowPlayers : MonoBehaviour {
     }
 
     private void OnDrawGizmosSelected() {
+        if (LeftGolec == null || RightGolec == null) return;
+
         Gizmos.color = Color.red;
         Vector3 middle = (LeftGolec.position + RightGolec.position) * 0.5f;
         Gizmos.DrawSphere(middle, 0.25f);
