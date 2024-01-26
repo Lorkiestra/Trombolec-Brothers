@@ -6,15 +6,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+	private Brothers brother;
 	private Movement movement;
 	private Vector2 move;
-	
+	private bool trombienie;
+
 	private void Awake() {
 		movement = GetComponent<Movement>();
+		brother = GetComponent<Brothers>();
 	}
 
 	private void Update() {
 		movement.Move(move);
+		if (trombienie)
+			brother.Trombone();
 	}
 
 	public void Move(InputAction.CallbackContext context) {
@@ -32,9 +37,18 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Jump(InputAction.CallbackContext context) {
-		if (!context.performed)
-			return;
-		
-		movement.Jump();
+		if (context.performed)
+			movement.Jump();
+		if (context.canceled)
+			movement.CutJump();
+	}
+	
+	public void Trombone(InputAction.CallbackContext context) {
+		if (context.performed)
+			trombienie = true;
+		if (context.canceled) {
+			trombienie = false;
+			brother.TromboneRelease();
+		}
 	}
 }
