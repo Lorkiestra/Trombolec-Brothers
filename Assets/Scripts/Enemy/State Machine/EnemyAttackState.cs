@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class EnemyAttackState : BaseState<EnemyStateMachine.EnemyState> {
-    BasicEnemy Enemy;
+    ChaseEnemy Enemy;
 
     public EnemyAttackState(EnemyStateMachine.EnemyState key, BasicEnemy Enemy) : base(key) {
-        this.Enemy = Enemy;
+        this.Enemy = (ChaseEnemy)Enemy;
     }
 
     public override void Enter() { }

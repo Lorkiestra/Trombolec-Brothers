@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyChaseState : BaseState<EnemyStateMachine.EnemyState> {
-    BasicEnemy Enemy;
+    ChaseEnemy Enemy;
 
     public EnemyChaseState(EnemyStateMachine.EnemyState key, BasicEnemy Enemy) : base(key) {
-        this.Enemy = Enemy;
+        this.Enemy = (ChaseEnemy)Enemy;
     }
 
     public override void Enter() => Enemy.SetAggro();

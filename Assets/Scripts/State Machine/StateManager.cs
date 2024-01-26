@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class StateManager<EState> : MonoBehaviour where EState : Enum {
-    protected BaseState<EState> CurrentState;
+    public BaseState<EState> CurrentState { get; protected set; }
 
     protected Dictionary<EState, BaseState<EState>> States = new();
 
