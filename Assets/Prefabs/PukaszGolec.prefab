@@ -64,10 +64,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3c466f8f22919154b9d3b5ff31d22602, type: 2}
-    - target: {fileID: 3499566031315150178, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 7029146057363414904, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_Name
       value: PukaszGolec
@@ -100,12 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b7bdd8ca1f3f4fa11299f9cf78010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  groundPoundForce: 80
   succedObject: {fileID: 0}
   tromba: {fileID: 847282296019737646}
   throwForce: 100
   succForce: 400
   succTerminalVelocity: 10
+  succHoldDistance: 0.7
 --- !u!1 &6239175813671776542 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 948038734156115334, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}

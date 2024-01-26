@@ -54,4 +54,9 @@ public class PlayerController : MonoBehaviour {
 			brother.TromboneRelease();
 		}
 	}
+	
+	public void GroundPound(InputAction.CallbackContext context) {
+		if (context.performed)
+			brother.GroundPound();
+	}
 }
