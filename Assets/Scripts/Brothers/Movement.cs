@@ -11,13 +11,25 @@ public class Movement : MonoBehaviour {
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Transform model;
     [SerializeField] private float groundCheckRayLength = 0.5f;
+    private bool grounded;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update() {
+        CheckGrounded();
         Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
+        ApplyAdditionalGravity();
+    }
+
+    void ApplyAdditionalGravity() {
+        if (grounded)
+            return;
+        if (rb.velocity.y > 0f)
+            rb.velocity += -Vector3.up * 0.4f;
+        else if (rb.velocity.y < 0f)
+            rb.velocity += -Vector3.up * 0.2f;
     }
 
     public void Move(Vector2 direction) {
@@ -34,11 +46,19 @@ public class Movement : MonoBehaviour {
     }
 
     public void Jump() {
-
-        Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out RaycastHit hit, groundCheckRayLength);
-        if (!hit.collider)
+        if (!grounded)
             return;
-        
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        rb.velocity = Vector3.up * jumpForce;
+    }
+
+    public void CutJump() {
+        if (rb.velocity.y > 0f)
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2f, rb.velocity.z);
+    }
+
+    void CheckGrounded() {
+        Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out RaycastHit hit, groundCheckRayLength);
+        grounded = hit.collider;
     }
 }

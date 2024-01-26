@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LawelTrombolec : MonoBehaviour
+public class LawelTrombolec : Brothers
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public override void Trombone() {
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void TromboneRelease() {
+        throw new System.NotImplementedException();
     }
 }
