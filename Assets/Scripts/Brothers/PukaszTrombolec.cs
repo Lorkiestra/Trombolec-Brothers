@@ -38,7 +38,8 @@ public class PukaszTrombolec : Brothers {
         }
 	}
 	public override void Trombone() {
-        base.Trombone();
+        if (stunnedTime > 0f)
+            return;
         audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
             return;
@@ -49,7 +50,8 @@ public class PukaszTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
-        base.TromboneRelease();
+        if (stunnedTime > 0f)
+            return;
         audioSource.Stop();
         trombaModel.localScale = Vector3.one * 0.3f;
         RestoreGravity();

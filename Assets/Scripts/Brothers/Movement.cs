@@ -59,6 +59,9 @@ public class Movement : MonoBehaviour {
     }
 
     public void Look(Vector2 direction) {
+        if (!canMove)
+            return;
+        
         if (lawelTrombolecMovement)
             return;
         

@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceShader: {fileID: 0}
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
   shadedMaterials: []
   succPower1: 0
   succPower2: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Brothers : MonoBehaviour {
@@ -18,33 +19,47 @@ public abstract class Brothers : MonoBehaviour {
     [SerializeField] protected float powiekszSwojaTrombe = .5f;
 
     [SerializeField] private int hitPoints = 3;
-    [SerializeField] private float stunnedTime;
+    [SerializeField] public float stunnedTime;
     [SerializeField] protected int brotherType;
     
     [SerializeField] float knockbackForce = 30f;
 
-    public virtual void Trombone() {
-        if (stunnedTime > 0f)
-            return;
-    }
+    [SerializeField] private Vector3 lastKnownValidLocation;
 
-    public virtual void TromboneRelease() {
-        if (stunnedTime > 0f)
-            return;
-    }
+    public abstract void Trombone();
+
+    public abstract void TromboneRelease();
 
     protected virtual void Awake() {
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Start() {
+        StartCoroutine(TrackLastKnownLocation());
+    }
+
     public virtual void Update() {
+        if (transform.position.y < -10f) {
+            transform.position = lastKnownValidLocation;
+            Stun();
+        }
+        
         if (stunnedTime > 0f) {
             stunnedTime -= Time.deltaTime;
             if (stunnedTime <= 0f) {
                 animator.SetTrigger("stun_end");
                 movement.canMove = true;
             }
+        }
+    }
+
+    IEnumerator TrackLastKnownLocation() {
+        while (true) {
+            if (movement.grounded) {
+                lastKnownValidLocation = transform.position;
+            }
+            yield return new WaitForSeconds(0.4f);
         }
     }
 
@@ -125,11 +140,11 @@ public abstract class Brothers : MonoBehaviour {
         StartCoroutine(HitFlashing());
         if (hitPoints <= 0) {
             Stun();
-            hitPoints = 3;
         }
     }
 
     public void Stun() {
+        hitPoints = 3;
         stunnedTime = 10f;
         animator.SetTrigger("stun");
         movement.canMove = false;

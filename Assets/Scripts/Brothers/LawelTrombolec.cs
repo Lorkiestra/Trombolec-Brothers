@@ -23,7 +23,8 @@ public class LawelTrombolec : Brothers {
     }
 
     public override void Trombone() {
-        base.Trombone();
+        if (stunnedTime > 0f)
+            return;
         audioSource.PlayOneShot(trombaPierdzenie);
         trombaModel.localScale = Vector3.one * UnityEngine.Random.Range(.3f, powiekszSwojaTrombe);
         if (!movement.grounded)
@@ -33,7 +34,8 @@ public class LawelTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
-        base.TromboneRelease();
+        if (stunnedTime > 0f)
+            return;
         audioSource.Stop();
         trombaModel.localScale = Vector3.one * .3f;
     }
