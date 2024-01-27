@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 92c8cbd7bcd1eaf4396998f8ca86c80d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 780a6a0cfc106484185dc0844eaa9fda, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -266,40 +266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91b85f83e671734a9d4a03f879a3b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 3726747512958395526}
-  c: {fileID: 2684585248993290043}
-  curve:
+  <Curve>k__BackingField:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.12691139
-      outSlope: 0.12691139
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.17953321
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: 2.1792881
-      outSlope: 2.1792881
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.039497256
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.023901593
-      outSlope: 0.023901593
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10592461
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  closedPosition: {fileID: 0}
-  openPosition: {fileID: 0}
+  model: {fileID: 3726747512958395526}
+  c: {fileID: 2684585248993290043}
+  lowerHeight: 2
