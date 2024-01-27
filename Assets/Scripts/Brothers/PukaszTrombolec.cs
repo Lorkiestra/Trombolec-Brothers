@@ -10,10 +10,10 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succTerminalVelocity = 10f;
     [SerializeField] private float succHoldDistance = 0.7f;
 
-    [SerializeField] private float succDistortionPower = 1.3f;
+    [SerializeField] private float succDistortionPower = 0.5f;
     [SerializeField] private float holdDistortionSpeed = 8.3f;
     [SerializeField] private float pushDistortionSpeed = 5.5f;
-    [SerializeField] private float holdDistortionAcceleration = 1.003f;
+    [SerializeField] private float holdDistortionAcceleration = 24.3f;
     [SerializeField] private float holdDistortionMaxPower = 2.2f;
     [SerializeField] private float pushDistortionPower = -8f;
 
