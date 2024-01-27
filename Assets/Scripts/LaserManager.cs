@@ -21,7 +21,10 @@ public class LaserManager : MonoBehaviour {
     private float laserSpacing = 0.5f;
 
     [SerializeField]
-    private Vector3 laserIterativeRotation;
+    private Vector3 laserIterativeRotationOffset;
+
+    [SerializeField]
+    private bool symmetryX, symmetryY, symmetryZ;
 
     [SerializeField, Space]
     private LaserShowMode laserShowMode;
@@ -35,6 +38,9 @@ public class LaserManager : MonoBehaviour {
     [SerializeField, Space]
     private float colorAlternateShowInterval = 1f;
 
+    [SerializeField]
+    private float animationRadius = 1f;
+
     [SerializeField, Space]
     private Color laserNormalColor = Color.red;
 
@@ -43,9 +49,11 @@ public class LaserManager : MonoBehaviour {
 
     private List<Transform> lasers = new();
 
-    private float hueRotateShowProgress = 0f, colorAlternateShowProgress = 0f;
+    private float hueRotateShowProgress = 0f, colorAlternateShowProgress = 0f, rotationProgress = 0f;
 
-    private Color randomColor1, randomColor2;
+    private Color randomColor1 = Color.red, randomColor2 = Color.white;
+
+    private Vector3 laserIterativeRotation;
 
     private void Start() {
         laserTempalte.gameObject.SetActive(false);
@@ -59,8 +67,13 @@ public class LaserManager : MonoBehaviour {
 
             laser.localPosition = new Vector3((i - (numberOfLasers / 2)) * laserSpacing, 0f, 0f);
 
-            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotation * numberOfLasers, laserIterativeRotation * numberOfLasers, i / (float)numberOfLasers);
-            laser.localRotation = Quaternion.Euler(laserRotation);
+            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotationOffset * numberOfLasers, laserIterativeRotationOffset * numberOfLasers, i / (float)numberOfLasers);
+
+            float x = (symmetryX && i > numberOfLasers / 2) ? laserRotation.x : -laserRotation.x;
+            float y = (symmetryY && i > numberOfLasers / 2) ? laserRotation.y : -laserRotation.y;
+            float z = (symmetryZ && i > numberOfLasers / 2) ? laserRotation.z : -laserRotation.z;
+
+            laser.localRotation = Quaternion.Euler(x, y, z);
         }
     }
 
@@ -72,8 +85,13 @@ public class LaserManager : MonoBehaviour {
 
             laser.localPosition = new Vector3((i - (numberOfLasers / 2)) * laserSpacing, 0f, 0f);
 
-            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotation * numberOfLasers, laserIterativeRotation * numberOfLasers, i / (float)numberOfLasers);
-            laser.localRotation = Quaternion.Euler(laserRotation);
+            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotationOffset * numberOfLasers, laserIterativeRotationOffset * numberOfLasers, i / (float)numberOfLasers);
+
+            float x = (symmetryX && i > numberOfLasers / 2) ? laserRotation.x : -laserRotation.x;
+            float y = (symmetryY && i > numberOfLasers / 2) ? laserRotation.y : -laserRotation.y;
+            float z = (symmetryZ && i > numberOfLasers / 2) ? laserRotation.z : -laserRotation.z;
+
+            laser.localRotation = Quaternion.Euler(x, y, z);
         }
     }
 
@@ -82,8 +100,35 @@ public class LaserManager : MonoBehaviour {
             HueRotateShow();
         else if (laserShowMode == LaserShowMode.ColorAlternate)
             ColorAlternateShow();
-        else if (laserShowMode == LaserShowMode.ColorAlternateRandom) {
-            ColorAlternateShow(true);
+        else if (laserShowMode == LaserShowMode.ColorAlternateRandom)
+            ColorAlternateShow(random: true);
+
+        HandleRotation();
+    }
+
+    private void HandleRotation() {
+        rotationProgress += Time.deltaTime / laserShowDuration;
+
+        if (rotationProgress >= 1f)
+            rotationProgress -= 1f;
+
+        float sin = Mathf.Sin(rotationProgress * Mathf.PI * 2f);
+        float cos = Mathf.Cos(rotationProgress * Mathf.PI * 2f);
+
+        laserIterativeRotation = laserIterativeRotationOffset + (new Vector3(sin, 0f, cos) * animationRadius);
+
+        for (int i = 0; i < numberOfLasers; i++) {
+            Transform laser = lasers[i];
+
+            laser.localPosition = new Vector3((i - (numberOfLasers / 2)) * laserSpacing, 0f, 0f);
+
+            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotation * numberOfLasers, laserIterativeRotation * numberOfLasers, i / (float)numberOfLasers);
+
+            float x = (symmetryX && i > numberOfLasers / 2) ? laserRotation.x : -laserRotation.x;
+            float y = (symmetryY && i > numberOfLasers / 2) ? laserRotation.y : -laserRotation.y;
+            float z = (symmetryZ && i > numberOfLasers / 2) ? laserRotation.z : -laserRotation.z;
+
+            laser.localRotation = Quaternion.Euler(x, y, z);
         }
     }
 
@@ -120,7 +165,6 @@ public class LaserManager : MonoBehaviour {
 
         if (hueRotateShowProgress >= 1f)
             hueRotateShowProgress -= 1f;
-
         
         for (int i = 0; i < numberOfLasers; i++) {
             Transform laser = lasers[i];
@@ -154,10 +198,6 @@ public class LaserManager : MonoBehaviour {
 
             Gizmos.color = Color.white;
             Gizmos.DrawSphere(position, 0.1f);
-
-            Gizmos.color = Color.red;
-            Vector3 laserRotation = Vector3.Lerp(-laserIterativeRotation * numberOfLasers, laserIterativeRotation * numberOfLasers, i / (float)numberOfLasers);
-            // Gizmos.DrawLine(position, position + laserRotation + Vector3.up);
         }
     }
 }
