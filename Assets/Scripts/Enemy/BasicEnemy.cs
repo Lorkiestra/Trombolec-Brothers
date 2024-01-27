@@ -18,7 +18,9 @@ public class BasicEnemy : MonoBehaviour {
     [field: SerializeField, Min(0.1f)]
     public float Speed { get; private set; } = 1f;
 
-    public Vector3 WanderPivot => transform.position + WanderPivotOffset;
+    public bool DiedHard { get; private set; }
+
+    public Vector3 WanderPivot => wanderPivot + WanderPivotOffset;
 
     public bool HasReachedDestination => agent.remainingDistance <= agent.stoppingDistance;
 
@@ -26,11 +28,18 @@ public class BasicEnemy : MonoBehaviour {
 
     protected NavMeshAgent agent;
     
-    public bool DiedHard { get; private set; }
+    private Vector3 wanderPivot;
 
     protected virtual void Awake() {
         stateMachine = GetComponent<EnemyStateMachine>();
 
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
+
+        wanderPivot = transform.position;
+    }
+
+    private void OnValidate() {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
     }
@@ -50,9 +59,9 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     IEnumerator EDie() {
-        for (float i = 0f; i < 1.5f; i += Time.deltaTime) {
+        for (float i = 0f; i < 1.5f; i += Time.deltaTime)
             yield return null;
-        }
+
         Destroy(gameObject);
     }
 

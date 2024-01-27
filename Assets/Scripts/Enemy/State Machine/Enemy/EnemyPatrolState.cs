@@ -18,14 +18,15 @@ public class EnemyPatrolState : BaseState<EnemyStateMachine.EnemyState> {
     public override EnemyStateMachine.EnemyState GetNextState() => Key;
 
     public override void Update() {
+        if (!enemy.HasReachedDestination) return;
+
         float circleCircumference = 2f * Mathf.PI * enemy.WanderRadius;
-        circleProgress += Time.deltaTime * enemy.Speed / circleCircumference;
+        circleProgress += 1f / circleCircumference;
 
         if (circleProgress >= 1f)
             circleProgress -= 1f;
 
-        if (enemy.HasReachedDestination)
-            Wander();
+        Wander();
     }
 
     void Wander() {
