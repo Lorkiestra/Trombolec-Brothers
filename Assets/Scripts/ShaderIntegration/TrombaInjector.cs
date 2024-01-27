@@ -75,11 +75,11 @@ public class TrombaInjector : ShaderPasser
 	{
 		shadedMaterials[j].SetVector(PropertyIDs[0], brother1.position);
 		shadedMaterials[j].SetVector(PropertyIDs[1], brother2.position);
-		shadedMaterials[j].SetVector(PropertyIDs[1], tromba1.position);
-		shadedMaterials[j].SetVector(PropertyIDs[2], tromba2.position);
-		shadedMaterials[j].SetFloat(PropertyIDs[3], succPower1);
-		shadedMaterials[j].SetFloat(PropertyIDs[4], succPower2);
-		shadedMaterials[j].SetFloat(PropertyIDs[5], succSpeed1);
-		shadedMaterials[j].SetFloat(PropertyIDs[6], succSpeed2);
+		shadedMaterials[j].SetVector(PropertyIDs[2], tromba1.position);
+		shadedMaterials[j].SetVector(PropertyIDs[3], tromba2.position);
+		shadedMaterials[j].SetFloat(PropertyIDs[4], succPower1);
+		shadedMaterials[j].SetFloat(PropertyIDs[5], succPower2);
+		shadedMaterials[j].SetFloat(PropertyIDs[6], succSpeed1);
+		shadedMaterials[j].SetFloat(PropertyIDs[7], succSpeed2);
 	}
 }
