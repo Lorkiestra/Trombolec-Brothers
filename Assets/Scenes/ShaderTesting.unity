@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.451213, g: 0.4999327, b: 0.56819427, a: 1}
+  m_IndirectSpecularColor: {r: 0.4512124, g: 0.4999318, b: 0.56819314, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -261,7 +261,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &817085806
+--- !u!84 &1058842817
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -726,7 +726,7 @@ MonoBehaviour:
   shadedMaterials: []
   RayScene: {fileID: 377389783}
   shader: {fileID: 7200000, guid: c70b05928babdc548a9d1b8ae14dda43, type: 3}
-  result: {fileID: 817085806}
+  result: {fileID: 1058842817}
   SkyboxScale: {x: 12, y: 16, z: 12, w: 0.1}
   SkyboxMode: 1
   blokTexture: {fileID: 2800000, guid: 1fef3893b7c7da64086856197bb6255e, type: 3}
