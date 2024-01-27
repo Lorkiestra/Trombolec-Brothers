@@ -833,6 +833,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
+--- !u!1 &1559313289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2734039350787154830, guid: 37cabf2eba603f6498c69667893670e2, type: 3}
+  m_PrefabInstance: {fileID: 2831843734530289170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1559313291 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2559874142593536736, guid: 37cabf2eba603f6498c69667893670e2, type: 3}
+  m_PrefabInstance: {fileID: 2831843734530289170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1559313293 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8641939651345721408, guid: 37cabf2eba603f6498c69667893670e2, type: 3}
+  m_PrefabInstance: {fileID: 2831843734530289170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1559313296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559313289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6141cd975415042b2fe86eb61e41ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1559313293}
+  skinnedMeshRenderer: {fileID: 0}
+  rb: {fileID: 1559313291}
+  lastKnownValidLocation: {x: 0, y: 0, z: 0}
+  grounded: 0
+  groundCheckRayLength: 0.5
 --- !u!1 &1774614249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,12 +1460,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
-      propertyPath: holdDistortionMaxPower
-      value: 2.2
+      propertyPath: succDistortionPower
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
-      propertyPath: holdDistortionAcceleration
-      value: 1.003
+      propertyPath: holdDistortionMaxPower
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4193579631766995936, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: m_Name
@@ -1542,7 +1575,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2734039350787154830, guid: 37cabf2eba603f6498c69667893670e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1559313296}
   m_SourcePrefab: {fileID: 100100000, guid: 37cabf2eba603f6498c69667893670e2, type: 3}
 --- !u!1001 &5278840117943602212
 PrefabInstance:

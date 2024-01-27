@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8749221777020978711, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: skinnedMeshRenderer
+      value: 
+      objectReference: {fileID: 1928620651983075864}
     - target: {fileID: 460436541003527996, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -168,6 +172,7 @@ MonoBehaviour:
   powiekszSwojaTrombe: 0.5
   hitPoints: 3
   stunnedTime: 0
+  brotherType: 0
   knockbackForce: 30
   succedObject: {fileID: 0}
   throwForce: 100
@@ -373,6 +378,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7105734508764766317}
   m_SourcePrefab: {fileID: 100100000, guid: eb5f996277f9821489b983760548a731, type: 3}
+--- !u!137 &1928620651983075864 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -722109708046442032, guid: eb5f996277f9821489b983760548a731, type: 3}
+  m_PrefabInstance: {fileID: 8014537377230429128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7203563239993779865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eb5f996277f9821489b983760548a731, type: 3}

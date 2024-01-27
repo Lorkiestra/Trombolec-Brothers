@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 872205226609313261}
   - component: {fileID: 2277549815639269165}
   - component: {fileID: 9055653963125755611}
+  - component: {fileID: -8749221777020978711}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -215,7 +216,6 @@ MonoBehaviour:
   groundCheckRayLength: 0.5
   grounded: 0
   canMove: 1
-  lawelTrombolecMovement: 0
 --- !u!54 &3499566031315150178
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -375,6 +375,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadowObject: {fileID: 4657009066378796762, guid: 36df8f8cc2b6efa40b1c5158f286c48a, type: 3}
+--- !u!114 &-8749221777020978711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029146057363414904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6141cd975415042b2fe86eb61e41ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  rb: {fileID: 3499566031315150178}
+  lastKnownValidLocation: {x: 0, y: 0, z: 0}
+  grounded: 0
+  groundCheckRayLength: 0.3
 --- !u!1 &8565573662252568396
 GameObject:
   m_ObjectHideFlags: 0

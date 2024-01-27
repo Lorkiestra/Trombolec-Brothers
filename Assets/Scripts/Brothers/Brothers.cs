@@ -24,8 +24,6 @@ public abstract class Brothers : MonoBehaviour {
     
     [SerializeField] float knockbackForce = 30f;
 
-    [SerializeField] private Vector3 lastKnownValidLocation;
-
     public abstract void Trombone();
 
     public abstract void TromboneRelease();
@@ -35,32 +33,13 @@ public abstract class Brothers : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Start() {
-        StartCoroutine(TrackLastKnownLocation());
-    }
-
     public virtual void Update() {
-        if (transform.position.y < -10f) {
-            transform.position = lastKnownValidLocation;
-            movement.rb.velocity = Vector3.zero;
-            Stun();
-        }
-        
         if (stunnedTime > 0f) {
             stunnedTime -= Time.deltaTime;
             if (stunnedTime <= 0f) {
                 animator.SetTrigger("stun_end");
                 movement.canMove = true;
             }
-        }
-    }
-
-    IEnumerator TrackLastKnownLocation() {
-        while (true) {
-            if (movement.grounded) {
-                lastKnownValidLocation = transform.position;
-            }
-            yield return new WaitForSeconds(0.4f);
         }
     }
 
