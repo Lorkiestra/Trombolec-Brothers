@@ -74,6 +74,7 @@ public class Movement : MonoBehaviour {
             return;
 
         rb.velocity = Vector3.up * jumpForce;
+        animator.SetTrigger("jump");
     }
 
     public void CutJump() {

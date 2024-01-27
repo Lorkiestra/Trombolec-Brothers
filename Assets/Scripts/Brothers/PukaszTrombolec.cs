@@ -15,7 +15,7 @@ public class PukaszTrombolec : Brothers {
         if (succedObject)
             return;
         
-        trombaModel.localScale = Vector3.one * Random.Range(.3f, .8f);
+        trombaModel.localScale = Vector3.one * Random.Range(.3f, powiekszSwojaTrombe);
 
         SuccObjects();
     }
@@ -34,7 +34,8 @@ public class PukaszTrombolec : Brothers {
     private void ThrowObject() {
         succedObject.transform.parent = null;
         succedObject.rb.isKinematic = false;
-        succedObject.rb.AddForce(tromba.transform.forward * throwForce, ForceMode.Impulse);
+        if (succedObject.throwable)
+            succedObject.rb.AddForce(tromba.transform.forward * throwForce, ForceMode.Impulse);
         Movement brotherMovement = succedObject.GetComponent<Movement>();
         if (brotherMovement) {
             brotherMovement.canMove = true;
