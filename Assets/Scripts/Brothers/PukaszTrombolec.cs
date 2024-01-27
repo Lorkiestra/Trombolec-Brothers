@@ -26,7 +26,7 @@ public class PukaszTrombolec : Brothers {
             TrombaInjector[] distorts = succedObject.GetComponentsInChildren<TrombaInjector>();
             for (int i = 0; i < distorts.Length; i++)
             {
-                distorts[i].succPower1 = Mathf.Min(holdDistortionMaxPower, distorts[i].succPower1 + holdDistortionAcceleration);
+                distorts[i].succPower1 = Mathf.Min(holdDistortionMaxPower, distorts[i].succPower1 + holdDistortionAcceleration * Time.deltaTime);
                 distorts[i].succSpeed1 += holdDistortionSpeed * Time.deltaTime;
             }
         }

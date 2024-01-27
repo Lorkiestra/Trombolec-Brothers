@@ -8,15 +8,15 @@ public class TrombaInjector : ShaderPasser
 	public float succPower2;
 	public float succSpeed1 = 3;
 	public float succSpeed2 = 3;
-	private float succReduction = 1.0f;
+	private float succReduction = 24f;
 
 	private Transform tromba1;
 	private Transform tromba2;
 	protected override void FakeStart()
 	{
 		//get tromba from each player
-		tromba1 = GameObject.FindObjectOfType<PukaszTrombolec>().trombaModel.transform;
-		tromba2 = GameObject.FindObjectOfType<LawelTrombolec>().trombaModel.transform;
+		tromba1 = FindObjectOfType<PukaszTrombolec>().trombaModel.transform;
+		tromba2 = FindObjectOfType<LawelTrombolec>().trombaModel.transform;
 	}
 
 	protected override void FakeUpdate()
@@ -24,20 +24,20 @@ public class TrombaInjector : ShaderPasser
 		//remove sucking power
 		if (succPower1 < 0)
 		{
-			succPower1 = Mathf.Min(0, succPower1 + succReduction);
+			succPower1 = Mathf.Min(0, succPower1 + succReduction * Time.deltaTime);
 		}
 		else
 		{
-			succPower1 = Mathf.Max(0, succPower1 - succReduction);
+			succPower1 = Mathf.Max(0, succPower1 - succReduction * Time.deltaTime);
 		}
 
 		if (succPower2 < 0)
 		{
-			succPower2 = Mathf.Min(0, succPower2 + succReduction);
+			succPower2 = Mathf.Min(0, succPower2 + succReduction * Time.deltaTime);
 		}
 		else
 		{
-			succPower2 = Mathf.Max(0, succPower2 - succReduction);
+			succPower2 = Mathf.Max(0, succPower2 - succReduction * Time.deltaTime);
 		}
 	}
 

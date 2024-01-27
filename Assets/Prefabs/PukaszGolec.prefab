@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 460436541003527996, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3
+      value: 1.202
       objectReference: {fileID: 0}
     - target: {fileID: 460436541003527996, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.825
+      value: 1.648
       objectReference: {fileID: 0}
     - target: {fileID: 1204169026651561501, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: animator
@@ -165,11 +165,21 @@ MonoBehaviour:
   trombaModel: {fileID: 8987207232352514318}
   trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
   audioSource: {fileID: 4910443195019396021}
+  powiekszSwojaTrombe: 0.5
+  hitPoints: 3
+  stunnedTime: 0
+  knockbackForce: 30
   succedObject: {fileID: 0}
   throwForce: 100
   succForce: 400
   succTerminalVelocity: 10
   succHoldDistance: 0.7
+  succDistortionPower: 1.3
+  holdDistortionSpeed: 8.3
+  pushDistortionSpeed: 5.5
+  holdDistortionAcceleration: 24.03
+  holdDistortionMaxPower: 2.2
+  pushDistortionPower: -8
 --- !u!114 &6238482272109677373
 MonoBehaviour:
   m_ObjectHideFlags: 0
