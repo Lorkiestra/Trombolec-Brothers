@@ -96,7 +96,7 @@ MonoBehaviour:
   <Speed>k__BackingField: 1
   <AggroRadius>k__BackingField: 10
   <AggroSpeedMultiplier>k__BackingField: 2
-  <AggroTime>k__BackingField: 5
+  <AggroTime>k__BackingField: 3
   <AttackRange>k__BackingField: 1
   <AttackSpeed>k__BackingField: 1
 --- !u!114 &5088505671464059407
