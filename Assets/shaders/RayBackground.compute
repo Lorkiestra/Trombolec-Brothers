@@ -1,0 +1,129 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel RayTracing
+
+#include "RayMarchingLibrary.cginc"
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+Texture2D<float4> CamTexture;
+
+vector Resolution;
+vector Frustum[4];
+
+vector CameraPosition;
+vector CameraScale;
+vector CameraRotation;
+
+//number of objects in a scene
+int ObjectsCap;
+
+vector ShapePosition[100];
+vector ShapeRotation[100];
+vector ShapeScale[100];
+
+//main light:
+vector LightColor;
+vector LightIntensity;
+int LightType;
+vector LightPosition;
+vector LightRotation;
+
+
+float3 SignedDistanceField(float3 rayOr, float3 rayDir)
+{
+    float finalDist = 10000;
+    //object loop
+    for (int i = 0; i < ObjectsCap; i++)
+    {
+        float3 localPos = rayOr - ShapePosition[i].xyz;
+        //resultDist = SingleShape(localPos, ShapeScale[i], ShapeType[i]);
+        //float3 resultVect = SphereShapeVector(localPos / ShapeScale[i].xyz);
+
+        //magic function
+        //float resultDist = length(resultVect);
+        //float resultDist = dot(resultVect, resultVect) / dot(resultVect, rayDir);
+        float resultDist = InfiniCubeShape(localPos / ShapeScale[i].xyz);
+
+        //rescale
+        //resultDist *= min(ShapeScale[i].x, min(ShapeScale[i].y, ShapeScale[i].z));
+        
+        //over 90 degrees case
+        /*
+        if (resultDist < 0)
+        {
+            CalculateShape[i] = false;
+            continue;
+        }
+        */
+        //only adding for now
+        finalDist = min(finalDist, resultDist);
+    }
+
+    return finalDist;
+}
+
+[numthreads(8,8,1)]
+void RayTracing (uint3 id : SV_DispatchThreadID)
+{
+    float2 uv = float2(float(id.x) / Resolution.x, float(id.y) / Resolution.y);
+    float3 rayOrg = CameraPosition.xyz;
+
+    //rayOrg.x = 10 * (uv.x - 0.5f);
+    //rayOrg.y = 10 * (uv.y -  0.5f);
+    //float3 rayDir = float3(0, 0, 1);
+    //float fov = 90.0;
+    //float3 rayDir = normalize(float3(float2(uv.x - 0.5f, uv.y - 0.5f), -tan(fov / 2.0)));
+    //rayDir = Rotate3D(rayDir, -CameraRotation.xyz);
+    //float3 rayDir = normalize(ToDirection(float3(uv.x - 0.5f, uv.y - 0.5f, CameraPosition.w)));
+    
+    //frustum ray dir
+    float3 rayDir = ToDirection(float3(uv.x - 0.5f, uv.y - 0.5f, CameraPosition.w));
+    if (uv.x >= 0.5f && uv.y >= 0.5f)
+    {
+        rayDir = normalize(ToDirection(float3(Frustum[2].x * (uv.x - 0.5f) * 2, Frustum[2].y * (uv.y - 0.5f) * 2, Frustum[2].z)));
+    }
+    else if (uv.x <= 0.5f && uv.y >= 0.5f)
+    {
+        rayDir = normalize(ToDirection(float3(Frustum[2].x * (uv.x - 0.5f) * 2, Frustum[2].y * (uv.y - 0.5f) * 2, Frustum[2].z)));
+    } 
+    else if (uv.x <= 0.5f && uv.y <= 0.5f)
+    {
+        rayDir = normalize(ToDirection(float3(Frustum[2].x * (uv.x - 0.5f) * 2, Frustum[2].y * (uv.y - 0.5f) * 2, Frustum[2].z)));
+    }
+    else if (uv.x >= 0.5f && uv.y <= 0.5f)
+    {
+        rayDir = normalize(ToDirection(float3(Frustum[2].x * (uv.x - 0.5f) * 2, Frustum[2].y * (uv.y - 0.5f) * 2, Frustum[2].z)));
+    }
+
+    rayDir = Rotate3D(rayDir, CameraRotation.xyz);
+    rayDir = normalize(rayDir);
+
+    float4 ResColor = CamTexture[id.xy];
+    float3 normals = float3(0, 0, 0);
+
+
+    if (ResColor.w < 0.1)
+    {
+        float3 rayPos = rayOrg;
+        ResColor = float4(rayDir.x, rayDir.y, rayDir.z, 1);
+
+        for (int i = 0; i < 256; i++)
+        {
+            float result = SignedDistanceField(rayPos, rayDir);
+
+            if (result < 0.001)
+            {
+                //hitted
+                ResColor = float4(0, 1, 1, 1);
+                break;
+            }
+
+            rayPos += rayDir * result;
+        }
+        
+        
+    }
+
+    Result[id.xy] = ResColor;
+}
