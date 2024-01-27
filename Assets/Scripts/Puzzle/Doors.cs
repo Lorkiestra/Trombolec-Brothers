@@ -8,13 +8,11 @@ public class Doors : Powerable {
 	[SerializeField] private float lowerHeight = 2f;
 	
 	public override void PowerOn() {
-		c.enabled = false;
 		StopAllCoroutines();
 		StartCoroutine(EPowerOn());
 	}
 
 	public override void PowerOff() {
-		c.enabled = true;
 		StopAllCoroutines();
 		StartCoroutine(EPowerOff());
 	}
@@ -28,11 +26,13 @@ public class Doors : Powerable {
 			yield return null;
 		}
 
+		c.enabled = false;
 		Progress = 1f;
 	}
 
 	IEnumerator EPowerOff() {
 		Vector3 startPosition = model.position;
+		c.enabled = true;
 
 		while (Progress > 0f) {
 			model.position = Vector3.Lerp(startPosition, transform.position, Curve.Evaluate(1f - Progress));
