@@ -15,8 +15,6 @@ public class Movement : MonoBehaviour {
     public bool grounded;
     public bool canMove = true;
 
-    [SerializeField] bool lawelTrombolecMovement;
-
     private void Awake() {
         rb = GetComponent<Rigidbody>();
     }
@@ -47,24 +45,12 @@ public class Movement : MonoBehaviour {
         animator.SetFloat("x", axisFix.x);
         animator.SetFloat("y", axisFix.y);
         transform.Translate(axisFix * (speed * Time.deltaTime));
-
-        if (lawelTrombolecMovement) {
-            if (!(direction.magnitude > 0.1f))
-                return;
-
-            float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
-            model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles.x, angle + 90f,
-                model.localRotation.eulerAngles.z);
-        }
     }
 
     public void Look(Vector2 direction) {
         if (!canMove)
             return;
-        
-        if (lawelTrombolecMovement)
-            return;
-        
+
         if (!(direction.magnitude > 0.1f))
             return;
         
