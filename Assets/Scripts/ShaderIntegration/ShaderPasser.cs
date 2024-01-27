@@ -7,8 +7,8 @@ public abstract class ShaderPasser : MonoBehaviour
     //I know I know, it's in shader folder, but this is the base class
     //for EVERY script that passes data to shaders,
     //so that's why here
-
-    public Material MainMaterial;
+    public Shader forceShader;
+    public Material[] shadedMaterials;
 
     protected List<string> PropertyNames = new List<string>();
     protected List<int> PropertyIDs = new List<int>();
@@ -17,7 +17,21 @@ public abstract class ShaderPasser : MonoBehaviour
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
         if (meshRenderer)
 		{
-            MainMaterial = meshRenderer.material;
+            shadedMaterials = meshRenderer.materials;
+		}
+
+        SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
+        if (skinnedMeshRenderer)
+		{
+            shadedMaterials = skinnedMeshRenderer.materials;
+		}
+        //force place shader automatically
+        if (forceShader)
+		{
+            for (int i = 0; i < shadedMaterials.Length; ++i)
+			{
+                shadedMaterials[i].shader = forceShader;
+			}
 		}
         BakePropertyNames();
         BakePropertyIDs();
@@ -33,7 +47,6 @@ public abstract class ShaderPasser : MonoBehaviour
     //we need to do that, it's just how shaders works
     void BakePropertyIDs()
 	{
-        //Shader shader = MainMaterial.shader;
         for (int i = 0; i < PropertyNames.Count; ++i)
 		{
             PropertyIDs.Add(Shader.PropertyToID(PropertyNames[i]));
@@ -43,9 +56,12 @@ public abstract class ShaderPasser : MonoBehaviour
 	void Update()
 	{
         FakeUpdate();
-        PassToRender();
+        for (int j = 0; j < shadedMaterials.Length; ++j)
+		{
+            PassToRender(j);
+        }
 	}
 
     //this thing has to be custom-made every time because of different data formats
-    protected abstract void PassToRender();
+    protected abstract void PassToRender(int j);
 }

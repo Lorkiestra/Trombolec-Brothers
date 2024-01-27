@@ -299,10 +299,12 @@ MonoBehaviour:
   trombaModel: {fileID: 2325584546515721827}
   trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
   audioSource: {fileID: 3898397948392592004}
+  powiekszSwojaTrombe: 0.5
   turbopierdForce: 100
   speedClamp: 40
   trombaPushForce: 200
   trombaPushTerminalVelocity: 10
+  trombaPushDistortionPower: -5
 --- !u!114 &840877403345411243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +407,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb5f996277f9821489b983760548a731, type: 3}
       insertIndex: -1
       addedObject: {fileID: 427195947939045748}
+    - targetCorrespondingSourceObject: {fileID: 9008341400724036725, guid: eb5f996277f9821489b983760548a731, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4617440692468986761}
   m_SourcePrefab: {fileID: 100100000, guid: eb5f996277f9821489b983760548a731, type: 3}
+--- !u!1 &341827073041903469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9008341400724036725, guid: eb5f996277f9821489b983760548a731, type: 3}
+  m_PrefabInstance: {fileID: 8771436680027566872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4617440692468986761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341827073041903469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
+  succPower1: 0
+  succPower2: 0
 --- !u!1 &8465376409174593097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eb5f996277f9821489b983760548a731, type: 3}

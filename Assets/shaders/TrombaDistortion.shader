@@ -7,7 +7,7 @@ Shader "Custom/TrombaDistortion"
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
 
-        _NoiseScale("NoiseScale", vector) = (1, 1, 1, 1)
+        _NoiseScale("NoiseScale", vector) = (0.1, 0.1, 0.1, 3)
         /*
         _SuccPower("SuccPower", float) = 1
         _State("State", int) = 0

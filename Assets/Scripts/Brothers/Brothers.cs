@@ -7,10 +7,10 @@ public abstract class Brothers : MonoBehaviour {
     protected Rigidbody rb;
     protected Movement movement;
     [SerializeField] private Animator animator;
-    public PropCollector tromba;
+    [SerializeField] protected PropCollector tromba;
     private Coroutine groundPounding;
     [SerializeField] private float groundPoundForce = 100f;
-    [SerializeField] protected Transform trombaModel;
+    public Transform trombaModel;
 
     [SerializeField] protected AudioClip trombaPierdzenie;
     [SerializeField] protected AudioSource audioSource;

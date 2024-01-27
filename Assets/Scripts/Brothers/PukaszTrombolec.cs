@@ -11,8 +11,23 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succHoldDistance = 0.7f;
 
     [SerializeField] private float succDistortionPower = 1.3f;
-    [SerializeField] private float pushDistortionPower = 3f;
-    public override void Trombone() {
+    [SerializeField]
+    private float HoldDistortionPower = 1.6f;
+    [SerializeField] private float pushDistortionPower = -8f;
+
+	public void Update()
+	{
+		if (succedObject)
+		{
+            //update every material within object
+            TrombaInjector[] distorts = succedObject.GetComponentsInChildren<TrombaInjector>();
+            for (int i = 0; i < distorts.Length; i++)
+            {
+                distorts[i].succPower1 = HoldDistortionPower;
+            }
+        }
+	}
+	public override void Trombone() {
         audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
             return;
@@ -77,13 +92,6 @@ public class PukaszTrombolec : Brothers {
     }
 
     void HoldObject(Prop prop) {
-        //update every material within object
-        TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
-        for (int i = 0; i < distorts.Length; i++)
-        {
-            distorts[i].succPower1 += succDistortionPower;
-        }
-
         succedObject = prop;
         succedObject.transform.parent = tromba.transform;
         succedObject.rb.isKinematic = true;

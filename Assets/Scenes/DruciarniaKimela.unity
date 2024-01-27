@@ -285,7 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMaterial: {fileID: 0}
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
   succPower1: 0
   succPower2: 0
 --- !u!1 &739555391
@@ -549,7 +550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1519fed718afca6418ffa68dbe88e197, type: 2}
+  - {fileID: 2100000, guid: 64ec0cca950e8b44aa9ed85d20ccc455, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -648,7 +649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMaterial: {fileID: 0}
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
   succPower1: 0
   succPower2: 0
 --- !u!1 &973270450
@@ -1070,7 +1072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMaterial: {fileID: 0}
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
   succPower1: 0
   succPower2: 0
 --- !u!1 &2006766984
@@ -1107,7 +1110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMaterial: {fileID: 0}
+  forceShader: {fileID: 0}
+  shadedMaterials: []
   succPower1: 0
   succPower2: 0
 --- !u!114 &2006766986

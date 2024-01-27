@@ -13,29 +13,30 @@ public class TrombaInjector : ShaderPasser
 	protected override void FakeStart()
 	{
 		//get tromba from each player
-		tromba1 = GameObject.FindObjectOfType<PukaszTrombolec>().tromba.transform;
-		tromba2 = GameObject.FindObjectOfType<LawelTrombolec>().tromba.transform;
+		tromba1 = GameObject.FindObjectOfType<PukaszTrombolec>().trombaModel.transform;
+		tromba2 = GameObject.FindObjectOfType<LawelTrombolec>().trombaModel.transform;
 	}
 
 	protected override void FakeUpdate()
 	{
+		Debug.Log(succPower1);
 		//remove sucking power
 		if (succPower1 < 0)
 		{
-			succPower1 = Mathf.Max(0, succPower1 + succReduction);
+			succPower1 = Mathf.Min(0, succPower1 + succReduction);
 		}
 		else
 		{
-			succPower1 = Mathf.Min(0, succPower1 - succReduction);
+			succPower1 = Mathf.Max(0, succPower1 - succReduction);
 		}
 
 		if (succPower2 < 0)
 		{
-			succPower2 = Mathf.Max(0, succPower2 + succReduction);
+			succPower2 = Mathf.Min(0, succPower2 + succReduction);
 		}
 		else
 		{
-			succPower2 = Mathf.Min(0, succPower2 - succReduction);
+			succPower2 = Mathf.Max(0, succPower2 - succReduction);
 		}
 	}
 
@@ -47,11 +48,11 @@ public class TrombaInjector : ShaderPasser
 		PropertyNames.Add("SuccPower2");
 	}
 
-	protected override void PassToRender()
+	protected override void PassToRender(int j)
 	{
-		MainMaterial.SetVector(PropertyIDs[0], tromba1.position);
-		MainMaterial.SetVector(PropertyIDs[1], tromba2.position);
-		MainMaterial.SetFloat(PropertyIDs[2], succPower1);
-		MainMaterial.SetFloat(PropertyIDs[3], succPower2);
+		shadedMaterials[j].SetVector(PropertyIDs[0], tromba1.position);
+		shadedMaterials[j].SetVector(PropertyIDs[1], tromba2.position);
+		shadedMaterials[j].SetFloat(PropertyIDs[2], succPower1);
+		shadedMaterials[j].SetFloat(PropertyIDs[3], succPower2);
 	}
 }

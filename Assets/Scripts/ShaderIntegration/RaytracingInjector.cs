@@ -56,7 +56,7 @@ public class RaytracingInjector : ShaderPasser
 			ShapeScale.Add(Vect3To4(rayObjects[i].transform.lossyScale));
 		}
 
-		PassToRender();
+		PassToRender(0);
 	}
 
 	protected override void BakePropertyNames()
@@ -70,7 +70,7 @@ public class RaytracingInjector : ShaderPasser
 		PropertyNames.Add("ShapeRotation");
 		PropertyNames.Add("ShapeScale");
 	}
-	protected override void PassToRender()
+	protected override void PassToRender(int j)
 	{
 		shader.SetVector(PropertyIDs[0], new Vector4(Screen.width, Screen.height, 0, 0));
 		shader.SetVector(PropertyIDs[1], new Vector4(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z, 1));
