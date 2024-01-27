@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chase Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7820659845238755409, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
     m_RemovedGameObjects: []
@@ -63,7 +67,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
       insertIndex: 5
       addedObject: {fileID: 7105094749013457365}
+    - targetCorrespondingSourceObject: {fileID: 1776586332963538347, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2597269172727336054}
   m_SourcePrefab: {fileID: 100100000, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+--- !u!1 &2103061978865425240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1776586332963538347, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+  m_PrefabInstance: {fileID: 398604169213927155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2597269172727336054
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103061978865425240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 066d29a97bb3e8144a95f86a7137ea8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9092112075152339646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
@@ -103,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WanderRadius>k__BackingField: 5
+  animator: {fileID: 2597269172727336054}
   <WanderPivotOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <Speed>k__BackingField: 1
   <AggroSpeedMultiplier>k__BackingField: 2

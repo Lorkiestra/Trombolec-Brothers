@@ -10,6 +10,8 @@ public class BasicEnemy : MonoBehaviour {
     [field: SerializeField, Min(0.1f)]
     public float WanderRadius { get; private set; } = 5f;
 
+    [SerializeField] private Animator animator;
+
     [field: SerializeField]
     public Vector3 WanderPivotOffset { get; private set; } = Vector3.zero;
 
@@ -23,6 +25,8 @@ public class BasicEnemy : MonoBehaviour {
     protected EnemyStateMachine stateMachine;
 
     protected NavMeshAgent agent;
+    
+    public bool DiedHard { get; private set; }
 
     protected virtual void Awake() {
         stateMachine = GetComponent<EnemyStateMachine>();
@@ -38,6 +42,17 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     public virtual void Die() {
+        if (DiedHard)
+            animator.SetTrigger("die_hit");
+        else
+            animator.SetTrigger("die_pound");        
+        StartCoroutine(EDie());
+    }
+
+    IEnumerator EDie() {
+        for (float i = 0f; i < 1.5f; i += Time.deltaTime) {
+            yield return null;
+        }
         Destroy(gameObject);
     }
 
@@ -48,7 +63,8 @@ public class BasicEnemy : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other) {
         if (other?.rigidbody?.velocity.magnitude > 5f) {
-            stateMachine.TransitionTo(EnemyStateMachine.EnemyState.Die);
+            DiedHard = true;
+            Die();
         }
     }
 }
