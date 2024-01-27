@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour {
     public bool canMove = true;
     public Vector2 look;
     new ParticleSystem particleSystem;
+    [SerializeField] private float coyoteJumpDuration = 0.2f;
+    private Coroutine coyote;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -92,6 +94,20 @@ public class Movement : MonoBehaviour {
 
     void CheckGrounded() {
         Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out RaycastHit hit, groundCheckRayLength);
-        grounded = hit.collider;
+        if (hit.collider) {
+            if (coyote != null)
+                StopCoroutine(coyote);
+            grounded = true;
+        }
+        else {
+            StartCoroutine(CoyoteJump());
+        }
+    }
+
+    IEnumerator CoyoteJump() {
+        for (float i = 0f; i < coyoteJumpDuration; i += Time.deltaTime) {
+            yield return null;
+        }
+        grounded = false;
     }
 }
