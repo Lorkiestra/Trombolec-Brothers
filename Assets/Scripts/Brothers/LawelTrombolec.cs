@@ -42,7 +42,7 @@ public class LawelTrombolec : Brothers {
     }
 
     void TrombonePush() {
-        foreach (Prop prop in tromba.props) {
+        foreach (Prop prop in tromba.Props) {
             //update every material within objects
             TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
             for (int i = 0; i < distorts.Length; i++)

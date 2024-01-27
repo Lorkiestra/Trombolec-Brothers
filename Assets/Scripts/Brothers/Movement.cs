@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-    
     public Rigidbody rb;
     [SerializeField] private Animator animator;
-    
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     public Transform model;
@@ -15,13 +13,21 @@ public class Movement : MonoBehaviour {
     public bool grounded;
     public bool canMove = true;
     public Vector2 look;
+    new ParticleSystem particleSystem;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     private void Update() {
         CheckGrounded();
+
+        if (grounded && !particleSystem.isPlaying)
+            particleSystem.Play();
+        else if (!grounded && particleSystem.isPlaying)
+            particleSystem.Stop();
+
         Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
     }
 

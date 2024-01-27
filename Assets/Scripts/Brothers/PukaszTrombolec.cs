@@ -87,7 +87,7 @@ public class PukaszTrombolec : Brothers {
     }
 
     private void SuccObjects() {
-        foreach (Prop prop in tromba.props) {
+        foreach (Prop prop in tromba.Props) {
             //update every material within objects
             TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
             for (int i = 0; i < distorts.Length; i++)
@@ -106,7 +106,7 @@ public class PukaszTrombolec : Brothers {
     }
 
     private void RestoreGravity() {
-        foreach (Prop prop in tromba.props) {
+        foreach (Prop prop in tromba.Props) {
             prop.rb.useGravity = true;
         }
     }

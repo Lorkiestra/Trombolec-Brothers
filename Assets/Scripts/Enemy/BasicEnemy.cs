@@ -47,7 +47,7 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
-        if (other.rigidbody.velocity.magnitude > 5f) {
+        if (other?.rigidbody?.velocity.magnitude > 5f) {
             stateMachine.TransitionTo(EnemyStateMachine.EnemyState.Die);
         }
     }
