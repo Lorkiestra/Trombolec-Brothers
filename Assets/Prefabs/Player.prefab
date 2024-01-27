@@ -213,7 +213,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   speed: 10
-  jumpForce: 12.5
+  jumpForce: 10
   model: {fileID: 4207323013260681891}
   groundCheckRayLength: 0.5
   grounded: 0
