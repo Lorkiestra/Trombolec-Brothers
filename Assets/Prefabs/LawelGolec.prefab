@@ -271,6 +271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   props: []
+--- !u!82 &3898397948392592004 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2277549815639269165, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+  m_PrefabInstance: {fileID: 2991128174192102825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5192109560207889105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7029146057363414904, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
@@ -292,6 +297,8 @@ MonoBehaviour:
   tromba: {fileID: 2493098495701724405}
   groundPoundForce: 60
   trombaModel: {fileID: 2325584546515721827}
+  trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
+  audioSource: {fileID: 3898397948392592004}
   turbopierdForce: 100
   speedClamp: 40
   trombaPushForce: 200

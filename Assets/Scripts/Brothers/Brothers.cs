@@ -11,6 +11,9 @@ public abstract class Brothers : MonoBehaviour {
     private Coroutine groundPounding;
     [SerializeField] private float groundPoundForce = 100f;
     [SerializeField] protected Transform trombaModel;
+
+    [SerializeField] protected AudioClip trombaPierdzenie;
+    [SerializeField] protected AudioSource audioSource;
     
     public abstract void Trombone();
     public abstract void TromboneRelease();

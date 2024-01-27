@@ -11,6 +11,7 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succHoldDistance = 0.7f;
 
     public override void Trombone() {
+        audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
             return;
         
@@ -20,6 +21,7 @@ public class PukaszTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
+        audioSource.Stop();
         trombaModel.localScale = Vector3.one * 0.3f;
         RestoreGravity();
         

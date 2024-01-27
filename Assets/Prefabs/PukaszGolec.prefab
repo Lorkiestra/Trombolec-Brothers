@@ -160,11 +160,18 @@ MonoBehaviour:
   tromba: {fileID: 847282296019737646}
   groundPoundForce: 80
   trombaModel: {fileID: 8987207232352514318}
+  trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
+  audioSource: {fileID: 4910443195019396021}
   succedObject: {fileID: 0}
   throwForce: 100
   succForce: 400
   succTerminalVelocity: 10
   succHoldDistance: 0.7
+--- !u!82 &4910443195019396021 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2277549815639269165, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+  m_PrefabInstance: {fileID: 6610753653788826776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6239175813671776542 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 948038734156115334, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
