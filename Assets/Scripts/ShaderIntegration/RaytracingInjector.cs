@@ -8,6 +8,10 @@ public class RaytracingInjector : ShaderPasser
 	public Transform RayScene;
 	public ComputeShader shader;
 	public RenderTexture result;
+	public Vector4 SkyboxScale;
+	public int SkyboxMode;
+
+	[SerializeField] private Texture blokTexture;
 
 	private Camera rayCamera;
 	private List<Vector4> ShapePosition = new List<Vector4>();
@@ -21,6 +25,10 @@ public class RaytracingInjector : ShaderPasser
 		result.Create();
 
 		rayCamera = gameObject.GetComponent<Camera>();
+
+		int kernel = shader.FindKernel("RayTracing");
+		shader.SetTexture(kernel, "BlokTexture", blokTexture);
+		shader.SetVector("BlokResolution", new Vector4(blokTexture.width, blokTexture.height, 20, 20));
 	}
 
 	public void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -28,7 +36,7 @@ public class RaytracingInjector : ShaderPasser
 		//use raytracing and update
 		int kernel = shader.FindKernel("RayTracing");
 
-		shader.SetTexture(kernel, "CamTexture", source);
+		shader.SetTexture(kernel, "CumTexture", source);
 		shader.SetTexture(kernel, "Result", result);
 		shader.Dispatch(kernel, Screen.width / 8, Screen.height / 8, 1);
 
@@ -69,6 +77,8 @@ public class RaytracingInjector : ShaderPasser
 		PropertyNames.Add("ShapePosition");
 		PropertyNames.Add("ShapeRotation");
 		PropertyNames.Add("ShapeScale");
+		PropertyNames.Add("SkyboxScale");
+		PropertyNames.Add("NightMode");
 	}
 	protected override void PassToRender(int j)
 	{
@@ -87,9 +97,11 @@ public class RaytracingInjector : ShaderPasser
 
 		shader.SetVectorArray(PropertyIDs[4], realFrustum);
 
-		//shader.SetVector(PropertyIDs[1], );
 		shader.SetVectorArray(PropertyIDs[5], ShapePosition.ToArray());
 		shader.SetVectorArray(PropertyIDs[6], ShapeRotation.ToArray());
 		shader.SetVectorArray(PropertyIDs[7], ShapeScale.ToArray());
+
+		shader.SetVector(PropertyIDs[8], new Vector4(SkyboxScale.x, SkyboxScale.y, SkyboxScale.z, Time.time * SkyboxScale.w));
+		shader.SetInt(PropertyIDs[9], SkyboxMode);
 	}
 }
