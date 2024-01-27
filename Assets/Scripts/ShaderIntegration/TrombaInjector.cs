@@ -21,7 +21,6 @@ public class TrombaInjector : ShaderPasser
 
 	protected override void FakeUpdate()
 	{
-		Debug.Log(succPower1);
 		//remove sucking power
 		if (succPower1 < 0)
 		{

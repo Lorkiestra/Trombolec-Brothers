@@ -16,13 +16,35 @@ public abstract class Brothers : MonoBehaviour {
     [SerializeField] protected AudioSource audioSource;
 
     [SerializeField] protected float powiekszSwojaTrombe = .5f;
+
+    [SerializeField] private int hitPoints = 3;
+    [SerializeField] private float stunnedTime;
     
-    public abstract void Trombone();
-    public abstract void TromboneRelease();
+    [SerializeField] float knockbackForce = 30f;
+
+    public virtual void Trombone() {
+        if (stunnedTime > 0f)
+            return;
+    }
+
+    public virtual void TromboneRelease() {
+        if (stunnedTime > 0f)
+            return;
+    }
 
     private void Awake() {
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    public virtual void Update() {
+        if (stunnedTime > 0f) {
+            stunnedTime -= Time.deltaTime;
+            if (stunnedTime <= 0f) {
+                animator.SetTrigger("stun_end");
+                movement.canMove = true;
+            }
+        }
     }
 
     public void GroundPound() {
@@ -55,12 +77,13 @@ public abstract class Brothers : MonoBehaviour {
             if (prop) {
                 collider.GetComponent<Prop>().rb.AddForce(Vector3.up * groundPoundForce + (collider.transform.position - transform.position) * groundPoundForce / 7f, ForceMode.Impulse);
             }
-            /*
-            Enemy enemy = collider.GetComponent<Enemy>();
+        }
+
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, 1f)) {
+            BasicEnemy enemy = collider.GetComponent<BasicEnemy>();
             if (enemy) {
                 enemy.Die();
             }
-            */
         }
 
         waitTime = 0.5f;
@@ -70,5 +93,48 @@ public abstract class Brothers : MonoBehaviour {
         }
         movement.canMove = true;
         groundPounding = null;
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log($"{name} on collision enter");
+        Debug.Log(other.transform.name);
+        if (other.transform.CompareTag("Enemy")) {
+            TakeHit(other.transform.position);
+        }
+    }
+
+    public void TakeHit(Vector3 enemyPosition) {
+        Debug.Log($"{name} take hit");
+        if (stunnedTime > 0f)
+            return;
+        
+        hitPoints--;
+        rb.AddForce(Vector3.Normalize(enemyPosition - transform.position) * knockbackForce, ForceMode.Impulse);
+        StartCoroutine(HitFlashing());
+        if (hitPoints <= 0) {
+            Stun();
+            hitPoints = 3;
+        }
+    }
+
+    public void Stun() {
+        Debug.Log($"{name} stunned");
+        stunnedTime = 10f;
+        animator.SetTrigger("stun");
+        movement.canMove = false;
+        StartCoroutine(HitFlashing());
+    }
+    
+    IEnumerator HitFlashing() {
+        for (float i = 0; i < 3f; i += Time.deltaTime) {
+            if (i % 0.2f < 0.1f) {
+                movement.model.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+            }
+            else {
+                movement.model.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            }
+            yield return null;
+        }
+        movement.model.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
     }
 }

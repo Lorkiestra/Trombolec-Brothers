@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour {
     
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private Transform model;
+    public Transform model;
     [SerializeField] private float groundCheckRayLength = 0.5f;
     public bool grounded;
     public bool canMove = true;

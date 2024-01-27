@@ -30,4 +30,8 @@ public class BasicEnemy : MonoBehaviour {
     public virtual void Attack() {
 
     }
+
+    public virtual void Die() {
+        Destroy(gameObject);
+    }
 }

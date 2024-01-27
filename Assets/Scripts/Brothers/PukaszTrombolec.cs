@@ -11,15 +11,15 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succHoldDistance = 0.7f;
 
     [SerializeField] private float succDistortionPower = 1.3f;
-    [SerializeField] private float holdDistortionPower = 1.8f;
     [SerializeField] private float holdDistortionSpeed = 8.3f;
     [SerializeField] private float pushDistortionSpeed = 5.5f;
     [SerializeField] private float holdDistortionAcceleration = 1.003f;
     [SerializeField] private float holdDistortionMaxPower = 2.2f;
     [SerializeField] private float pushDistortionPower = -8f;
 
-	public void Update()
+    public override void Update()
 	{
+        base.Update();
 		if (succedObject)
 		{
             //update every material within object
@@ -32,6 +32,7 @@ public class PukaszTrombolec : Brothers {
         }
 	}
 	public override void Trombone() {
+        base.Trombone();
         audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
             return;
@@ -42,6 +43,7 @@ public class PukaszTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
+        base.TromboneRelease();
         audioSource.Stop();
         trombaModel.localScale = Vector3.one * 0.3f;
         RestoreGravity();

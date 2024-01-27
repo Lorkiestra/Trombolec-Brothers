@@ -11,11 +11,13 @@ public class LawelTrombolec : Brothers {
     [SerializeField] private float trombapushDistortionSpeed = 2f;
     [SerializeField] private float trombaPushDistortionPower = -5f;
 
-    private void Update() {
+    public override void Update() {
+        base.Update();
         Debug.DrawRay(tromba.transform.position, tromba.transform.forward, Color.yellow);
     }
 
     public override void Trombone() {
+        base.Trombone();
         audioSource.PlayOneShot(trombaPierdzenie);
         trombaModel.localScale = Vector3.one * UnityEngine.Random.Range(.3f, powiekszSwojaTrombe);
         if (!movement.grounded)
@@ -25,6 +27,7 @@ public class LawelTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
+        base.TromboneRelease();
         audioSource.Stop();
         trombaModel.localScale = Vector3.one * .3f;
     }
