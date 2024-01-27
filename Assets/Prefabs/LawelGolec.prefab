@@ -338,7 +338,7 @@ MonoBehaviour:
   brotherType: 0
   knockbackForce: 30
   maxDistance: 20
-  turbopierdForce: 100
+  turbopierdForce: 17.5
   speedClamp: 40
   trombaPushForce: 200
   trombaPushTerminalVelocity: 10
