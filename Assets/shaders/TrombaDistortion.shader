@@ -8,9 +8,11 @@ Shader "Custom/TrombaDistortion"
         _Metallic("Metallic", Range(0,1)) = 0.0
 
         _NoiseScale("NoiseScale", vector) = (0.1, 0.1, 0.1, 3)
+
         /*
-        _SuccPower("SuccPower", float) = 1
-        _State("State", int) = 0
+        _PoundScale("PoundScale", vector) = (1, 1, 1, 1)
+        _PoundDist1("PoundDist1", float) = 1
+        _GroundpoundPos1("GroundpoundPos1", float) = 1
         */
     }
     SubShader
@@ -39,6 +41,11 @@ Shader "Custom/TrombaDistortion"
         fixed4 _Color;
 
         float4 _NoiseScale;
+        float4 _PoundScale;
+        uniform float4 GroundpoundPos1;
+        uniform float4 GroundpoundPos2;
+        uniform float PoundDist1;
+        uniform float PoundDist2;
         uniform float4 TrombaPos1;
         uniform float4 TrombaPos2;
         uniform float SuccPower1;
@@ -83,9 +90,29 @@ Shader "Custom/TrombaDistortion"
             //regaining world pos
             worldPos = TrombaPos2 + normalize(centeredPos) * dist;
 
+            //groundpound
+            centeredPos = worldPos - GroundpoundPos1.xyz;
+            float dist2d = length(centeredPos.xz);
+            float waveDist = (dist2d - PoundDist1) * _PoundScale.x;
+            //make only singular wave
+            if (abs(waveDist) < 3.14)
+            {
+                worldPos.y += max(0, _PoundScale.y * sin(waveDist) / max(1, dist2d * _PoundScale.z));
+            }
+
+            //same for second brother
+            centeredPos = worldPos - GroundpoundPos2.xyz;
+            float dist2d = length(centeredPos.xz);
+            float waveDist = (dist2d - PoundDist2) * _PoundScale.x;
+            //make only singular wave
+            if (abs(waveDist) < 3.14)
+            {
+                worldPos.y += max(0, _PoundScale.y * sin(waveDist) / max(1, dist2d * _PoundScale.z));
+            }
 
             //world to vertex pos:
             v.vertex.xyz = mul(unity_WorldToObject, float4(worldPos, 1));
+
         }
 
         void surf (Input IN, inout SurfaceOutputStandard o)

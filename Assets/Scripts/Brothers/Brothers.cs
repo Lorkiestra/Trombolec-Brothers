@@ -19,6 +19,7 @@ public abstract class Brothers : MonoBehaviour {
 
     [SerializeField] private int hitPoints = 3;
     [SerializeField] private float stunnedTime;
+    [SerializeField] protected int brotherType;
     
     [SerializeField] float knockbackForce = 30f;
 
@@ -32,7 +33,7 @@ public abstract class Brothers : MonoBehaviour {
             return;
     }
 
-    private void Awake() {
+    protected virtual void Awake() {
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
     }
@@ -72,7 +73,21 @@ public abstract class Brothers : MonoBehaviour {
         }
         animator.SetTrigger("ground_pound_impact");
         foreach (Collider collider in Physics.OverlapSphere(transform.position, 5f)) {
-            // TODO fala uderzeniowa i damage
+            // groundpoundWave
+            TrombaInjector[] distorts = collider.GetComponentsInChildren<TrombaInjector>();
+            for (int i = 0; i < distorts.Length; i++)
+            {
+                //is first brother
+                if (brotherType == 1)
+                {
+                    distorts[i].poundDist1 = 0;
+                }
+                else
+                {
+                    distorts[i].poundDist2 = 0;
+                }
+            }
+
             Prop prop = collider.GetComponent<Prop>();
             if (prop) {
                 collider.GetComponent<Prop>().rb.AddForce(Vector3.up * groundPoundForce + (collider.transform.position - transform.position) * groundPoundForce / 7f, ForceMode.Impulse);

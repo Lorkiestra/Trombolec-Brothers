@@ -17,8 +17,14 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float holdDistortionMaxPower = 2.2f;
     [SerializeField] private float pushDistortionPower = -8f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        brotherType = 1;
+    }
+
     public override void Update()
-	{
+    {
         base.Update();
 		if (succedObject)
 		{

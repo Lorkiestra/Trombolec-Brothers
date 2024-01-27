@@ -11,6 +11,12 @@ public class LawelTrombolec : Brothers {
     [SerializeField] private float trombapushDistortionSpeed = 2f;
     [SerializeField] private float trombaPushDistortionPower = -5f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        brotherType = 2;
+    }
+
     public override void Update() {
         base.Update();
         Debug.DrawRay(tromba.transform.position, tromba.transform.forward, Color.yellow);

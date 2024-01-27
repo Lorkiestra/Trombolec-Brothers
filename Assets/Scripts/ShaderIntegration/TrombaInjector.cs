@@ -8,15 +8,23 @@ public class TrombaInjector : ShaderPasser
 	public float succPower2;
 	public float succSpeed1 = 3;
 	public float succSpeed2 = 3;
+	public float poundDist1 = 100;
+	public float poundDist2 = 100;
 	private float succReduction = 24f;
+	private float poundReduction = 5f;
 
+	private Transform brother1;
+	private Transform brother2;
 	private Transform tromba1;
 	private Transform tromba2;
 	protected override void FakeStart()
 	{
+		//get each brother
+		brother1 = GameObject.FindObjectOfType<PukaszTrombolec>().transform;
+		brother2 = GameObject.FindObjectOfType<LawelTrombolec>().transform;
 		//get tromba from each player
-		tromba1 = FindObjectOfType<PukaszTrombolec>().trombaModel.transform;
-		tromba2 = FindObjectOfType<LawelTrombolec>().trombaModel.transform;
+		tromba1 = brother1.GetComponent<PukaszTrombolec>().trombaModel.transform;
+		tromba2 = brother2.GetComponent<LawelTrombolec>().trombaModel.transform;
 	}
 
 	protected override void FakeUpdate()
@@ -39,10 +47,22 @@ public class TrombaInjector : ShaderPasser
 		{
 			succPower2 = Mathf.Max(0, succPower2 - succReduction * Time.deltaTime);
 		}
+
+		//update groundpound animation
+		if (poundDist1 < 100)
+		{
+			poundDist1 += poundReduction * Time.deltaTime;
+		}
+		if (poundDist2 < 100)
+		{
+			poundDist2 += poundReduction * Time.deltaTime;
+		}
 	}
 
 	protected override void BakePropertyNames()
 	{
+		PropertyNames.Add("GroundpoundPos1");
+		PropertyNames.Add("GroundpoundPos2");
 		PropertyNames.Add("TrombaPos1");
 		PropertyNames.Add("TrombaPos2");
 		PropertyNames.Add("SuccPower1");
@@ -53,11 +73,13 @@ public class TrombaInjector : ShaderPasser
 
 	protected override void PassToRender(int j)
 	{
-		shadedMaterials[j].SetVector(PropertyIDs[0], tromba1.position);
-		shadedMaterials[j].SetVector(PropertyIDs[1], tromba2.position);
-		shadedMaterials[j].SetFloat(PropertyIDs[2], succPower1);
-		shadedMaterials[j].SetFloat(PropertyIDs[3], succPower2);
-		shadedMaterials[j].SetFloat(PropertyIDs[4], succSpeed1);
-		shadedMaterials[j].SetFloat(PropertyIDs[5], succSpeed2);
+		shadedMaterials[j].SetVector(PropertyIDs[0], brother1.position);
+		shadedMaterials[j].SetVector(PropertyIDs[1], brother2.position);
+		shadedMaterials[j].SetVector(PropertyIDs[1], tromba1.position);
+		shadedMaterials[j].SetVector(PropertyIDs[2], tromba2.position);
+		shadedMaterials[j].SetFloat(PropertyIDs[3], succPower1);
+		shadedMaterials[j].SetFloat(PropertyIDs[4], succPower2);
+		shadedMaterials[j].SetFloat(PropertyIDs[5], succSpeed1);
+		shadedMaterials[j].SetFloat(PropertyIDs[6], succSpeed2);
 	}
 }
