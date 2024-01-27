@@ -6,9 +6,12 @@ using UnityEngine;
 public abstract class Brothers : MonoBehaviour {
     protected Rigidbody rb;
     protected Movement movement;
+    [SerializeField] private Animator animator;
     [SerializeField] protected PropCollector tromba;
     private Coroutine groundPounding;
     [SerializeField] private float groundPoundForce = 100f;
+    [SerializeField] protected Transform trombaModel;
+    
     public abstract void Trombone();
     public abstract void TromboneRelease();
 
@@ -25,23 +28,22 @@ public abstract class Brothers : MonoBehaviour {
     }
     
     IEnumerator GroundPoundCoroutine() {
-        Debug.Log("start pound");
         movement.canMove = false;
         movement.rb.isKinematic = true;
         movement.rb.useGravity = false;
-        // TODO odpal animacje flipa
-        for (int i = 0; i < 60; i++) {
-            yield return new WaitForEndOfFrame();
+        animator.SetTrigger("ground_pound");
+        float waitTime = .5f;
+        while (waitTime > 0f) {
+            waitTime -= Time.deltaTime;
+            yield return null;
         }
-        Debug.Log("flip end go down");
         movement.rb.useGravity = true;
         movement.rb.isKinematic = false;
         movement.rb.AddForce(Vector3.down * 1000f, ForceMode.Impulse);
         while (!movement.grounded) {
             yield return null;
         }
-        Debug.Log("jebut o ziemię");
-        // TODO jebut o ziemię
+        animator.SetTrigger("ground_pound_impact");
         foreach (Collider collider in Physics.OverlapSphere(transform.position, 5f)) {
             // TODO fala uderzeniowa i damage
             Prop prop = collider.GetComponent<Prop>();
@@ -55,11 +57,12 @@ public abstract class Brothers : MonoBehaviour {
             }
             */
         }
-        
-        for (int i = 0; i < 20; i++) {
-            yield return new WaitForEndOfFrame();
+
+        waitTime = 0.5f;
+        while (waitTime > 0f) {
+            waitTime -= Time.deltaTime;
+            yield return null;
         }
-        Debug.Log("end");
         movement.canMove = true;
         groundPounding = null;
     }

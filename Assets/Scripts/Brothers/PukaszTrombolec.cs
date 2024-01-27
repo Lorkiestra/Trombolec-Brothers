@@ -13,11 +13,14 @@ public class PukaszTrombolec : Brothers {
     public override void Trombone() {
         if (succedObject)
             return;
+        
+        trombaModel.localScale = Vector3.one * Random.Range(.3f, .8f);
 
         SuccObjects();
     }
 
     public override void TromboneRelease() {
+        trombaModel.localScale = Vector3.one * 0.3f;
         RestoreGravity();
         
         if (!succedObject)
@@ -64,5 +67,6 @@ public class PukaszTrombolec : Brothers {
             brotherMovement.canMove = false;
         }
         RestoreGravity();
+        trombaModel.localScale = Vector3.one * 0.3f;
     }
 }

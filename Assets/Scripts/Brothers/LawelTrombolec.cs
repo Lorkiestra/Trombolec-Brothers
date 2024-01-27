@@ -14,6 +14,7 @@ public class LawelTrombolec : Brothers {
     }
 
     public override void Trombone() {
+        trombaModel.localScale = Vector3.one * UnityEngine.Random.Range(.3f, .8f);
         if (!movement.grounded)
             rb.AddForce(-tromba.transform.forward * turbopierdForce, ForceMode.Impulse);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedClamp);
@@ -21,7 +22,7 @@ public class LawelTrombolec : Brothers {
     }
 
     public override void TromboneRelease() {
-        
+        trombaModel.localScale = Vector3.one * .3f;
     }
 
     void TrombonePush() {

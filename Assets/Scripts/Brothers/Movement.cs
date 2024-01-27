@@ -6,6 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
     
     public Rigidbody rb;
+    [SerializeField] private Animator animator;
     
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
@@ -23,6 +24,9 @@ public class Movement : MonoBehaviour {
     private void Update() {
         CheckGrounded();
         Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
+    }
+
+    private void FixedUpdate() {
         ApplyAdditionalGravity();
     }
 
@@ -39,6 +43,9 @@ public class Movement : MonoBehaviour {
         if (!canMove)
             return;
         Vector3 axisFix = new Vector3(direction.x, 0f, direction.y);
+        animator.SetFloat("velocity", axisFix.magnitude);
+        animator.SetFloat("x", axisFix.x);
+        animator.SetFloat("y", axisFix.y);
         transform.Translate(axisFix * (speed * Time.deltaTime));
 
         if (lawelTrombolecMovement) {
