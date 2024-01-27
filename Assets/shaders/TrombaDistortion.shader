@@ -8,12 +8,7 @@ Shader "Custom/TrombaDistortion"
         _Metallic("Metallic", Range(0,1)) = 0.0
 
         _NoiseScale("NoiseScale", vector) = (0.1, 0.1, 0.1, 3)
-
-        /*
-        _PoundScale("PoundScale", vector) = (1, 1, 1, 1)
-        _PoundDist1("PoundDist1", float) = 1
-        _GroundpoundPos1("GroundpoundPos1", float) = 1
-        */
+        _PoundScale("PoundScale", vector) = (1, 2.5, 1.3, 1)
     }
     SubShader
     {
