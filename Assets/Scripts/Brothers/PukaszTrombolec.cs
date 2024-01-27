@@ -6,7 +6,7 @@ using UnityEngine;
 public class PukaszTrombolec : Brothers {
     [SerializeField] private Prop succedObject;
     [SerializeField] private float throwForce = 200f;
-    [SerializeField] private float brotherThrowerAdditionalForce = 200f;
+    [SerializeField] private float brotherThrowerAdditionalForce = 50f;
     [SerializeField] private float succForce = 200f;
     [SerializeField] private float succTerminalVelocity = 10f;
     [SerializeField] private float succHoldDistance = 0.7f;
@@ -81,7 +81,7 @@ public class PukaszTrombolec : Brothers {
         if (brotherMovement) {
             brotherMovement.canMove = true;
             brotherMovement.transform.rotation = Quaternion.identity;
-            brotherMovement.rb.AddForce(tromba.transform.forward * throwForce * 100f, ForceMode.Impulse);
+            brotherMovement.rb.AddForce(tromba.transform.forward * throwForce * brotherThrowerAdditionalForce, ForceMode.Impulse);
         }
         succedObject = null;
     }
