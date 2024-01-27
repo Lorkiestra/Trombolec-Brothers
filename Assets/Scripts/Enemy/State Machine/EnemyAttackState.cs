@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class EnemyAttackState : BaseState<EnemyStateMachine.EnemyState> {
-    ChaseEnemy Enemy;
+    ChaseEnemy enemy;
 
     public EnemyAttackState(EnemyStateMachine.EnemyState key, BasicEnemy Enemy) : base(key) {
-        this.Enemy = (ChaseEnemy)Enemy;
+        this.enemy = (ChaseEnemy)Enemy;
     }
 
     public override void Enter() { }
@@ -12,20 +12,20 @@ public class EnemyAttackState : BaseState<EnemyStateMachine.EnemyState> {
     public override void Exit() { }
 
     public override EnemyStateMachine.EnemyState GetNextState() {
-        if (Enemy.IsInAttackRangeRange)
+        if (enemy.IsInAttackRangeRange)
             return Key;
-        else if (Enemy.IsAggroed)
+        else if (enemy.IsAggroed)
             return EnemyStateMachine.EnemyState.Chase;
         else
-            return EnemyStateMachine.EnemyState.Idle;
+            return EnemyStateMachine.EnemyState.ResetPatrol;
     }
 
     public override void Update() {
-        Enemy.AttackTimer -= Time.deltaTime;
+        enemy.AttackTimer -= Time.deltaTime;
 
-        if (Enemy.AttackTimer <= 0f) {
-            Enemy.Attack();
-            Enemy.AttackTimer = Enemy.AttackSpeed;
+        if (enemy.AttackTimer <= 0f) {
+            enemy.Attack();
+            enemy.AttackTimer = enemy.AttackSpeed;
         }
     }
 }

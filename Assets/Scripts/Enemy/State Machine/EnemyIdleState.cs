@@ -9,7 +9,7 @@ public class EnemyIdleState : BaseState<EnemyStateMachine.EnemyState> {
 
     public override void Exit() { }
 
-    public override EnemyStateMachine.EnemyState GetNextState() => (timeout <= 0) ? EnemyStateMachine.EnemyState.Wander : Key;
+    public override EnemyStateMachine.EnemyState GetNextState() => (timeout <= 0) ? EnemyStateMachine.EnemyState.Patrol : Key;
     
     public override void Update() => timeout -= Time.deltaTime;
 }

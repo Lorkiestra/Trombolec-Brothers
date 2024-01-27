@@ -7,26 +7,27 @@ using UnityEngine;
 public class EnemyStateMachine : StateManager<EnemyStateMachine.EnemyState> {
     public enum EnemyState {
         Idle,
-        Wander,
+        ResetPatrol,
+        Patrol,
         Chase,
         Attack,
         Die
     }
 
-    [SerializeField]
-    private LayerMask groundLayer;
-
     void Awake() {
         BasicEnemy enemy = GetComponent<BasicEnemy>();
 
         States = new Dictionary<EnemyState, BaseState<EnemyState>> {
-            { EnemyState.Idle, new EnemyIdleState(EnemyState.Idle)},
-            { EnemyState.Wander, new EnemyWanderState(EnemyState.Wander, enemy, groundLayer)},
-            { EnemyState.Chase, new EnemyChaseState(EnemyState.Chase, enemy)},
-            { EnemyState.Attack, new EnemyAttackState(EnemyState.Attack, enemy)},
+            { EnemyState.ResetPatrol, new EnemyResetPatrolState(EnemyState.ResetPatrol, enemy)},
+            { EnemyState.Patrol, new EnemyPatrolState(EnemyState.Patrol, enemy)},
             { EnemyState.Die, new EnemyDieState(EnemyState.Die) },
         };
 
-        CurrentState = States[EnemyState.Idle];
+        if (enemy is ChaseEnemy) {
+            States.Add(EnemyState.Chase, new EnemyChaseState(EnemyState.Chase, enemy));
+            States.Add(EnemyState.Attack, new EnemyAttackState(EnemyState.Attack, enemy));
+        }
+
+        CurrentState = States[EnemyState.ResetPatrol];
     }
 }

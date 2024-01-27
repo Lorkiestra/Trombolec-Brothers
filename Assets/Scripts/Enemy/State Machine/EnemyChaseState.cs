@@ -2,32 +2,32 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyChaseState : BaseState<EnemyStateMachine.EnemyState> {
-    ChaseEnemy Enemy;
+    ChaseEnemy enemy;
 
-    public EnemyChaseState(EnemyStateMachine.EnemyState key, BasicEnemy Enemy) : base(key) {
-        this.Enemy = (ChaseEnemy)Enemy;
+    public EnemyChaseState(EnemyStateMachine.EnemyState key, BasicEnemy enemy) : base(key) {
+        this.enemy = (ChaseEnemy)enemy;
     }
 
-    public override void Enter() => Enemy.SetAggro();
+    public override void Enter() => enemy.SetAggro();
 
-    public override void Exit() => Enemy.ClearAggro();
+    public override void Exit() => enemy.ClearAggro();
 
     public override EnemyStateMachine.EnemyState GetNextState() {
-        if (Enemy.IsInAttackRangeRange) 
+        if (enemy.IsInAttackRangeRange) 
             return EnemyStateMachine.EnemyState.Attack;
-        else if (Enemy.AggroTimer <= 0)
-            return EnemyStateMachine.EnemyState.Idle;
+        else if (enemy.AggroTimer <= 0)
+            return EnemyStateMachine.EnemyState.ResetPatrol;
         else
             return Key;
     } 
 
     public override void Update() {
-        Enemy.AggroTimer -= Time.deltaTime;
-        float distanceToAggroTarget = Vector3.Distance(Enemy.transform.position, Enemy.AggroTarget.transform.position);
+        enemy.AggroTimer -= Time.deltaTime;
+        float distanceToAggroTarget = Vector3.Distance(enemy.transform.position, enemy.AggroTarget.transform.position);
 
-        if (distanceToAggroTarget < Enemy.AggroRadius) 
-            Enemy.AggroTimer = Enemy.AggroTime;
+        if (distanceToAggroTarget < enemy.AggroRadius) 
+            enemy.AggroTimer = enemy.AggroTime;
 
-        Enemy.MoveTo(Enemy.AggroTarget.transform.position);
+        enemy.MoveTo(enemy.AggroTarget.transform.position);
     }
 }
