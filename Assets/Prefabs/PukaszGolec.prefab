@@ -174,6 +174,7 @@ MonoBehaviour:
   maxDistance: 20
   succedObject: {fileID: 0}
   throwForce: 100
+  brotherThrowerAdditionalForce: 50
   succForce: 400
   succTerminalVelocity: 10
   succHoldDistance: 0.7
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1182242e018affa4b89f41a4f76fdf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  props: []
 --- !u!4 &7051920757702032955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4207323013260681891, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
@@ -384,6 +384,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -722109708046442032, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71ada00498a28c4409da7d08188125e0, type: 2}
+    - target: {fileID: -722109708046442032, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f297838841fa545b88ad25f605ec62, type: 2}
     - target: {fileID: 919132149155446097, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}
       propertyPath: m_Name
       value: bolec_pierdolec
