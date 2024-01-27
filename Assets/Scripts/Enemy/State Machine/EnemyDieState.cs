@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyDieState : BaseState<EnemyStateMachine.EnemyState> {
     BasicEnemy enemy;
 
@@ -5,9 +7,9 @@ public class EnemyDieState : BaseState<EnemyStateMachine.EnemyState> {
         this.enemy = enemy;
     }
 
-    public override void Enter() { }
+    public override void Enter() => enemy.Die();
 
-    public override void Exit() => enemy.Die();
+    public override void Exit() { }
 
     public override EnemyStateMachine.EnemyState GetNextState() => Key;
 
