@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] private float groundCheckRayLength = 0.5f;
     public bool grounded;
     public bool canMove = true;
+    public Vector2 look;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -45,16 +46,28 @@ public class Movement : MonoBehaviour {
         animator.SetFloat("x", axisFix.x);
         animator.SetFloat("y", axisFix.y);
         transform.Translate(axisFix * (speed * Time.deltaTime));
+
+        if (direction == Vector2.zero)
+            return;
+        
+        if (look.magnitude < 0.3f) {
+            float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
+            model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles.x, angle + 90f,
+                model.localRotation.eulerAngles.z);
+        }
     }
 
-    public void Look(Vector2 direction) {
+    public void Look(Vector2 lookDir) {
+        look = lookDir;
         if (!canMove)
             return;
 
-        if (!(direction.magnitude > 0.1f))
+        if (look.magnitude < 0.3f) {
+            look = Vector3.zero;
             return;
-        
-        float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
+        }
+
+        float angle = Mathf.Atan2(-look.y, look.x) * Mathf.Rad2Deg;
         model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles.x, angle + 90f, model.localRotation.eulerAngles.z);
     }
 
