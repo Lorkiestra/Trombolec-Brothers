@@ -261,7 +261,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1058842817
+--- !u!84 &973519796
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1453302401
 Transform:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   shadedMaterials: []
   RayScene: {fileID: 377389783}
   shader: {fileID: 7200000, guid: c70b05928babdc548a9d1b8ae14dda43, type: 3}
-  result: {fileID: 1058842817}
+  result: {fileID: 973519796}
   SkyboxScale: {x: 12, y: 16, z: 12, w: 0.1}
   SkyboxMode: 1
   blokTexture: {fileID: 2800000, guid: 1fef3893b7c7da64086856197bb6255e, type: 3}
