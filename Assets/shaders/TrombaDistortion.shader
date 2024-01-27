@@ -102,8 +102,8 @@ Shader "Custom/TrombaDistortion"
 
             //same for second brother
             centeredPos = worldPos - GroundpoundPos2.xyz;
-            float dist2d = length(centeredPos.xz);
-            float waveDist = (dist2d - PoundDist2) * _PoundScale.x;
+            dist2d = length(centeredPos.xz);
+            waveDist = (dist2d - PoundDist2) * _PoundScale.x;
             //make only singular wave
             if (abs(waveDist) < 3.14)
             {
