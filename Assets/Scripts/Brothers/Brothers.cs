@@ -8,7 +8,7 @@ public abstract class Brothers : MonoBehaviour {
     protected Rigidbody rb;
     protected Movement movement;
     [SerializeField] private Brothers otherBrother;
-    [SerializeField] private Animator animator;
+    public Animator animator;
     [SerializeField] protected PropCollector tromba;
     private Coroutine groundPounding;
     [SerializeField] private float groundPoundForce = 100f;
