@@ -1,19 +1,15 @@
 public class EnemyDieState : BaseState<EnemyStateMachine.EnemyState> {
-    public EnemyDieState(EnemyStateMachine.EnemyState key) : base(key) { }
+    BasicEnemy enemy;
 
-    public override void Enter() {
-        throw new System.NotImplementedException();
+    public EnemyDieState(EnemyStateMachine.EnemyState key, BasicEnemy enemy) : base(key) {
+        this.enemy = enemy;
     }
 
-    public override void Exit() {
-        throw new System.NotImplementedException();
-    }
+    public override void Enter() { }
 
-    public override EnemyStateMachine.EnemyState GetNextState() {
-        throw new System.NotImplementedException();
-    }
+    public override void Exit() => enemy.Die();
 
-    public override void Update() {
-        throw new System.NotImplementedException();
-    }
+    public override EnemyStateMachine.EnemyState GetNextState() => Key;
+
+    public override void Update() { }
 }

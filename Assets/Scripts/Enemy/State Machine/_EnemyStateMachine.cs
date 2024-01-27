@@ -20,7 +20,7 @@ public class EnemyStateMachine : StateManager<EnemyStateMachine.EnemyState> {
         States = new Dictionary<EnemyState, BaseState<EnemyState>> {
             { EnemyState.ResetPatrol, new EnemyResetPatrolState(EnemyState.ResetPatrol, enemy)},
             { EnemyState.Patrol, new EnemyPatrolState(EnemyState.Patrol, enemy)},
-            { EnemyState.Die, new EnemyDieState(EnemyState.Die) },
+            { EnemyState.Die, new EnemyDieState(EnemyState.Die, enemy) },
         };
 
         if (enemy is ChaseEnemy) {

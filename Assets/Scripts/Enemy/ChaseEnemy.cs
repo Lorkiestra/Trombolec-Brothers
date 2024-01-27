@@ -7,11 +7,11 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(SphereCollider))]
 public class ChaseEnemy : BasicEnemy {
-    [field: SerializeField]
-    public float AggroRadius { get; private set; } = 5f;
-
     [field: SerializeField, Min(0.1f)]
     public float AggroSpeedMultiplier { get; private set; } = 2f;
+    
+    [field: SerializeField]
+    public float AggroRadius { get; private set; } = 5f;
 
     [field: SerializeField, Min(0.1f)]
     public float AggroTime { get; private set; } = 5f;
