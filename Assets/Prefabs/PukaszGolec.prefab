@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 7105734508764766317}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.6102536
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.2848136
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalRotation.w
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b7bdd8ca1f3f4fa11299f9cf78010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherBrother: {fileID: 0}
   animator: {fileID: 7105734508764766317}
   tromba: {fileID: 847282296019737646}
   groundPoundForce: 80
@@ -174,12 +175,13 @@ MonoBehaviour:
   stunnedTime: 0
   brotherType: 0
   knockbackForce: 30
+  maxDistance: 20
   succedObject: {fileID: 0}
   throwForce: 100
   succForce: 400
   succTerminalVelocity: 10
   succHoldDistance: 0.7
-  succDistortionPower: 1.3
+  succDistortionPower: 0.5
   holdDistortionSpeed: 8.3
   pushDistortionSpeed: 5.5
   holdDistortionAcceleration: 24.03

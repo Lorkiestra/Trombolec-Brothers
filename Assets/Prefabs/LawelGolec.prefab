@@ -180,15 +180,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.56
+      value: -1.1490878
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.000015474618
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.7349874
       objectReference: {fileID: 0}
     - target: {fileID: 2199734343341058076, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalRotation.w
@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8324e69553d014392c4e3d3b930b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherBrother: {fileID: 0}
   animator: {fileID: 427195947939045748}
   tromba: {fileID: 2493098495701724405}
   groundPoundForce: 60
@@ -336,6 +337,7 @@ MonoBehaviour:
   stunnedTime: 0
   brotherType: 0
   knockbackForce: 30
+  maxDistance: 20
   turbopierdForce: 100
   speedClamp: 40
   trombaPushForce: 200

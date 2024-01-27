@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class Brothers : MonoBehaviour {
     protected Rigidbody rb;
     protected Movement movement;
+    [SerializeField] private Brothers otherBrother;
     [SerializeField] private Animator animator;
     [SerializeField] protected PropCollector tromba;
     private Coroutine groundPounding;
@@ -24,6 +25,8 @@ public abstract class Brothers : MonoBehaviour {
     
     [SerializeField] float knockbackForce = 30f;
 
+    [SerializeField] private float maxDistance = 20f;
+
     public abstract void Trombone();
 
     public abstract void TromboneRelease();
@@ -34,6 +37,7 @@ public abstract class Brothers : MonoBehaviour {
     }
 
     public virtual void Update() {
+        ClampDistance();
         if (stunnedTime > 0f) {
             stunnedTime -= Time.deltaTime;
             if (stunnedTime <= 0f) {
@@ -142,5 +146,15 @@ public abstract class Brothers : MonoBehaviour {
             yield return null;
         }
         movement.model.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+    }
+
+    void ClampDistance() {
+        float distance = Vector3.Distance(transform.position, otherBrother.transform.position);
+
+        if (distance > maxDistance) {
+            Vector3 direction = otherBrother.transform.position - transform.position;
+            direction.Normalize();
+            transform.position += direction * (distance - maxDistance);
+        }
     }
 }
