@@ -69,6 +69,8 @@ public class TrombaInjector : ShaderPasser
 		PropertyNames.Add("SuccPower2");
 		PropertyNames.Add("SuccSpeed1");
 		PropertyNames.Add("SuccSpeed2");
+		PropertyNames.Add("PoundDist1");
+		PropertyNames.Add("PoundDist2");
 	}
 
 	protected override void PassToRender(int j)
@@ -81,5 +83,7 @@ public class TrombaInjector : ShaderPasser
 		shadedMaterials[j].SetFloat(PropertyIDs[5], succPower2);
 		shadedMaterials[j].SetFloat(PropertyIDs[6], succSpeed1);
 		shadedMaterials[j].SetFloat(PropertyIDs[7], succSpeed2);
+		shadedMaterials[j].SetFloat(PropertyIDs[8], poundDist1);
+		shadedMaterials[j].SetFloat(PropertyIDs[9], poundDist2);
 	}
 }
