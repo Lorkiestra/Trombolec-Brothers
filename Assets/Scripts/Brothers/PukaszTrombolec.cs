@@ -40,7 +40,8 @@ public class PukaszTrombolec : Brothers {
 	public override void Trombone() {
         if (stunnedTime > 0f)
             return;
-        audioSource.PlayOneShot(trombaPierdzenie);
+        if (!audioSource.isPlaying)
+            audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
             return;
         

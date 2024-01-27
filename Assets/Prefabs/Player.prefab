@@ -275,7 +275,7 @@ AudioSource:
   m_GameObject: {fileID: 7029146057363414904}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d705de0137774564f9caf2a71fdf4399, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
+  skinnedMeshRenderer: {fileID: 0}
   rb: {fileID: 3499566031315150178}
   lastKnownValidLocation: {x: 0, y: 0, z: 0}
   grounded: 0
