@@ -43,6 +43,8 @@ Shader "Custom/TrombaDistortion"
         uniform float4 TrombaPos2;
         uniform float SuccPower1;
         uniform float SuccPower2;
+        uniform float SuccSpeed1;
+        uniform float SuccSpeed2;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -63,7 +65,7 @@ Shader "Custom/TrombaDistortion"
             float dist = length(centeredPos);
 
             float3 timedPos = centeredPos;
-            timedPos += _Time * _NoiseScale.w;
+            timedPos += _Time * SuccSpeed1;
             dist -= (GradientNoise(timedPos / _NoiseScale.xyz) + 1) / 2 * SuccPower1;
             dist = max(0, dist);
             //regaining world pos
@@ -75,7 +77,7 @@ Shader "Custom/TrombaDistortion"
             dist = length(centeredPos);
 
             timedPos = centeredPos;
-            timedPos += _Time * _NoiseScale.w;
+            timedPos += _Time * SuccSpeed2;
             dist -= (GradientNoise(timedPos / _NoiseScale.xyz) + 1) / 2 * SuccPower2;
             dist = max(0, dist);
             //regaining world pos

@@ -289,6 +289,8 @@ MonoBehaviour:
   shadedMaterials: []
   succPower1: 0
   succPower2: 0
+  succSpeed1: 0
+  succSpeed2: 0
 --- !u!1 &739555391
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +655,8 @@ MonoBehaviour:
   shadedMaterials: []
   succPower1: 0
   succPower2: 0
+  succSpeed1: 0
+  succSpeed2: 0
 --- !u!1 &973270450
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +761,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3964743826491319733, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.56
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 3964743826491319733, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1002,7 +1006,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838110232}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2534964839176971238, guid: f0fdc49ef80c3214eafe301f02f1bf0f, type: 3}
 --- !u!4 &1838110236
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,6 +1080,8 @@ MonoBehaviour:
   shadedMaterials: []
   succPower1: 0
   succPower2: 0
+  succSpeed1: 0
+  succSpeed2: 0
 --- !u!1 &2006766984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1120,8 @@ MonoBehaviour:
   shadedMaterials: []
   succPower1: 0
   succPower2: 0
+  succSpeed1: 0
+  succSpeed2: 0
 --- !u!114 &2006766986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,6 +1397,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: holdDistortionMaxPower
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: holdDistortionAcceleration
+      value: 1.003
+      objectReference: {fileID: 0}
     - target: {fileID: 4193579631766995936, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: m_Name
       value: PukaszGolec

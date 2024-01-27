@@ -8,6 +8,7 @@ public class LawelTrombolec : Brothers {
     [SerializeField] private float speedClamp = 50f;
     [SerializeField] private float trombaPushForce = 200f;
     [SerializeField] private float trombaPushTerminalVelocity = 10f;
+    [SerializeField] private float trombapushDistortionSpeed = 2f;
     [SerializeField] private float trombaPushDistortionPower = -5f;
 
     private void Update() {
@@ -35,6 +36,7 @@ public class LawelTrombolec : Brothers {
             for (int i = 0; i < distorts.Length; i++)
 			{
                 distorts[i].succPower2 = trombaPushDistortionPower;
+                distorts[i].succSpeed2 = trombapushDistortionSpeed;
             }
             prop.rb.AddForce(Vector3.Normalize(prop.transform.position - tromba.transform.position) * trombaPushForce);
             prop.rb.velocity = Vector3.ClampMagnitude(prop.rb.velocity, trombaPushTerminalVelocity);

@@ -11,8 +11,11 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succHoldDistance = 0.7f;
 
     [SerializeField] private float succDistortionPower = 1.3f;
-    [SerializeField]
-    private float HoldDistortionPower = 1.6f;
+    [SerializeField] private float holdDistortionPower = 1.8f;
+    [SerializeField] private float holdDistortionSpeed = 8.3f;
+    [SerializeField] private float pushDistortionSpeed = 5.5f;
+    [SerializeField] private float holdDistortionAcceleration = 1.003f;
+    [SerializeField] private float holdDistortionMaxPower = 2.2f;
     [SerializeField] private float pushDistortionPower = -8f;
 
 	public void Update()
@@ -23,7 +26,8 @@ public class PukaszTrombolec : Brothers {
             TrombaInjector[] distorts = succedObject.GetComponentsInChildren<TrombaInjector>();
             for (int i = 0; i < distorts.Length; i++)
             {
-                distorts[i].succPower1 = HoldDistortionPower;
+                distorts[i].succPower1 = Mathf.Min(holdDistortionMaxPower, distorts[i].succPower1 + holdDistortionAcceleration);
+                distorts[i].succSpeed1 += holdDistortionSpeed * Time.deltaTime;
             }
         }
 	}
@@ -54,6 +58,7 @@ public class PukaszTrombolec : Brothers {
         for (int i = 0; i < distorts.Length; i++)
         {
             distorts[i].succPower1 += pushDistortionPower;
+            distorts[i].succSpeed1 = pushDistortionSpeed;
         }
 
         succedObject.transform.parent = null;
@@ -74,6 +79,7 @@ public class PukaszTrombolec : Brothers {
             for (int i = 0; i < distorts.Length; i++)
             {
                 distorts[i].succPower1 += succDistortionPower;
+                distorts[i].succSpeed1 = pushDistortionSpeed;
             }
             prop.rb.useGravity = false;
             prop.rb.AddForce(Vector3.Normalize(tromba.transform.position - prop.transform.position) * succForce);
