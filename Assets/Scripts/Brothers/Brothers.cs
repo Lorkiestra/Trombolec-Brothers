@@ -96,15 +96,12 @@ public abstract class Brothers : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
-        Debug.Log($"{name} on collision enter");
-        Debug.Log(other.transform.name);
         if (other.transform.CompareTag("Enemy")) {
             TakeHit(other.transform.position);
         }
     }
 
     public void TakeHit(Vector3 enemyPosition) {
-        Debug.Log($"{name} take hit");
         if (stunnedTime > 0f)
             return;
         
@@ -118,7 +115,6 @@ public abstract class Brothers : MonoBehaviour {
     }
 
     public void Stun() {
-        Debug.Log($"{name} stunned");
         stunnedTime = 10f;
         animator.SetTrigger("stun");
         movement.canMove = false;
