@@ -43,6 +43,7 @@ public abstract class Brothers : MonoBehaviour {
             if (stunnedTime <= 0f) {
                 animator.SetTrigger("stun_end");
                 movement.canMove = true;
+                GameManager.Instance.DeadedPlayers--;
             }
         }
     }
@@ -128,6 +129,7 @@ public abstract class Brothers : MonoBehaviour {
     }
 
     public void Stun() {
+        GameManager.Instance.DeadedPlayers++;
         hitPoints = 3;
         stunnedTime = 6f;
         animator.SetTrigger("stun");
