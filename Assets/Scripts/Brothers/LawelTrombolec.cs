@@ -16,7 +16,7 @@ public class LawelTrombolec : Brothers {
 
     public override void Trombone() {
         audioSource.PlayOneShot(trombaPierdzenie);
-        trombaModel.localScale = Vector3.one * UnityEngine.Random.Range(.3f, .8f);
+        trombaModel.localScale = Vector3.one * UnityEngine.Random.Range(.3f, powiekszSwojaTrombe);
         if (!movement.grounded)
             rb.AddForce(-tromba.transform.forward * turbopierdForce, ForceMode.Impulse);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedClamp);

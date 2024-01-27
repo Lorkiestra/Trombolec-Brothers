@@ -14,6 +14,8 @@ public abstract class Brothers : MonoBehaviour {
 
     [SerializeField] protected AudioClip trombaPierdzenie;
     [SerializeField] protected AudioSource audioSource;
+
+    [SerializeField] protected float powiekszSwojaTrombe = .5f;
     
     public abstract void Trombone();
     public abstract void TromboneRelease();
