@@ -42,6 +42,7 @@ public abstract class Brothers : MonoBehaviour {
     public virtual void Update() {
         if (transform.position.y < -10f) {
             transform.position = lastKnownValidLocation;
+            movement.rb.velocity = Vector3.zero;
             Stun();
         }
         
