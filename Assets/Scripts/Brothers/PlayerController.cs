@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Look(InputAction.CallbackContext context) {
-		if (!context.performed)
+		if (context.started)
 			return;
 		
 		movement.Look(context.ReadValue<Vector2>());

@@ -125,7 +125,7 @@ public abstract class Brothers : MonoBehaviour {
 
     public void Stun() {
         hitPoints = 3;
-        stunnedTime = 10f;
+        stunnedTime = 6f;
         animator.SetTrigger("stun");
         movement.canMove = false;
         StartCoroutine(HitFlashing());
