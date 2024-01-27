@@ -39,8 +39,8 @@ Shader "Custom/TrombaDistortion"
         fixed4 _Color;
 
         float4 _NoiseScale;
-        uniform vector TrombaPos1;
-        uniform vector TrombaPos2;
+        uniform float4 TrombaPos1;
+        uniform float4 TrombaPos2;
         uniform float SuccPower1;
         uniform float SuccPower2;
 
@@ -71,10 +71,10 @@ Shader "Custom/TrombaDistortion"
 
             
             //tromba push / pull
-            float3 centeredPos = worldPos - TrombaPos2;
-            float dist = length(centeredPos);
+            centeredPos = worldPos - TrombaPos2;
+            dist = length(centeredPos);
 
-            float3 timedPos = centeredPos;
+            timedPos = centeredPos;
             timedPos += _Time * _NoiseScale.w;
             dist -= (GradientNoise(timedPos / _NoiseScale.xyz) + 1) / 2 * SuccPower2;
             dist = max(0, dist);

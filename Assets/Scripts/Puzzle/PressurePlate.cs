@@ -8,14 +8,12 @@ public class PressurePlate : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		if (!other.GetComponent<Prop>())
 			return;
-		Debug.Log("power on");
 		connectedPlatform.PowerOn();
 	}
 	
 	private void OnTriggerExit(Collider other) {
 		if (!other.GetComponent<Prop>())
 			return;
-		Debug.Log("power off");
 		connectedPlatform.PowerOff();
 	}
 }
