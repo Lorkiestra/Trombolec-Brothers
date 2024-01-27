@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
+using UnityEditor.Rendering;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 public class Platform : Powerable {
 	[SerializeField] private Transform positionA;
 	[SerializeField] private Transform positionB;
 	[SerializeField] private Transform model;
-	[SerializeField] private AnimationCurve curve;
 
 	private void Start() {
 		model.position = positionA.position;
@@ -26,24 +24,24 @@ public class Platform : Powerable {
 	}
 
 	IEnumerator EPowerOn() {
-		float lerp = 0;
-		Vector3 startPosition = model.position;
-		while (lerp < 1f) {
-			model.position = Vector3.Lerp(startPosition, positionB.position, curve.Evaluate(lerp));
-			lerp += Time.deltaTime;
+		while (Progress < 1f) {
+			model.position = Vector3.Lerp(positionA.position, positionB.position, Curve.Evaluate(Progress));
+			Progress += Time.deltaTime;
 			yield return null;
 		}
+
+		Progress = 1f;
 		model.position = positionB.position;
 	}
 
 	IEnumerator EPowerOff() {
-		float lerp = 0;
-		Vector3 startPosition = model.position;
-		while (lerp < 1f) {
-			model.position = Vector3.Lerp(startPosition, positionA.position, curve.Evaluate(lerp));
-			lerp += Time.deltaTime;
+		while (Progress > 0f) {
+			model.position = Vector3.Lerp(positionA.position, positionB.position, Curve.Evaluate(Progress));
+			Progress -= Time.deltaTime;
 			yield return null;
 		}
+
+		Progress = 0f;
 		model.position = positionA.position;
 	}
 }

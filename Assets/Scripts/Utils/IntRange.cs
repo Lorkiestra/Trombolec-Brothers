@@ -1,0 +1,10 @@
+using UnityEngine;
+
+[System.Serializable]
+public struct IntRange {
+    public int min, max;
+
+    public int RandomValueInRange {
+        get => Random.Range(min, max + 1);
+    }
+}

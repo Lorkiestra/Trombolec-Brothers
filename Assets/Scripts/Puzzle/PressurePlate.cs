@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
 	[SerializeField] private Powerable connectedPlatform;
+	
 	private void OnTriggerEnter(Collider other) {
 		if (!other.GetComponent<Prop>())
 			return;

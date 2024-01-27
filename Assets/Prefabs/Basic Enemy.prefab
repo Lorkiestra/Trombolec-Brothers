@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8676837353092600346}
   - component: {fileID: 1964590572086941462}
+  - component: {fileID: 5003857263551074236}
   - component: {fileID: 4656340883233887063}
   - component: {fileID: 7820659845238755409}
+  - component: {fileID: 4551630556611545687}
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Untagged
@@ -57,6 +59,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &5003857263551074236
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909680973885664333}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &4656340883233887063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,8 +111,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WanderRadius>k__BackingField: 3
-  <WanderPivot>k__BackingField: {x: 0, y: 0, z: 0}
+  <WanderPivotOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <Speed>k__BackingField: 1
+--- !u!114 &4551630556611545687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909680973885664333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98069fcc50e5f2b4093d17768747bf72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  throwable: 1
+  succable: 1
 --- !u!1001 &1470102067234617594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,10 +199,66 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4819223349682164798, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4478655605260543207}
+    - targetCorrespondingSourceObject: {fileID: 6829825619187663742, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8085951822246011408}
   m_SourcePrefab: {fileID: 100100000, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
 --- !u!4 &1435631748064698129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
   m_PrefabInstance: {fileID: 1470102067234617594}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2988270221577098040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4819223349682164798, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
+  m_PrefabInstance: {fileID: 1470102067234617594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4478655605260543207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2988270221577098040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
+  succPower1: 0
+  succPower2: 0
+  succSpeed1: 3
+  succSpeed2: 3
+  poundDist1: 100
+  poundDist2: 100
+--- !u!1 &5381432378522418052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6829825619187663742, guid: 1a3a6c75586feef4d9d8471f5948c6f9, type: 3}
+  m_PrefabInstance: {fileID: 1470102067234617594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8085951822246011408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381432378522418052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88d6cdb96a88f469a552d3ba32f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceShader: {fileID: 4800000, guid: 3920f405a8fd1874990f6a24aba44cbd, type: 3}
+  shadedMaterials: []
+  succPower1: 0
+  succPower2: 0
+  succSpeed1: 3
+  succSpeed2: 3
+  poundDist1: 100
+  poundDist2: 100

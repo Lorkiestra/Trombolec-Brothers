@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &398604169213927155
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676837353092600346, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      propertyPath: m_Name
+      value: Chase Enemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7820659845238755409, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1206833485677817488}
+    - targetCorrespondingSourceObject: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 7105094749013457365}
+  m_SourcePrefab: {fileID: 100100000, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+--- !u!1 &9092112075152339646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8909680973885664333, guid: d23582b29f3d40f4bba207d09c5933ef, type: 3}
+  m_PrefabInstance: {fileID: 398604169213927155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1206833485677817488
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092112075152339646}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7105094749013457365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092112075152339646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b0afaab0de3f548bcb270980426666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <WanderRadius>k__BackingField: 5
+  <WanderPivotOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <Speed>k__BackingField: 1
+  <AggroSpeedMultiplier>k__BackingField: 2
+  <AggroRadius>k__BackingField: 5
+  <AggroTime>k__BackingField: 5
+  <AttackRange>k__BackingField: 1
+  <AttackSpeed>k__BackingField: 1
