@@ -10,6 +10,8 @@ public class PukaszTrombolec : Brothers {
     [SerializeField] private float succTerminalVelocity = 10f;
     [SerializeField] private float succHoldDistance = 0.7f;
 
+    [SerializeField] private float succDistortionPower = 1.3f;
+    [SerializeField] private float pushDistortionPower = 3f;
     public override void Trombone() {
         audioSource.PlayOneShot(trombaPierdzenie);
         if (succedObject)
@@ -32,6 +34,13 @@ public class PukaszTrombolec : Brothers {
     }
 
     private void ThrowObject() {
+        //update every material within objects
+        TrombaInjector[] distorts = succedObject.GetComponentsInChildren<TrombaInjector>();
+        for (int i = 0; i < distorts.Length; i++)
+        {
+            distorts[i].succPower1 += pushDistortionPower;
+        }
+
         succedObject.transform.parent = null;
         succedObject.rb.isKinematic = false;
         succedObject.rb.AddForce(tromba.transform.forward * throwForce, ForceMode.Impulse);
@@ -44,6 +53,12 @@ public class PukaszTrombolec : Brothers {
 
     private void SuccObjects() {
         foreach (Prop prop in tromba.props) {
+            //update every material within objects
+            TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
+            for (int i = 0; i < distorts.Length; i++)
+            {
+                distorts[i].succPower1 += succDistortionPower;
+            }
             prop.rb.useGravity = false;
             prop.rb.AddForce(Vector3.Normalize(tromba.transform.position - prop.transform.position) * succForce);
             prop.rb.velocity = Vector3.ClampMagnitude(prop.rb.velocity, succTerminalVelocity);
@@ -61,6 +76,13 @@ public class PukaszTrombolec : Brothers {
     }
 
     void HoldObject(Prop prop) {
+        //update every material within object
+        TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
+        for (int i = 0; i < distorts.Length; i++)
+        {
+            distorts[i].succPower1 += succDistortionPower;
+        }
+
         succedObject = prop;
         succedObject.transform.parent = tromba.transform;
         succedObject.rb.isKinematic = true;

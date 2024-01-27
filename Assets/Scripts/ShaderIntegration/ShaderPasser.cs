@@ -14,6 +14,11 @@ public abstract class ShaderPasser : MonoBehaviour
     protected List<int> PropertyIDs = new List<int>();
     void Start()
     {
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (meshRenderer)
+		{
+            MainMaterial = meshRenderer.material;
+		}
         BakePropertyNames();
         BakePropertyIDs();
         FakeStart();

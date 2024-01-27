@@ -8,6 +8,7 @@ public class LawelTrombolec : Brothers {
     [SerializeField] private float speedClamp = 50f;
     [SerializeField] private float trombaPushForce = 200f;
     [SerializeField] private float trombaPushTerminalVelocity = 10f;
+    [SerializeField] private float trombaPushDistortionPower = 5f;
 
     private void Update() {
         Debug.DrawRay(tromba.transform.position, tromba.transform.forward, Color.yellow);
@@ -29,6 +30,12 @@ public class LawelTrombolec : Brothers {
 
     void TrombonePush() {
         foreach (Prop prop in tromba.props) {
+            //update every material within objects
+            TrombaInjector[] distorts = prop.GetComponentsInChildren<TrombaInjector>();
+            for (int i = 0; i < distorts.Length; i++)
+			{
+                distorts[i].succPower2 = trombaPushDistortionPower;
+            }
             prop.rb.AddForce(Vector3.Normalize(prop.transform.position - tromba.transform.position) * trombaPushForce);
             prop.rb.velocity = Vector3.ClampMagnitude(prop.rb.velocity, trombaPushTerminalVelocity);
         }
