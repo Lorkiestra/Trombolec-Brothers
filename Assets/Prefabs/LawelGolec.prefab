@@ -298,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1182242e018affa4b89f41a4f76fdf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  props: []
 --- !u!82 &3898397948392592004 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2277549815639269165, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
@@ -334,7 +333,7 @@ MonoBehaviour:
   brotherType: 0
   knockbackForce: 30
   maxDistance: 20
-  turbopierdForce: 17.5
+  turbopierdForce: 13
   speedClamp: 40
   trombaPushForce: 200
   trombaPushTerminalVelocity: 10
