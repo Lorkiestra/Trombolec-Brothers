@@ -68,10 +68,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.515
     - _GlossyReflections: 1
+    - _GroundpoundPos1: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PoundDist1: 1.98
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -83,5 +85,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseScale: {r: 0.1, g: 0.1, b: 0.1, a: 1.21}
+    - _PoundScale: {r: 0.97, g: 1.98, b: 1.3, a: 1}
     - _TrombaPos: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
