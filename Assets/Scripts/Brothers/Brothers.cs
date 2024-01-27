@@ -117,7 +117,7 @@ public abstract class Brothers : MonoBehaviour {
     }
 
     public void TakeHit(Vector3 enemyPosition) {
-        if (stunnedTime > 0f)
+        if (stunnedTime > 0f || groundPounding != null)
             return;
         
         hitPoints--;
