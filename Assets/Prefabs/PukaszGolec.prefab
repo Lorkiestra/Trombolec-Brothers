@@ -178,8 +178,8 @@ MonoBehaviour:
   groundPoundForce: 80
   trombaModel: {fileID: 8987207232352514318}
   trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
-  jump: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
-  fallToDeath: {fileID: 8300000, guid: 859dbcec0612a0f40bb9d06b069058e6, type: 3}
+  jump: {fileID: 8300000, guid: 66ec8dae14c3f36468e0f43361dd167f, type: 3}
+  fallToDeath: {fileID: 8300000, guid: 47d4032b65cfadf439128f0fa321dae9, type: 3}
   audioSource: {fileID: 4910443195019396021}
   audioSourceVoice: {fileID: 1642619173194480725}
   powiekszSwojaTrombe: 0.5

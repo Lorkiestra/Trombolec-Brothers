@@ -444,7 +444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7526884723097752186}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -717,17 +717,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
-      propertyPath: jump
-      value: 
-      objectReference: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
-    - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: longJump
       value: 
       objectReference: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
-    - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
-      propertyPath: fallToDeath
-      value: 
-      objectReference: {fileID: 8300000, guid: 859dbcec0612a0f40bb9d06b069058e6, type: 3}
     - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: maxDistance
       value: 35
@@ -792,6 +784,10 @@ PrefabInstance:
       propertyPath: playerRing
       value: 
       objectReference: {fileID: 5919038555731006713}
+    - target: {fileID: 7275357636949732708, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: b3d2a0afa50287549bee03fa23063cc3, type: 2}
     - target: {fileID: 7421901425234062821, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
@@ -965,6 +961,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1642619173194480725, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: b3d2a0afa50287549bee03fa23063cc3, type: 2}
     - target: {fileID: 1764493759881002229, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -978,17 +978,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
-      propertyPath: jump
-      value: 
-      objectReference: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
-    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: longJump
       value: 
       objectReference: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
-    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
-      propertyPath: fallToDeath
-      value: 
-      objectReference: {fileID: 8300000, guid: 859dbcec0612a0f40bb9d06b069058e6, type: 3}
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: maxDistance
       value: 35

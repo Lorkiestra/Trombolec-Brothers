@@ -138,7 +138,7 @@ public abstract class Brothers : MonoBehaviour {
         GameManager.Instance.DeadedPlayers++;
         hitPoints = 3;
         stunnedTime = 3f;
-        audioSource.PlayOneShot(fallToDeath);
+        audioSourceVoice.PlayOneShot(fallToDeath);
         animator.SetTrigger("stun");
         movement.canMove = false;
         StartCoroutine(HitFlashing());

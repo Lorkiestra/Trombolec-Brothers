@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour {
             return;
 
         rb.velocity = Vector3.up * jumpForce;
-        brother.audioSource.PlayOneShot(brother.jump);
+        brother.audioSourceVoice.PlayOneShot(brother.jump);
         animator.SetTrigger("jump");
     }
 
