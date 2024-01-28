@@ -12,6 +12,7 @@ public class RaytracingInjector : ShaderPasser
 	public int SkyboxMode;
 
 	[SerializeField] private Texture blokTexture;
+	private Texture cumDepthTexture;
 
 	private Camera rayCamera;
 	private List<Vector4> ShapePosition = new List<Vector4>();
@@ -25,6 +26,7 @@ public class RaytracingInjector : ShaderPasser
 		result.Create();
 
 		rayCamera = gameObject.GetComponent<Camera>();
+		rayCamera.depthTextureMode = DepthTextureMode.Depth;
 
 		int kernel = shader.FindKernel("RayTracing");
 		shader.SetTexture(kernel, "BlokTexture", blokTexture);
@@ -38,6 +40,7 @@ public class RaytracingInjector : ShaderPasser
 
 		shader.SetTexture(kernel, "CumTexture", source);
 		shader.SetTexture(kernel, "Result", result);
+		shader.SetTexture(kernel, "CumDepthTexture", Shader.GetGlobalTexture("_CameraDepthTexture"));
 		shader.Dispatch(kernel, Screen.width / 8, Screen.height / 8, 1);
 
 		Graphics.Blit(result, destination);

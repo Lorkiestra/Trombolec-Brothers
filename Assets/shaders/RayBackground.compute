@@ -2,6 +2,7 @@
 #pragma kernel RayTracing
 
 #include "RayMarchingLibrary.cginc"
+#include "UnityCG.cginc"
 
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
@@ -9,6 +10,8 @@ RWTexture2D<float4> Result;
 Texture2D<float4> CumTexture;
 Texture2D<float4> BlokTexture;
 vector BlokResolution;
+//depth texture
+Texture2D<float4> CumDepthTexture;
 
 vector Resolution;
 vector Frustum[4];
@@ -74,7 +77,7 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
 {
     float2 uv = float2(float(id.x) / Resolution.x, float(id.y) / Resolution.y);
     float3 rayOrg = CameraPosition.xyz;
-
+    float sceneDepth = LinearEyeDepth(CumDepthTexture[id.xy].x);
     //rayOrg.x = 10 * (uv.x - 0.5f);
     //rayOrg.y = 10 * (uv.y -  0.5f);
     //float3 rayDir = float3(0, 0, 1);
@@ -109,8 +112,8 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
     float3 normals = float3(0, 0, 0);
     float4 Hit = float4(0, 0, 0, 0);
 
-    if (ResColor.w < 0.1)
-    {
+    //if (ResColor.w < 0.1)
+    //{
         float3 rayPos = rayOrg;
         ResColor = float4(rayDir.x, rayDir.y, rayDir.z, 1);
 
@@ -164,20 +167,33 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
             //fog
             //get skybox coordinates:
             //SimplePlane();
+            //get special giant sphere around camera
+            Hit = float4(rayDir * 16, 1);
             //bool unused = SimplePlane(rayDir, float3(0, -100, 0), float3(8192, 8192, 8192), Hit, 0);
-            float noise = GradientNoise(float3(uv.x * SkyboxScale.x, uv.y * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
+            float noise = GradientNoise(float3(Hit.x * SkyboxScale.x, Hit.y * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
             if (NightMode == 0)
             {
                 ResColor = float4(0.5 + noise / 2, 0.5f + noise / 2, 0.5f + noise / 2, 1);
             }
             else
             {
-                float noise2 = GradientNoise(float3((uv.y + 0.1 * SkyboxScale.w) * SkyboxScale.x, (uv.x + 0.1 * SkyboxScale.w) * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
+                float noise2 = GradientNoise(float3((Hit.y + 0.1 * SkyboxScale.w) * SkyboxScale.x, (Hit.x + 0.1 * SkyboxScale.w) * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
                 ResColor = float4(noise2 - 0.3f, noise2 - 0.3f, noise * 1.5 - 0.3f, 1);
             }
         }
 
-    }
+        //retrieve original image if much more in front of a camera
+        //length(Frustum[2])
+        if (sceneDepth < depthBuffer)
+        {
+            ResColor = CumTexture[id.xy];
+        }
+        //ResColor = depthBuffer / 10;
+    //}
 
     Result[id.xy] = ResColor;
+    //float depth = DecodeDepth(CumDepthTexture, uv);  // sample from depth texture
+    //depth = Linear01Depth(depth);
+    //Result[id.xy] = float4(depth, depth, depth, 1);
+    //Result[id.xy] = CumDepthTexture[id.xy] * 4;
 }
