@@ -5,10 +5,16 @@ using UnityEditor;
 using UnityEngine;
 
 public class LaserManager : MonoBehaviour {
-    enum LaserShowMode {
+    enum LaserShowColorMode {
         HueRotate,
         ColorAlternate,
         ColorAlternateRandom,
+    }
+
+    enum LaserShowMode {
+        AllEnabled,
+        AlternateEveryOther,
+        Wave
     }
 
     [SerializeField]
@@ -27,6 +33,8 @@ public class LaserManager : MonoBehaviour {
     private bool symmetryX, symmetryY, symmetryZ;
 
     [SerializeField, Space]
+    private LaserShowColorMode laserShowColorMode;
+
     private LaserShowMode laserShowMode;
 
     [SerializeField]
@@ -39,6 +47,9 @@ public class LaserManager : MonoBehaviour {
     private float colorAlternateShowInterval = 1f;
 
     [SerializeField]
+    private float laserShowModeInterval = 2f;
+
+    [SerializeField]
     private float animationRadius = 1f;
 
     [SerializeField, Space]
@@ -49,11 +60,27 @@ public class LaserManager : MonoBehaviour {
 
     private List<Transform> lasers = new();
 
-    private float hueRotateShowProgress = 0f, colorAlternateShowProgress = 0f, rotationProgress = 0f;
+    private float hueRotateShowProgress = 0f, colorAlternateShowProgress = 0f, rotationProgress = 0f, laserShowModeProgress = 0f;
 
     private Color randomColor1 = Color.red, randomColor2 = Color.white;
 
     private Vector3 laserIterativeRotation;
+
+    private void Awake() {
+        laserShowColorMode = UnityEngine.Random.Range(0, 3) switch {
+            0 => LaserShowColorMode.HueRotate,
+            1 => LaserShowColorMode.ColorAlternate,
+            2 => LaserShowColorMode.ColorAlternateRandom,
+            _ => LaserShowColorMode.HueRotate
+        };
+
+        laserShowMode = UnityEngine.Random.Range(0, 3) switch {
+            0 => LaserShowMode.AllEnabled,
+            1 => LaserShowMode.AlternateEveryOther,
+            2 => LaserShowMode.Wave,
+            _ => LaserShowMode.AllEnabled
+        };
+    }
 
     private void Start() {
         laserTempalte.gameObject.SetActive(false);
@@ -78,7 +105,7 @@ public class LaserManager : MonoBehaviour {
     }
 
     private void OnValidate() {
-        if (!Application.isPlaying) return;
+        if (!Application.isPlaying || lasers.Count < numberOfLasers) return;
         
         for (int i = 0; i < numberOfLasers; i++) {
             Transform laser = lasers[i];
@@ -96,14 +123,19 @@ public class LaserManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (laserShowMode == LaserShowMode.HueRotate)
+        if (laserShowColorMode == LaserShowColorMode.HueRotate)
             HueRotateShow();
-        else if (laserShowMode == LaserShowMode.ColorAlternate)
+        else if (laserShowColorMode == LaserShowColorMode.ColorAlternate)
             ColorAlternateShow();
-        else if (laserShowMode == LaserShowMode.ColorAlternateRandom)
+        else if (laserShowColorMode == LaserShowColorMode.ColorAlternateRandom)
             ColorAlternateShow(random: true);
 
         HandleRotation();
+        // HandleAlternateEveryOhterModeShow();
+    }
+
+    private void HandleAlternateEveryOhterModeShow() {
+
     }
 
     private void HandleRotation() {

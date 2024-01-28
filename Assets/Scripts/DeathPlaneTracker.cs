@@ -12,6 +12,7 @@ public class DeathPlaneTracker : MonoBehaviour
     [SerializeField] private float groundCheckRayLength = 0.5f;
     
     private void Start() {
+        lastKnownValidLocation = transform.position;
         StartCoroutine(TrackLastKnownLocation());
     }
     
@@ -22,6 +23,11 @@ public class DeathPlaneTracker : MonoBehaviour
         
         if (transform.position.y < -10f) {
             transform.position = lastKnownValidLocation;
+
+            if (lastKnownValidLocation == Vector3.zero) {
+                Debug.Log("Dupa");
+            }
+
             if (rb) {
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
@@ -36,6 +42,9 @@ public class DeathPlaneTracker : MonoBehaviour
     }
     
     IEnumerator TrackLastKnownLocation() {
+        Brothers brothers = GetComponent<Brothers>();
+        if (!brothers)
+            yield break;
         while (true) {
             if (grounded) {
                 lastKnownValidLocation = transform.position;
