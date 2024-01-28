@@ -349,6 +349,7 @@ MonoBehaviour:
   brotherType: 0
   knockbackForce: 30
   maxDistance: 20
+  groundPoundEnemyAffectRadius: 2
   turbopierdForce: 13
   speedClamp: 40
   trombaPushForce: 200

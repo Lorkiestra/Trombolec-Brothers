@@ -172,6 +172,7 @@ MonoBehaviour:
   brotherType: 0
   knockbackForce: 30
   maxDistance: 20
+  groundPoundEnemyAffectRadius: 2
   succedObject: {fileID: 0}
   throwForce: 100
   brotherThrowerAdditionalForce: 50

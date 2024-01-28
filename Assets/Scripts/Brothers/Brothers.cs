@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class Brothers : MonoBehaviour {
@@ -26,6 +27,8 @@ public abstract class Brothers : MonoBehaviour {
     [SerializeField] float knockbackForce = 30f;
 
     [SerializeField] private float maxDistance = 20f;
+
+    [SerializeField] private float groundPoundEnemyAffectRadius = 1f;
 
     public abstract void Trombone();
 
@@ -94,7 +97,7 @@ public abstract class Brothers : MonoBehaviour {
             }
         }
 
-        foreach (Collider collider in Physics.OverlapSphere(transform.position, 1f)) {
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, groundPoundEnemyAffectRadius)) {
             BasicEnemy enemy = collider.GetComponent<BasicEnemy>();
             if (enemy) {
                 enemy.Die();
@@ -158,5 +161,10 @@ public abstract class Brothers : MonoBehaviour {
             direction.Normalize();
             transform.position += direction * (distance - maxDistance);
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Handles.DrawWireDisc(transform.position, Vector3.up, groundPoundEnemyAffectRadius);
     }
 }
