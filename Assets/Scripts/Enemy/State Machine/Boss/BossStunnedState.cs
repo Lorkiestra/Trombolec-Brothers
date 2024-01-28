@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class BossStunnedState : BaseState<BossStateMachine.BossState> {
     private FidgetSpinner fidgetSpinner;
 
-    private float loweredTargetHoverHeight = 1f, oldTargetHoverHeight, rotationSpeedMultiplier = .25f, stunTime = 7f, stunTimer = 0f;
+    private float loweredTargetHoverHeight = 1f, oldTargetHoverHeight, rotationSpeedMultiplier = .25f, stunTimer = 0f;
 
     public BossStunnedState(BossStateMachine.BossState key, FidgetSpinner fidgetSpinner) : base(key) {
         this.fidgetSpinner = fidgetSpinner;
@@ -22,7 +22,7 @@ public class BossStunnedState : BaseState<BossStateMachine.BossState> {
         fidgetSpinner.TargetRotationSpeed /= rotationSpeedMultiplier;
     }
 
-    public override BossStateMachine.BossState GetNextState() => stunTimer >= stunTime ? BossStateMachine.BossState.Chase : Key;
+    public override BossStateMachine.BossState GetNextState() => stunTimer >= fidgetSpinner.StunTime ? BossStateMachine.BossState.Chase : Key;
 
     public override void Update() {
         stunTimer += Time.deltaTime;

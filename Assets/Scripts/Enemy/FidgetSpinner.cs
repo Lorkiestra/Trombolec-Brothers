@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,19 @@ public class FidgetSpinner : MonoBehaviour {
     [field: SerializeField]
     public float TargetRotationSpeed { get; set; } = 60f;
 
+    [field: SerializeField]
+    public float StunTime { get; private set; } = 7f;
+
+    [SerializeField]
+    List<FidgetSpinnerWeakPoint> weakPoints;
+
     public Brothers TargetBrother { get; private set; }
 
     public float DistanceToTarget => Vector3.Distance(transform.position, TargetBrother.transform.position);
 
     public float DistanceToChargeTarget => Vector3.Distance(transform.position, chargeTargetPoint);
+
+    public bool IsDead => weakPoints.All(weakPoint => weakPoint.isDestroyed);
 
     private float rotationSpeed;
 
