@@ -129,11 +129,13 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
             //rayPos += rayDir * result;
         }
         */
+        bool hitted = false;
         for (int i = 0; i < ObjectsCap; i++)
         {
             //if (SimplePlane(rayDir, rayPos - ShapePosition[i].xyz, ShapeScale[i].xyz, Hit, 0))
             if (SimpleInfiniCube(ShapePosition[i].xyz - rayPos, Hit, rayDir, ShapeScale[i].xyz / 2, normals))
             {
+                hitted = true;
                 //take x or z accordingly
                 Hit = float4(Hit.xyz + rayPos, 1);
                 if (abs(Hit.x - ShapePosition[i].x) / ShapeScale[i].x < abs(Hit.z - ShapePosition[i].z) / ShapeScale[i].z)
@@ -149,20 +151,25 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
             }
             else
             {
-                //fog
-                //get skybox coordinates:
-                //SimplePlane();
-                //bool unused = SimplePlane(rayDir, float3(0, -100, 0), float3(8192, 8192, 8192), Hit, 0);
-                float noise = GradientNoise(float3(uv.x * SkyboxScale.x, uv.y * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
-                if (NightMode == 0)
-                {
-                    ResColor = float4(0.5 + noise / 2, 0.5f + noise / 2, 0.5f + noise / 2, 1);
-                }
-                else
-                {
-                    float noise2 = GradientNoise(float3((uv.y + 0.1 * SkyboxScale.w) * SkyboxScale.x, (uv.x + 0.1 * SkyboxScale.w) * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
-                    ResColor = float4(noise2 - 0.3f, noise2 - 0.3f, noise * 1.5 - 0.3f, 1);
-                }
+                
+            }
+        }
+
+        if (!hitted)
+        {
+            //fog
+            //get skybox coordinates:
+            //SimplePlane();
+            //bool unused = SimplePlane(rayDir, float3(0, -100, 0), float3(8192, 8192, 8192), Hit, 0);
+            float noise = GradientNoise(float3(uv.x * SkyboxScale.x, uv.y * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
+            if (NightMode == 0)
+            {
+                ResColor = float4(0.5 + noise / 2, 0.5f + noise / 2, 0.5f + noise / 2, 1);
+            }
+            else
+            {
+                float noise2 = GradientNoise(float3((uv.y + 0.1 * SkyboxScale.w) * SkyboxScale.x, (uv.x + 0.1 * SkyboxScale.w) * SkyboxScale.y, SkyboxScale.w * SkyboxScale.z * 1.5));
+                ResColor = float4(noise2 - 0.3f, noise2 - 0.3f, noise * 1.5 - 0.3f, 1);
             }
         }
 
