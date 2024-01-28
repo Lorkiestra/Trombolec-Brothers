@@ -49,6 +49,10 @@ PrefabInstance:
       propertyPath: staysActivated
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6478920022559785691, guid: 5a43a1433812cfc4690240a9fa90a744, type: 3}
+      propertyPath: <Powerable>k__BackingField
+      value: 
+      objectReference: {fileID: 8669847852251269499}
     - target: {fileID: 7896481437730327903, guid: 5a43a1433812cfc4690240a9fa90a744, type: 3}
       propertyPath: m_Name
       value: Lever

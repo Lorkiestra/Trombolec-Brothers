@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,20 @@ public class SoundVisualizer : MonoBehaviour
 
     public static float[] rawSamples = new float[512];
     public static float[] frequencies = new float[8];
+    
+    [SerializeField] private List<AudioClip> queue = new List<AudioClip>();
+    [SerializeField] private AudioClip winJingle;
+
+    public static SoundVisualizer Instance;
+
+    private void Awake() {
+        Instance = this;
+        visSource = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        visSource = GetComponent<AudioSource>();
         oldScale = new float[TRUMPets.Length];
         targets = new float[TRUMPets.Length];
     }
@@ -86,5 +97,36 @@ public class SoundVisualizer : MonoBehaviour
             avarage /= count;
             frequencies[i] = avarage * 10;
         }
+    }
+
+    public void AddToQueue(AudioClip clip) {
+        queue.Add(clip);
+    }
+
+    public void StartPlayingQueue() {
+        visSource.loop = false;
+        StartCoroutine(EPlayQueue());
+    }
+
+    IEnumerator EPlayQueue() {
+        int i = 0;
+        while (i < queue.Count) {
+            visSource.clip = queue[i];
+            visSource.Play();
+            while (visSource.isPlaying) {
+                yield return null;
+            }
+            i++;
+            if (i > queue.Count - 1)
+                i = queue.Count - 1;
+            yield return null;
+        }
+    }
+
+    public void PlayWinJingle() {
+        StopAllCoroutines();
+        visSource.Stop();
+        visSource.PlayOneShot(winJingle);
+        visSource.loop = false;
     }
 }

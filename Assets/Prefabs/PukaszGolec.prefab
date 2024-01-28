@@ -108,9 +108,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3c466f8f22919154b9d3b5ff31d22602, type: 2}
+    - target: {fileID: 4882641786631839853, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7029146057363414904, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_Name
       value: PukaszGolec
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549607154621159120, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8572811856568252812, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
@@ -142,6 +150,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 847282296019737646}
   m_SourcePrefab: {fileID: 100100000, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+--- !u!82 &1642619173194480725 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5581609220252524749, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+  m_PrefabInstance: {fileID: 6610753653788826776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4193579631766995936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7029146057363414904, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
@@ -165,7 +178,10 @@ MonoBehaviour:
   groundPoundForce: 80
   trombaModel: {fileID: 8987207232352514318}
   trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
+  jump: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
+  fallToDeath: {fileID: 8300000, guid: 859dbcec0612a0f40bb9d06b069058e6, type: 3}
   audioSource: {fileID: 4910443195019396021}
+  audioSourceVoice: {fileID: 1642619173194480725}
   powiekszSwojaTrombe: 0.5
   hitPoints: 3
   stunnedTime: 0

@@ -171,6 +171,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8418261023414790442}
     - target: {fileID: 1204169026651561501, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: moveParticleSystem
+      value: 
+      objectReference: {fileID: 2900094864489180300}
+    - target: {fileID: 1204169026651561501, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: lawelTrombolecMovement
       value: 1
       objectReference: {fileID: 0}
@@ -218,6 +222,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: aff82e5e08b70734795981d333dd7817, type: 2}
+    - target: {fileID: 4882641786631839853, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4882641786631839853, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: ShapeModule.m_Rotation.y
       value: 180
@@ -314,6 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1182242e018affa4b89f41a4f76fdf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &2900094864489180300 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 125445291534836005, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+  m_PrefabInstance: {fileID: 2991128174192102825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &3898397948392592004 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2277549815639269165, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
@@ -342,7 +355,10 @@ MonoBehaviour:
   groundPoundForce: 60
   trombaModel: {fileID: 2325584546515721827}
   trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
+  jump: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
+  fallToDeath: {fileID: 8300000, guid: 859dbcec0612a0f40bb9d06b069058e6, type: 3}
   audioSource: {fileID: 3898397948392592004}
+  audioSourceVoice: {fileID: 7275357636949732708}
   powiekszSwojaTrombe: 0.5
   hitPoints: 3
   stunnedTime: 0
@@ -371,6 +387,11 @@ MonoBehaviour:
   rb: {fileID: 0}
   throwable: 1
   succable: 1
+--- !u!82 &7275357636949732708 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5581609220252524749, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+  m_PrefabInstance: {fileID: 2991128174192102825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7147718265893744507
 PrefabInstance:
   m_ObjectHideFlags: 0

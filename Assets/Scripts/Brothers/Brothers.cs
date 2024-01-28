@@ -15,8 +15,11 @@ public abstract class Brothers : MonoBehaviour {
     [SerializeField] private float groundPoundForce = 100f;
     public Transform trombaModel;
 
-    [SerializeField] protected AudioClip trombaPierdzenie;
-    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] public AudioClip trombaPierdzenie;
+    [SerializeField] public AudioClip jump;
+    [SerializeField] public AudioClip fallToDeath;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioSource audioSourceVoice;
 
     [SerializeField] protected float powiekszSwojaTrombe = .5f;
 
@@ -134,7 +137,8 @@ public abstract class Brothers : MonoBehaviour {
     public void Stun() {
         GameManager.Instance.DeadedPlayers++;
         hitPoints = 3;
-        stunnedTime = 6f;
+        stunnedTime = 3f;
+        audioSource.PlayOneShot(fallToDeath);
         animator.SetTrigger("stun");
         movement.canMove = false;
         StartCoroutine(HitFlashing());

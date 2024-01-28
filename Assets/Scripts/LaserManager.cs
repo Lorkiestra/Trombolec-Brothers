@@ -177,7 +177,7 @@ public class LaserManager : MonoBehaviour {
             float value = 1f;
 
             Color color = Color.HSVToRGB(hue, saturation, value);
-            Debug.Log(color);
+            // Debug.Log(color);
 
             laser.GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", color);
         }

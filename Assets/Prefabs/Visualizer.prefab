@@ -266,6 +266,8 @@ MonoBehaviour:
   freqMagnitude: 1.3
   minScale: 0.9
   maxScale: 1.4
+  queue: []
+  winJingle: {fileID: 8300000, guid: bb0776e0ca7f3d944a829caf8fcb4670, type: 3}
 --- !u!82 &8525142192916531339
 AudioSource:
   m_ObjectHideFlags: 0
@@ -275,12 +277,12 @@ AudioSource:
   m_GameObject: {fileID: 1496489035375325140}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9affcf2067f279546950ea5a41931519, type: 3}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2fa17d43f132291459d684a54853ff3e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

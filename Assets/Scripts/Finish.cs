@@ -47,10 +47,10 @@ public class Finish : MonoBehaviour
         prawyGolec.GetComponent<Movement>().model.localRotation = prawyGolecFinishRotation.rotation;
         lewyGolec.animator.SetTrigger("wild_dance");
         prawyGolec.animator.SetTrigger("wild_dance");
-        MusicManager.Instance.PlayMusic(MusicManager.Instance.winMusic);
+        SoundVisualizer.Instance.PlayWinJingle();
         winCamera.Priority = 100;
         yield return null;
-        for (float timeToEnd = 0f; timeToEnd < 10f; timeToEnd += Time.deltaTime) {
+        for (float timeToEnd = 0f; timeToEnd < 6f; timeToEnd += Time.deltaTime) {
             yield return null;
         }
         SceneManager.LoadScene("MainHub");

@@ -13,22 +13,24 @@ public class Movement : MonoBehaviour {
     public bool grounded;
     public bool canMove = true;
     public Vector2 look;
-    new ParticleSystem particleSystem;
+    [SerializeField] ParticleSystem moveParticleSystem;
     [SerializeField] private float coyoteJumpDuration = 0.2f;
     private Coroutine coyote;
 
+    private Brothers brother;
+
     private void Awake() {
         rb = GetComponent<Rigidbody>();
-        particleSystem = GetComponent<ParticleSystem>();
+        brother = GetComponent<Brothers>();
     }
 
     private void Update() {
         CheckGrounded();
 
-        if (grounded && !particleSystem.isPlaying)
-            particleSystem.Play();
-        else if (!grounded && particleSystem.isPlaying)
-            particleSystem.Stop();
+        if (grounded && !moveParticleSystem.isPlaying)
+            moveParticleSystem.Play();
+        else if (!grounded && moveParticleSystem.isPlaying)
+            moveParticleSystem.Stop();
 
         Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
     }
@@ -84,6 +86,7 @@ public class Movement : MonoBehaviour {
             return;
 
         rb.velocity = Vector3.up * jumpForce;
+        brother.audioSource.PlayOneShot(brother.jump);
         animator.SetTrigger("jump");
     }
 

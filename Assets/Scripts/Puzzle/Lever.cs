@@ -29,7 +29,8 @@ public class Lever : MonoBehaviour {
 
 	private float rotation = 0f, resetTimer = 0f;
 
-	
+	[SerializeField] private Renderer topHandleRenderer;
+
 	private void Start() {
 		rotation = handleRotationRange.min;
 		ChangeTopHandleColor((StaysActivated && IsOn) || IsDisabled ? Color.red : Color.yellow);
@@ -60,8 +61,7 @@ public class Lever : MonoBehaviour {
 	}
 
 	private void ChangeTopHandleColor(Color color) {
-		Material topHandleMaterial = handle.GetComponent<MeshRenderer>().materials[^1];
-		topHandleMaterial.color = color;
+		topHandleRenderer.material.color = color;
 	}
 
 	private void OnTriggerEnter(Collider other) {
