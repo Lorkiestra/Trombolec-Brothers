@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerable: {fileID: 0}
   staysActivated: 0
+  resetTime: 0
   handle: {fileID: 3202740539734613203}
   handleRotationRange:
     min: -120

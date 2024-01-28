@@ -12,33 +12,51 @@ public class Lever : MonoBehaviour {
     [SerializeField]
     private bool staysActivated = true;
 
+	[SerializeField, Min(0), Tooltip("Time after which the lever resets to it's initial state. If 0, the lever does not reset.")]
+	private float resetTime = 0f;
+
 	[SerializeField, Space]
 	private Transform handle;
 
 	[SerializeField]
 	private FloatRange handleRotationRange;
 
-	private float rotation = 0;
+	private bool ResetsItself => resetTime > 0f;
+
+	private float rotation = 0f, resetTimer = 0f;
 
 	private bool isOn = false;
 
 	private void Start() {
 		rotation = handleRotationRange.min;
+		ChangeTopHandleColor(staysActivated && !ResetsItself ? Color.red : Color.yellow);
 
-		Material topHandleMaterial = handle.GetComponent<MeshRenderer>().materials[^1];
-		topHandleMaterial.color = staysActivated ? Color.red : Color.yellow;
 	}
 
 	private void OnValidate() {
 		if (!Application.isPlaying) return;
-		
-		Material topHandleMaterial = handle.GetComponent<MeshRenderer>().materials[^1];
-		topHandleMaterial.color = staysActivated ? Color.red : Color.yellow;
+		ChangeTopHandleColor(staysActivated && !ResetsItself ? Color.red : Color.yellow);
 	}
 
 	private void Update() {
+		if (ResetsItself && isOn) {
+			resetTimer += Time.deltaTime;
+
+			if (resetTimer >= resetTime) {
+				powerable.PowerOff();
+				isOn = false;
+				resetTimer = 0f;
+				ChangeTopHandleColor(Color.yellow);
+			}
+		}
+
 		rotation = Mathf.Lerp(handleRotationRange.min, handleRotationRange.max, powerable.Progress);
 		handle.localRotation = Quaternion.Euler(rotation, 90f, -90f);
+	}
+
+	private void ChangeTopHandleColor(Color color) {
+		Material topHandleMaterial = handle.GetComponent<MeshRenderer>().materials[^1];
+		topHandleMaterial.color = color;
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -51,8 +69,12 @@ public class Lever : MonoBehaviour {
 
 		powerable.PowerOn();
 
-		if (staysActivated)
+		if (staysActivated) {
 			isOn = true;
+			
+			if (ResetsItself)
+				ChangeTopHandleColor(Color.red);
+		}
 	}
 	
 	private void OnTriggerExit(Collider other) {

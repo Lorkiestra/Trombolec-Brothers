@@ -218,9 +218,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: aff82e5e08b70734795981d333dd7817, type: 2}
+    - target: {fileID: 4882641786631839853, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: ShapeModule.m_Rotation.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487367319961150567, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487367319961150567, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7029146057363414904, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_Name
       value: LawelGolec
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549607154621159120, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8572811856568252812, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y

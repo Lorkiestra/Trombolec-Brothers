@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 
 public class PukaszTrombolec : Brothers {
+    public static PukaszTrombolec Instance { get; private set; }
+
     [SerializeField] private Prop succedObject;
     [SerializeField] private float throwForce = 200f;
     [SerializeField] private float brotherThrowerAdditionalForce = 50f;
@@ -21,6 +23,12 @@ public class PukaszTrombolec : Brothers {
     protected override void Awake()
     {
         base.Awake();
+
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         brotherType = 1;
     }
 

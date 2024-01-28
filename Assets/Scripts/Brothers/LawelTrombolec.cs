@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LawelTrombolec : Brothers {
+    public static LawelTrombolec Instance { get; private set; }
+
     [SerializeField] private float turbopierdForce = 10000f;
     [SerializeField] private float speedClamp = 50f;
     [SerializeField] private float trombaPushForce = 200f;
@@ -14,6 +16,12 @@ public class LawelTrombolec : Brothers {
     protected override void Awake()
     {
         base.Awake();
+
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         brotherType = 2;
     }
 

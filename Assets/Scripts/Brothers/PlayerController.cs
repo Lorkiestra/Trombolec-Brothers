@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+	[SerializeField] private ParticleSystem tromboneParticles;
 	private Brothers brother;
 	private Movement movement;
 	private Vector2 move;
@@ -47,11 +48,15 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Trombone(InputAction.CallbackContext context) {
-		if (context.performed)
+		if (context.performed) {
 			trombienie = true;
+			tromboneParticles.Play();
+		}
+
 		if (context.canceled) {
 			trombienie = false;
 			brother.TromboneRelease();
+			tromboneParticles.Stop();
 		}
 	}
 	
