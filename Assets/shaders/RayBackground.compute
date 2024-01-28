@@ -130,11 +130,15 @@ void RayTracing (uint3 id : SV_DispatchThreadID)
         }
         */
         bool hitted = false;
+        float depthBuffer = 8192;
         for (int i = 0; i < ObjectsCap; i++)
         {
             //if (SimplePlane(rayDir, rayPos - ShapePosition[i].xyz, ShapeScale[i].xyz, Hit, 0))
-            if (SimpleInfiniCube(ShapePosition[i].xyz - rayPos, Hit, rayDir, ShapeScale[i].xyz / 2, normals))
+            bool singleHit = SimpleInfiniCube(ShapePosition[i].xyz - rayPos, Hit, rayDir, ShapeScale[i].xyz / 2, normals);
+            float hitDepth = length(Hit);
+            if (singleHit && hitDepth < depthBuffer)
             {
+                depthBuffer = hitDepth;
                 hitted = true;
                 //take x or z accordingly
                 Hit = float4(Hit.xyz + rayPos, 1);
