@@ -727,7 +727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8868988275490264910}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -847,7 +847,7 @@ MonoBehaviour:
   result: {fileID: 0}
   SkyboxScale: {x: 0, y: 0, z: 0, w: 0}
   SkyboxMode: 1
-  blokTexture: {fileID: 2800000, guid: 1fef3893b7c7da64086856197bb6255e, type: 3}
+  blokTexture: {fileID: 2800000, guid: a6bcadf20236023439551e8fc7c33b86, type: 3}
 --- !u!1001 &2690589686519599611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,6 +923,10 @@ PrefabInstance:
     - target: {fileID: 7421901425234062821, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194955213426425569, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1089,10 +1093,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7296063374867080831}
     m_Modifications:
+    - target: {fileID: 254125789934825424, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2743316836589949507, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: playerRing
       value: 
       objectReference: {fileID: 8435181325614844308}
+    - target: {fileID: 3709711383139699272, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: maxDistance
       value: 35

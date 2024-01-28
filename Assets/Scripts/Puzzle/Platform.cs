@@ -8,6 +8,7 @@ public class Platform : Powerable {
 	[SerializeField] private Transform positionA;
 	[SerializeField] private Transform positionB;
 	[SerializeField] private Transform model;
+	[SerializeField] private float time = 1f;
 
 	private void Start() {
 		model.position = positionA.position;
@@ -24,9 +25,9 @@ public class Platform : Powerable {
 	}
 
 	IEnumerator EPowerOn() {
-		while (Progress < 1f) {
+		while (Progress < time) {
 			model.position = Vector3.Lerp(positionA.position, positionB.position, Curve.Evaluate(Progress));
-			Progress += Time.deltaTime;
+			Progress += Time.deltaTime / time;
 			yield return null;
 		}
 
@@ -37,7 +38,7 @@ public class Platform : Powerable {
 	IEnumerator EPowerOff() {
 		while (Progress > 0f) {
 			model.position = Vector3.Lerp(positionA.position, positionB.position, Curve.Evaluate(Progress));
-			Progress -= Time.deltaTime;
+			Progress -= Time.deltaTime / time;
 			yield return null;
 		}
 
