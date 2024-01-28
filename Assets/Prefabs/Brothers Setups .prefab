@@ -588,7 +588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7526884723097752186}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -727,7 +727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8868988275490264910}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3006394, y: 0.000000016410379, z: -0.0000000051729154, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: -0.000000016410379, z: 0.0000000051729154, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -744,7 +744,7 @@ Camera:
   m_GameObject: {fileID: 8868988275490264910}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -857,12 +857,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 7296063374867080831}
     m_Modifications:
     - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
+      propertyPath: maxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: otherBrother
       value: 
       objectReference: {fileID: 4995357767609599413}
     - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: turbopierdForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741022635474000577, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
+      propertyPath: groundPoundForce
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3964743826491319733, guid: fd3b19c773344da42b53a06dc55fec01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -990,6 +998,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8525142192916531339, guid: fa4929e48061933469ad60395ee6fd8d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525142192916531339, guid: fa4929e48061933469ad60395ee6fd8d, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 5702ee3e7edf7874699dbd43fd038ba6, type: 3}
@@ -1082,9 +1094,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8435181325614844308}
     - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: maxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: otherBrother
       value: 
       objectReference: {fileID: 242337314757348154}
+    - target: {fileID: 4142344491794009894, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
+      propertyPath: groundPoundForce
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4193579631766995936, guid: e0c407c97843e3d458a5b67da5c3e0ce, type: 3}
       propertyPath: m_Name
       value: PukaszGolec
