@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -65,10 +64,12 @@ public class BasicEnemy : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    /*
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Handles.DrawWireDisc(WanderPivot, Vector3.up, WanderRadius);
     }
+    */
 
     private void OnCollisionEnter(Collision other) {
         if (other?.rigidbody?.velocity.magnitude > 5f) {

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public abstract class Brothers : MonoBehaviour {
@@ -167,8 +166,10 @@ public abstract class Brothers : MonoBehaviour {
         }
     }
 
+    /*
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Handles.DrawWireDisc(transform.position, Vector3.up, groundPoundEnemyAffectRadius);
     }
+    */
 }
