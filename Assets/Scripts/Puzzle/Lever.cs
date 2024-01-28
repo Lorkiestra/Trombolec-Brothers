@@ -31,16 +31,22 @@ public class Lever : MonoBehaviour {
 
 	[SerializeField] private Renderer topHandleRenderer;
 
+	private void Awake() {
+		topHandleRenderer = transform.GetChild(0).GetChild(1).GetComponent<Renderer>();
+	}
+
 	private void Start() {
 		rotation = handleRotationRange.min;
 		ChangeTopHandleColor((StaysActivated && IsOn) || IsDisabled ? Color.red : Color.yellow);
 
 	}
 
+	/*
 	private void OnValidate() {
 		if (!Application.isPlaying) return;
 		ChangeTopHandleColor((StaysActivated && IsOn) || IsDisabled ? Color.red : Color.yellow);
 	}
+	*/
 
 	private void Update() {
 		if (ResetsItself && IsOn) {

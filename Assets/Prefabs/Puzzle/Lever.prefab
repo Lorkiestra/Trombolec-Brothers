@@ -74,7 +74,7 @@ MonoBehaviour:
   handleRotationRange:
     min: -120
     max: -60
-  topHandleRenderer: {fileID: 9178775835132929903}
+  topHandleRenderer: {fileID: 0}
 --- !u!1001 &1502488292070229374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,10 +172,5 @@ Transform:
 --- !u!4 &3202740539734613203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4083501151425157549, guid: cda5762f0109b254ba382083e2069c9a, type: 3}
-  m_PrefabInstance: {fileID: 1502488292070229374}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &9178775835132929903 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1461304994638716399, guid: cda5762f0109b254ba382083e2069c9a, type: 3}
   m_PrefabInstance: {fileID: 1502488292070229374}
   m_PrefabAsset: {fileID: 0}
