@@ -5,13 +5,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class FidgetSpinnerWeakPoint : MonoBehaviour {
+    [SerializeField]
+    private FidgetSpinner fidgetSpinner;
+
     [field: SerializeField]
-    public bool isDestroyed { get; private set; } = false;
+    public bool IsDestroyed { get; private set; } = false;
     
     private void OnTriggerEnter(Collider other) {
-        if (!isDestroyed && other.gameObject.TryGetComponent(out Brothers player)) {
-            isDestroyed = true;
+        if (!IsDestroyed && other.gameObject.TryGetComponent(out Brothers player)) {
+            IsDestroyed = true;
             GetComponent<MeshRenderer>().enabled = false;
+            fidgetSpinner.Unstun();
         }
     }
 }

@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Collider))]
 public class Lever : MonoBehaviour {
-	[SerializeField]
-    private Powerable powerable;
+	[field: SerializeField]
+    public Powerable Powerable { get; set; }
 
-    [SerializeField]
-    private bool staysActivated = true;
+    [field: SerializeField]
+    public bool StaysActivated { get; set; } = true;
 
 	[SerializeField, Min(0), Tooltip("Time after which the lever resets to it's initial state. If 0, the lever does not reset.")]
 	private float resetTime = 0f;
@@ -21,36 +21,41 @@ public class Lever : MonoBehaviour {
 	[SerializeField]
 	private FloatRange handleRotationRange;
 
+	public bool IsOn { get; set; } = false;
+
+	public bool IsDisabled => Powerable == null;
+
 	private bool ResetsItself => resetTime > 0f;
 
 	private float rotation = 0f, resetTimer = 0f;
 
-	private bool isOn = false;
-
+	
 	private void Start() {
 		rotation = handleRotationRange.min;
-		ChangeTopHandleColor(staysActivated && !ResetsItself ? Color.red : Color.yellow);
+		ChangeTopHandleColor((StaysActivated && IsOn) || IsDisabled ? Color.red : Color.yellow);
 
 	}
 
 	private void OnValidate() {
 		if (!Application.isPlaying) return;
-		ChangeTopHandleColor(staysActivated && !ResetsItself ? Color.red : Color.yellow);
+		ChangeTopHandleColor((StaysActivated && IsOn) || IsDisabled ? Color.red : Color.yellow);
 	}
 
 	private void Update() {
-		if (ResetsItself && isOn) {
+		if (ResetsItself && IsOn) {
 			resetTimer += Time.deltaTime;
 
 			if (resetTimer >= resetTime) {
-				powerable.PowerOff();
-				isOn = false;
+				Powerable.PowerOff();
+				IsOn = false;
 				resetTimer = 0f;
 				ChangeTopHandleColor(Color.yellow);
 			}
 		}
 
-		rotation = Mathf.Lerp(handleRotationRange.min, handleRotationRange.max, powerable.Progress);
+		if (IsDisabled) return;
+
+		rotation = Mathf.Lerp(handleRotationRange.min, handleRotationRange.max, Powerable.Progress);
 		handle.localRotation = Quaternion.Euler(rotation, 90f, -90f);
 	}
 
@@ -60,31 +65,31 @@ public class Lever : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (powerable == null) return;
+		if (IsDisabled) return;
 
-		if (isOn && staysActivated) return;
+		if (IsOn && StaysActivated) return;
 
-		if (!other.GetComponent<Prop>())
+		if (!other.GetComponent<Brothers>())
 			return;
 
-		powerable.PowerOn();
+		Powerable.PowerOn();
+		IsOn = true;
 
-		if (staysActivated) {
-			isOn = true;
-			
-			if (ResetsItself)
-				ChangeTopHandleColor(Color.red);
-		}
+		if (StaysActivated)
+			ChangeTopHandleColor(Color.red);
 	}
 	
 	private void OnTriggerExit(Collider other) {
-		if (powerable == null) return;
+		if (IsDisabled) return;
 
-        if (staysActivated) return;
+        if (StaysActivated) return;
 
-		if (!other.GetComponent<Prop>())
+		if (!other.GetComponent<Brothers>())
 			return;
 
-		powerable.PowerOff();
+		Powerable.PowerOff();
+
+		if (ResetsItself)
+			ChangeTopHandleColor(Color.yellow);
 	}
 }

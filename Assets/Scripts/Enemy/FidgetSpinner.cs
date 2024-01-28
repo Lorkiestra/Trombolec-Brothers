@@ -32,7 +32,7 @@ public class FidgetSpinner : MonoBehaviour {
 
     public float DistanceToChargeTarget => Vector3.Distance(transform.position, chargeTargetPoint);
 
-    public bool IsDead => weakPoints.All(weakPoint => weakPoint.isDestroyed);
+    public bool IsDead => weakPoints.All(weakPoint => weakPoint.IsDestroyed);
 
     private float rotationSpeed;
 
@@ -83,7 +83,7 @@ public class FidgetSpinner : MonoBehaviour {
         transform.position += position;
     }
 
-    public void Stun() {
-        stateMachine.TransitionTo(BossStateMachine.BossState.Stunned);
-    }
+    public void Stun() => stateMachine.TransitionTo(BossStateMachine.BossState.Stunned);
+
+    public void Unstun() => stateMachine.TransitionTo(BossStateMachine.BossState.Chase);
 }
