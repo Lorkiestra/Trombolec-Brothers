@@ -67,7 +67,7 @@ public class Lever : MonoBehaviour {
 	}
 
 	private void ChangeTopHandleColor(Color color) {
-		topHandleRenderer.material.color = color;
+		topHandleRenderer.materials[^1].color = color;
 	}
 
 	private void OnTriggerEnter(Collider other) {
