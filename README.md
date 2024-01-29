@@ -1,3 +1,6 @@
+# A 2024 KrakJam Winner 
+Trombolec Brothers, a game that tickled the jammers' funny bones, reigned supreme at the 2024 KrakJam (a Global Game Jam location) themed "Make Me Laugh".
+
 # About
 Please welcome to the stage, the magnificent 🎺Trooooombolec Brrrrooothers🎺! The greatest trumpet duel in this part of the room!
 
