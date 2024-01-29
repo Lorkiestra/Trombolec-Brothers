@@ -1,4 +1,4 @@
-# A 2024 KrakJam Winner 
+# 🎉 A 2024 KrakJam Winner 🏆
 Trombolec Brothers, a game that tickled the jammers' funny bones, reigned supreme at the 2024 KrakJam (a Global Game Jam location) themed "Make Me Laugh".
 
 # About
@@ -18,13 +18,12 @@ Explore the great rooftops of Warsaw in a way that has never been seen before! W
 The agents of bad music want to stop the brothers from reaching the gig! Don't let some pathetic pop bastards stand in their way!
 
 
-The similarity of names or appearance of individuals depicted in the product is coincidental.
+## Disclaimer:
 
-Disclaimer:
+This game is satire. Characters, are fictional. The similarity of names or appearance of individuals depicted in the product is coincidental. This parody is for entertainment only. Play with a sense of humor and understanding. The game was not meant to offent anyone or hurt anyone's feelings. If content is offensive, discontinue playing. Enjoy responsibly!
 
-This game is satire. Characters, are fictional. This parody is for entertainment only. Play with a sense of humor and understanding. If content is offensive, discontinue playing. Enjoy responsibly!
 
-# Technology Notes
+# Technology Notes 💻
 Local two player coop, two gamepads only.
 
 🎮 Controls:
