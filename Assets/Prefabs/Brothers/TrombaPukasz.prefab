@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7436866695228378801
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 364423452331331878, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d705de0137774564f9caf2a71fdf4399, type: 2}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146477652356754895, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290678317520957161, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      propertyPath: m_Name
+      value: TrombaPukasz
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3290678317520957161, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 13406712189416133}
+  m_SourcePrefab: {fileID: 100100000, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+--- !u!114 &1975645902499665831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8962138658898942230, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+  m_PrefabInstance: {fileID: 7436866695228378801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1182242e018affa4b89f41a4f76fdf21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!198 &3102532351209159909 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5493096763663315540, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+  m_PrefabInstance: {fileID: 7436866695228378801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3366010547787389783 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5297207436599399910, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+  m_PrefabInstance: {fileID: 7436866695228378801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5038880844761113170 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2510965377522265315, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+  m_PrefabInstance: {fileID: 7436866695228378801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5377254686823800920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3290678317520957161, guid: 2d311359f809fe14f83e8f18b8a6c86f, type: 3}
+  m_PrefabInstance: {fileID: 7436866695228378801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &13406712189416133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5377254686823800920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d0002c5c75b104089b6e72716b183e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brother: {fileID: 0}
+  propCollector: {fileID: 1975645902499665831}
+  trombaModel: {fileID: 5038880844761113170}
+  trombaMaxSize: 1.5
+  audioSource: {fileID: 3366010547787389783}
+  trombaPierdzenie: {fileID: 8300000, guid: 808e090e0f1be7646bd44545c26d57f3, type: 3}
+  tromboneParticles: {fileID: 3102532351209159909}
+  heldObject: {fileID: 0}
+  throwForce: 200
+  brotherThrowerAdditionalForce: 50
+  suctionForce: 200
+  suctionTerminalVelocity: 10
+  suctionHoldDistance: 0.7
+  suctionDistortionPower: 0.5
+  holdDistortionSpeed: 8.3
+  pushDistortionSpeed: 5.5
+  holdDistortionAcceleration: 24.3
+  holdDistortionMaxPower: 2.2
+  pushDistortionPower: -8

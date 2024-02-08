@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    [SerializeField] Brothers lewyGolec;
-    [SerializeField] Brothers prawyGolec;
+    [SerializeField] Brother[] brothers;
 
+    // FIXME rotate brothers towards crowd
     [SerializeField] private Transform lewyGolecFinishRotation;
     [SerializeField] private Transform prawyGolecFinishRotation;
 
@@ -19,13 +19,13 @@ public class Finish : MonoBehaviour
     [SerializeField] private int playersFinished;
     [SerializeField] private CinemachineVirtualCamera winCamera;
 
-    private void Start() {
-        lewyGolec = FindObjectOfType<LawelTrombolec>();
-        prawyGolec = FindObjectOfType<PukaszTrombolec>();
+    private void Start()
+    {
+        brothers = FindObjectsOfType<Brother>();
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<Brothers>()) {
+        if (other.GetComponent<Brother>()) {
             playersFinished++;
             if (playersFinished == 2)
                 StartCoroutine(WinCutscene());
@@ -33,7 +33,7 @@ public class Finish : MonoBehaviour
     }
     
     public void OnTriggerExit(Collider other) {
-        if (other.GetComponent<Brothers>())
+        if (other.GetComponent<Brother>())
             playersFinished--;
     }
 
@@ -41,15 +41,15 @@ public class Finish : MonoBehaviour
         foreach (Debris d in debris) {
             d.DropAndDestroy();
         }
-        lewyGolec.GetComponent<Movement>().canMove = false;
-        prawyGolec.GetComponent<Movement>().canMove = false;
-        lewyGolec.GetComponent<Movement>().model.localRotation = lewyGolecFinishRotation.rotation;
-        prawyGolec.GetComponent<Movement>().model.localRotation = prawyGolecFinishRotation.rotation;
-        lewyGolec.animator.SetTrigger("wild_dance");
-        prawyGolec.animator.SetTrigger("wild_dance");
+
+        foreach (Brother brother in brothers)
+        {
+            brother.GetComponent<Movement>().canMove = false;
+            // FIXME brother.RotateToward(lookAt);
+            brother.FinishDance();
+        }
         SoundVisualizer.Instance.PlayWinJingle();
         winCamera.Priority = 100;
-        yield return null;
         for (float timeToEnd = 0f; timeToEnd < 6f; timeToEnd += Time.deltaTime) {
             yield return null;
         }

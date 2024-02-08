@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 public class LaserManager : MonoBehaviour {
+    
     enum LaserShowColorMode {
         HueRotate,
         ColorAlternate,
@@ -17,53 +18,24 @@ public class LaserManager : MonoBehaviour {
         Wave
     }
 
-    [SerializeField]
-    private Transform laserTempalte;
-
-    [SerializeField, Min(1)]
-    private int numberOfLasers;
-
-    [SerializeField, Min(0.1f)]
-    private float laserSpacing = 0.5f;
-
-    [SerializeField]
-    private Vector3 laserIterativeRotationOffset;
-
-    [SerializeField]
-    private bool symmetryX, symmetryY, symmetryZ;
-
-    [SerializeField, Space]
-    private LaserShowColorMode laserShowColorMode;
-
+    [SerializeField] private Transform laserTempalte;
+    [SerializeField, Min(1)] private int numberOfLasers;
+    [SerializeField, Min(0.1f)] private float laserSpacing = 0.5f;
+    [SerializeField] private Vector3 laserIterativeRotationOffset;
+    [SerializeField] private bool symmetryX, symmetryY, symmetryZ;
+    [SerializeField, Space] private LaserShowColorMode laserShowColorMode;
     private LaserShowMode laserShowMode;
-
-    [SerializeField]
-    private float laserShowDuration = 6f;
-
-    [SerializeField]
-    private float hueRotateShowOffset = 1f;
-
-    [SerializeField, Space]
-    private float colorAlternateShowInterval = 1f;
-
-    [SerializeField]
-    private float laserShowModeInterval = 2f;
-
-    [SerializeField]
-    private float animationRadius = 1f;
-
-    [SerializeField, Space]
-    private Color laserNormalColor = Color.red;
-
-    [SerializeField]
-    private Color laserAltcolor = Color.white;
-
-    private List<Transform> lasers = new();
-
+    [SerializeField] private float laserShowDuration = 6f;
+    [SerializeField] private float hueRotateShowOffset = 1f;
+    [SerializeField, Space] private float colorAlternateShowInterval = 1f;
+    [SerializeField] private float laserShowModeInterval = 2f;
+    [SerializeField] private float animationRadius = 1f;
+    [SerializeField, Space] private Color laserNormalColor = Color.red;
+    [SerializeField] private Color laserAltcolor = Color.white;
+    
+    private readonly List<Transform> lasers = new();
     private float hueRotateShowProgress = 0f, colorAlternateShowProgress = 0f, rotationProgress = 0f, laserShowModeProgress = 0f;
-
     private Color randomColor1 = Color.red, randomColor2 = Color.white;
-
     private Vector3 laserIterativeRotation;
 
     private void Awake() {

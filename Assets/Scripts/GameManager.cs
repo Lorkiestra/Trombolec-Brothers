@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,33 +8,34 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     
     [SerializeField] private TextMeshProUGUI gameovertext;
-    [SerializeField] private Brothers lewyGolec;
-    [SerializeField] private Brothers prawyGolec;
+    [SerializeField] private Brother leftBrother;
+    [SerializeField] private Brother rightBrother;
 
     private void Awake() {
         Instance = this;
     }
 
-    int deadedPlayers = 0;
-    public int DeadedPlayers {
+    private int deadPlayers;
+    public int DeadPlayers {
         get {
-            return deadedPlayers;
+            return deadPlayers;
         }
         set {
-            deadedPlayers = value;
-            if (deadedPlayers >= 2)
+            deadPlayers = value;
+            // FIXME one player can die twice
+            if (deadPlayers >= 2)
                 GameOver();
         }
     }
 
-    void GameOver() {
+    private void GameOver() {
         gameovertext.gameObject.SetActive(true);
-        lewyGolec.GetComponent<Movement>().canMove = false;
-        prawyGolec.GetComponent<Movement>().canMove = false;
+        leftBrother.GetComponent<Movement>().canMove = false;
+        rightBrother.GetComponent<Movement>().canMove = false;
         StartCoroutine(EGameOver());
     }
 
-    IEnumerator EGameOver() {
+    private IEnumerator EGameOver() {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

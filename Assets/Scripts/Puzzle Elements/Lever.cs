@@ -75,7 +75,7 @@ public class Lever : MonoBehaviour {
 
 		if (IsOn && StaysActivated) return;
 
-		if (!other.GetComponent<Brothers>())
+		if (!other.GetComponent<Brother>())
 			return;
 
 		Powerable.PowerOn();
@@ -90,7 +90,7 @@ public class Lever : MonoBehaviour {
 
         if (StaysActivated) return;
 
-		if (!other.GetComponent<Brothers>())
+		if (!other.GetComponent<Brother>())
 			return;
 
 		Powerable.PowerOff();
