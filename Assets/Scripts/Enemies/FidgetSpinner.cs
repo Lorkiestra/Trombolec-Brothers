@@ -26,7 +26,7 @@ public class FidgetSpinner : MonoBehaviour {
     [SerializeField]
     List<FidgetSpinnerWeakPoint> weakPoints;
 
-    public Brothers TargetBrother { get; private set; }
+    public Brother TargetBrother { get; private set; }
 
     public float DistanceToTarget => Vector3.Distance(transform.position, TargetBrother.transform.position);
 
@@ -51,7 +51,8 @@ public class FidgetSpinner : MonoBehaviour {
     }
 
     public void SelectTarget() {
-        TargetBrother = Random.Range(0, 2) == 0 ? PukaszTrombolec.Instance : LawelTrombolec.Instance;
+        // TODO changes in Brother script
+        // TargetBrother = Random.Range(0, 2) == 0 ? PukaszTrombolec.Instance : LawelTrombolec.Instance;
     }
 
     public void AdjustHeight() {

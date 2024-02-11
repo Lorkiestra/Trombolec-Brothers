@@ -1,29 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-	[SerializeField] private ParticleSystem tromboneParticles;
-	private Brothers brother;
+	
+	[SerializeField] private Tromba tromba;
+	
+	private Brother brother;
 	private Movement movement;
 	private Vector2 move;
-	private bool trombienie;
+	private bool trombienie; // FIXME better name
 
 	private void Awake() {
+		brother = GetComponent<Brother>();
 		movement = GetComponent<Movement>();
-		brother = GetComponent<Brothers>();
-	}
-
-	private void Update() {
-		movement.Move(move);
 	}
 
 	private void FixedUpdate() {
+		movement.Move(move);
 		if (trombienie)
-			brother.Trombone();
+			tromba.TromboneHold();
 	}
 
 	public void Move(InputAction.CallbackContext context) {
@@ -48,20 +43,32 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Trombone(InputAction.CallbackContext context) {
-		if (context.performed) {
-			trombienie = true;
-			tromboneParticles.Play();
-		}
-
-		if (context.canceled) {
-			trombienie = false;
-			brother.TromboneRelease();
-			tromboneParticles.Stop();
+		switch (context.phase) {
+			case InputActionPhase.Started:
+				trombienie = true;
+				tromba.TromboneStart();
+				break;
+			case InputActionPhase.Canceled:
+				trombienie = false;
+				tromba.TromboneRelease();
+				break;
 		}
 	}
 	
 	public void GroundPound(InputAction.CallbackContext context) {
 		if (context.performed)
 			brother.GroundPound();
+	}
+	
+	public void SwitchControls(InputAction.CallbackContext context) {
+		if (!context.performed)
+			return;
+		
+		PlayerInput player1 = PlayerInput.all[0];
+		PlayerInput player2 = PlayerInput.all[1];
+		string tempControlScheme = player2.currentControlScheme;
+		InputDevice[] tempDevices = player2.devices.ToArray();
+		player2.SwitchCurrentControlScheme(player1.currentControlScheme, player1.devices.ToArray());
+		player1.SwitchCurrentControlScheme(tempControlScheme, tempDevices);
 	}
 }

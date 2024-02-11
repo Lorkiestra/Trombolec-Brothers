@@ -12,7 +12,7 @@ public class FidgetSpinnerWeakPoint : MonoBehaviour {
     public bool IsDestroyed { get; private set; } = false;
     
     private void OnTriggerEnter(Collider other) {
-        if (!IsDestroyed && other.gameObject.TryGetComponent(out Brothers player)) {
+        if (!IsDestroyed && other.gameObject.TryGetComponent(out Brother player)) {
             IsDestroyed = true;
             GetComponent<MeshRenderer>().enabled = false;
             fidgetSpinner.Unstun();

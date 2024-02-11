@@ -1,46 +1,62 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-    public Rigidbody rb;
     [SerializeField] private Animator animator;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float accelerationMultiplier = 1f;
+    [SerializeField] private float speed = 0.8f;
+    [SerializeField] private float maxSpeedCap = 10f;
     [SerializeField] private float jumpForce = 5f;
     public Transform model;
     [SerializeField] private float groundCheckRayLength = 0.5f;
-    public bool grounded;
     public bool canMove = true;
-    public Vector2 look;
-    [SerializeField] ParticleSystem moveParticleSystem;
+    [SerializeField] private ParticleSystem moveParticleSystem;
     [SerializeField] private float coyoteJumpDuration = 0.2f;
-    private Coroutine coyote;
 
-    private Brothers brother;
+    private Brother brother;
+    private Rigidbody rb;
+    private Coroutine coyote;
+    private Vector2 look;
+
+    private bool isGrounded;
+    private static readonly int X = Animator.StringToHash("x");
+    private static readonly int Y = Animator.StringToHash("y");
+    private static readonly int Velocity = Animator.StringToHash("velocity");
+    private static readonly int JumpTrigger = Animator.StringToHash("jump");
+
+    public bool IsGrounded
+    {
+        get {
+            return isGrounded;
+        }
+        private set {
+            if (isGrounded == value)
+                return;
+            
+            if (value)
+                moveParticleSystem.Play();
+            else
+                moveParticleSystem.Stop();
+            
+            isGrounded = value;
+        }
+    }
 
     private void Awake() {
+        brother = GetComponent<Brother>();
         rb = GetComponent<Rigidbody>();
-        brother = GetComponent<Brothers>();
     }
 
     private void Update() {
         CheckGrounded();
-
-        if (grounded && !moveParticleSystem.isPlaying)
-            moveParticleSystem.Play();
-        else if (!grounded && moveParticleSystem.isPlaying)
-            moveParticleSystem.Stop();
-
-        Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
     }
 
     private void FixedUpdate() {
         ApplyAdditionalGravity();
     }
 
-    void ApplyAdditionalGravity() {
-        if (!canMove || !rb.useGravity || grounded)
+    private void ApplyAdditionalGravity() {
+        if (!canMove || !rb.useGravity || IsGrounded)
             return;
         if (rb.velocity.y > 0f)
             rb.velocity += -Vector3.up * 0.4f;
@@ -51,20 +67,37 @@ public class Movement : MonoBehaviour {
     public void Move(Vector2 direction) {
         if (!canMove)
             return;
-        Vector3 axisFix = new Vector3(direction.x, 0f, direction.y);
-        animator.SetFloat("velocity", axisFix.magnitude);
-        animator.SetFloat("x", axisFix.x);
-        animator.SetFloat("y", axisFix.y);
-        transform.Translate(axisFix * (speed * Time.deltaTime));
+        Vector3 axisFix = new Vector3(direction.y, 0f, direction.x);
+        
+        animator.SetFloat(Velocity, axisFix.magnitude);
+        animator.SetFloat(X, axisFix.x);
+        animator.SetFloat(Y, axisFix.y);
+
+        Transform cameraTransform = CameraController.Instance.transform;
+        Vector3 cameraForward = cameraTransform.forward;
+        cameraForward.y = 0f;
+        cameraForward.Normalize();
+        Vector3 cameraRight = cameraTransform.right;
+        cameraRight.y = 0f;
+        cameraRight.Normalize();
+
+        Vector3 newVelocity = rb.velocity + (cameraForward * (axisFix.x * accelerationMultiplier) +
+                                             cameraRight * (axisFix.z * accelerationMultiplier)) * speed;
+        // FIXME ignore y velocity
+        // FIXME can't change direction at full speed while airborne
+        if (newVelocity.magnitude < maxSpeedCap)
+            rb.velocity = newVelocity;
 
         if (direction == Vector2.zero)
             return;
         
-        if (look.magnitude < 0.3f) {
-            float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
-            model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles.x, angle + 90f,
-                model.localRotation.eulerAngles.z);
-        }
+        if (look.magnitude >= 0.3f)
+            return;
+        
+        float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion localRotation = model.localRotation;
+        model.localRotation = Quaternion.Lerp(localRotation,
+            Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f, localRotation.eulerAngles.z), .5f);
     }
 
     public void Look(Vector2 lookDir) {
@@ -78,39 +111,44 @@ public class Movement : MonoBehaviour {
         }
 
         float angle = Mathf.Atan2(-look.y, look.x) * Mathf.Rad2Deg;
-        model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles.x, angle + 90f, model.localRotation.eulerAngles.z);
+        Quaternion localRotation = model.localRotation;
+        // FIXME don't work on keyboard inputs
+        model.localRotation = Quaternion.Lerp(localRotation,
+            Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f, localRotation.eulerAngles.z), .5f);
     }
 
     public void Jump() {
-        if (!grounded || !canMove)
+        if (!IsGrounded || !canMove)
             return;
 
-        rb.velocity = Vector3.up * jumpForce;
+        rb.velocity += Vector3.up * jumpForce;
         brother.audioSourceVoice.PlayOneShot(brother.jump);
-        animator.SetTrigger("jump");
+        animator.SetTrigger(JumpTrigger);
     }
 
-    public void CutJump() {
-        if (rb.velocity.y > 0f)
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2f, rb.velocity.z);
+    public void CutJump()
+    {
+        Vector3 velocity = rb.velocity;
+        if (velocity.y > 0f)
+            rb.velocity = new Vector3(velocity.x, velocity.y / 2f, velocity.z);
     }
 
-    void CheckGrounded() {
+    private void CheckGrounded() {
         Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out RaycastHit hit, groundCheckRayLength);
         if (hit.collider) {
             if (coyote != null)
+            {
                 StopCoroutine(coyote);
-            grounded = true;
-        }
-        else {
-            StartCoroutine(CoyoteJump());
-        }
+                coyote = null;
+            }
+            IsGrounded = true;
+        } else
+            coyote = StartCoroutine(CoyoteJump());
     }
 
-    IEnumerator CoyoteJump() {
-        for (float i = 0f; i < coyoteJumpDuration; i += Time.deltaTime) {
+    private IEnumerator CoyoteJump() {
+        for (float i = 0f; i < coyoteJumpDuration; i += Time.deltaTime)
             yield return null;
-        }
-        grounded = false;
+        IsGrounded = false;
     }
 }

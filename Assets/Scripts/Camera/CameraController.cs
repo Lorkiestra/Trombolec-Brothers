@@ -5,21 +5,25 @@ using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
-public class CameraController : MonoBehaviour {
-    [SerializeField]
-    private FollowPlayers playersMidPoint;
-
-    [SerializeField]
-    private float zoomFactor = 10f, minZoom = 5f, maxZoom = 20f;
-
-    [SerializeField, Range(0f, 1f)]
-    float zoomOuterBound = .8f, zoomInnerBound = .2f;
-
+public class CameraController : MonoBehaviour
+{
+    [SerializeField] private FollowPlayers playersMidPoint;
+    [SerializeField] private float zoomFactor = 10f, minZoom = 5f, maxZoom = 20f;
+    [SerializeField, Range(0f, 1f)] float zoomOuterBound = .8f, zoomInnerBound = .2f;
+    [SerializeField] private Camera cam;
+    
     private CinemachineVirtualCamera virtualCamera;
-
     private CinemachineTransposer virtualCameraTransposer;
 
-    private void Awake() {
+    public static CameraController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+        
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
     }
@@ -40,8 +44,8 @@ public class CameraController : MonoBehaviour {
     }
 
     private float GetViewportDistanceBetweenPoints(Vector3 pointA, Vector3 pointB) {
-        Vector2 viewportPointA = Camera.main.WorldToViewportPoint(pointA);
-        Vector2 viewportPointB = Camera.main.WorldToViewportPoint(pointB);
+        Vector2 viewportPointA = cam.WorldToViewportPoint(pointA);
+        Vector2 viewportPointB = cam.WorldToViewportPoint(pointB);
         return Vector2.Distance(viewportPointA, viewportPointB);
     }
 }

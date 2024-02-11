@@ -30,7 +30,7 @@ public class ChaseEnemy : BasicEnemy {
 
     public float AttackTimer { get; set; } = 0f;
 
-    public Brothers AggroTarget { get; protected set; }
+    public Brother AggroTarget { get; protected set; }
 
     private SphereCollider aggroTrigger;
 
@@ -61,7 +61,7 @@ public class ChaseEnemy : BasicEnemy {
         agent.SetDestination(transform.position);
     }
 
-    private void HandleTargetChange(Brothers brother) {
+    private void HandleTargetChange(Brother brother) {
         float distanceToNewBrother = Vector3.Distance(transform.position, brother.transform.position);
         float distanceToFocusedBrother = Vector3.Distance(transform.position, AggroTarget.transform.position);
 
@@ -70,14 +70,14 @@ public class ChaseEnemy : BasicEnemy {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.TryGetComponent(out Brothers brother)) {
+        if (other.TryGetComponent(out Brother brother)) {
             AggroTarget = brother;
             stateMachine.TransitionTo(EnemyStateMachine.EnemyState.Chase);
         }
     }
 
     private void OnTriggerStay(Collider other) {
-        if (other.TryGetComponent(out Brothers brother))
+        if (other.TryGetComponent(out Brother brother))
             HandleTargetChange(brother);
     }
 }

@@ -33,17 +33,17 @@ public class DeathPlaneTracker : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
             }
 
-            Brothers brothers = GetComponent<Brothers>();
-            if (brothers)
-                brothers.Stun();
+            Brother brother = GetComponent<Brother>();
+            if (brother)
+                brother.Stun();
             else
                 StartCoroutine(HitFlashing());
         }
     }
     
     IEnumerator TrackLastKnownLocation() {
-        Brothers brothers = GetComponent<Brothers>();
-        if (!brothers)
+        Brother brother = GetComponent<Brother>();
+        if (!brother)
             yield break;
         while (true) {
             if (grounded) {

@@ -8,7 +8,7 @@ public class LoadingZone : MonoBehaviour {
     [SerializeField] private string sceneName;
     
     private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<Brothers>())
+        if (other.GetComponent<Brother>())
             SceneManager.LoadScene(sceneName);
     }
 }

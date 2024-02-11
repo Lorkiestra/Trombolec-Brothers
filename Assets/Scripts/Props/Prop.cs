@@ -5,6 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Prop : MonoBehaviour {
+    // FIXME hide rb and use methods instead
     public Rigidbody rb;
     public bool throwable = true;
     public bool succable = true;

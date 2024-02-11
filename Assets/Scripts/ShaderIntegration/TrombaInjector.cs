@@ -19,12 +19,13 @@ public class TrombaInjector : ShaderPasser
 	private Transform tromba2;
 	protected override void FakeStart()
 	{
+		Brother[] brothers = FindObjectsOfType<Brother>();
 		//get each brother
-		brother1 = GameObject.FindObjectOfType<PukaszTrombolec>().transform;
-		brother2 = GameObject.FindObjectOfType<LawelTrombolec>().transform;
+		brother1 = brothers[0].transform;
+		brother2 = brothers[1].transform;
 		//get tromba from each player
-		tromba1 = brother1.GetComponent<PukaszTrombolec>().trombaModel.transform;
-		tromba2 = brother2.GetComponent<LawelTrombolec>().trombaModel.transform;
+		tromba1 = brother1.GetComponentInChildren<Tromba>().transform;
+		tromba2 = brother2.GetComponentInChildren<Tromba>().transform;
 	}
 
 	protected override void FakeUpdate()
