@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
     [SerializeField] private Animator animator;
+    [SerializeField] private float accelerationMultiplier = 1f;
     [SerializeField] private float speed = 0.8f;
     [SerializeField] private float maxSpeedCap = 10f;
     [SerializeField] private float jumpForce = 5f;
@@ -25,7 +26,9 @@ public class Movement : MonoBehaviour {
 
     public bool IsGrounded
     {
-        get => isGrounded;
+        get {
+            return isGrounded;
+        }
         private set {
             if (isGrounded == value)
                 return;
@@ -46,7 +49,6 @@ public class Movement : MonoBehaviour {
 
     private void Update() {
         CheckGrounded();
-        Debug.DrawLine(transform.position + Vector3.up * 0.2f, transform.position + Vector3.down * groundCheckRayLength, Color.blue);
     }
 
     private void FixedUpdate() {
@@ -78,10 +80,13 @@ public class Movement : MonoBehaviour {
         Vector3 cameraRight = cameraTransform.right;
         cameraRight.y = 0f;
         cameraRight.Normalize();
-        
+
+        Vector3 newVelocity = rb.velocity + (cameraForward * (axisFix.x * accelerationMultiplier) +
+                                             cameraRight * (axisFix.z * accelerationMultiplier)) * speed;
         // FIXME ignore y velocity
-        if (rb.velocity.magnitude < maxSpeedCap)
-            rb.velocity += (cameraForward * axisFix.x + cameraRight * axisFix.z) * speed;
+        // FIXME can't change direction at full speed while airborne
+        if (newVelocity.magnitude < maxSpeedCap)
+            rb.velocity = newVelocity;
 
         if (direction == Vector2.zero)
             return;
@@ -91,8 +96,8 @@ public class Movement : MonoBehaviour {
         
         float angle = Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion localRotation = model.localRotation;
-        model.localRotation = Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f,
-            localRotation.eulerAngles.z);
+        model.localRotation = Quaternion.Lerp(localRotation,
+            Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f, localRotation.eulerAngles.z), .5f);
     }
 
     public void Look(Vector2 lookDir) {
@@ -107,7 +112,9 @@ public class Movement : MonoBehaviour {
 
         float angle = Mathf.Atan2(-look.y, look.x) * Mathf.Rad2Deg;
         Quaternion localRotation = model.localRotation;
-        model.localRotation = Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f, localRotation.eulerAngles.z);
+        // FIXME don't work on keyboard inputs
+        model.localRotation = Quaternion.Lerp(localRotation,
+            Quaternion.Euler(localRotation.eulerAngles.x, angle + 90f, localRotation.eulerAngles.z), .5f);
     }
 
     public void Jump() {
@@ -140,9 +147,8 @@ public class Movement : MonoBehaviour {
     }
 
     private IEnumerator CoyoteJump() {
-        for (float i = 0f; i < coyoteJumpDuration; i += Time.deltaTime) {
+        for (float i = 0f; i < coyoteJumpDuration; i += Time.deltaTime)
             yield return null;
-        }
         IsGrounded = false;
     }
 }

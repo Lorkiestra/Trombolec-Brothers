@@ -144,11 +144,13 @@ public class Brother : MonoBehaviour {
     }
 
     // FIXME get rid or create own script
-    private void ClampDistance() {
-        float distance = Vector3.Distance(transform.position, otherBrother.transform.position);
+    private void ClampDistance()
+    {
+        Vector3 transformPosition = transform.position;
+        float distance = Vector3.Distance(transformPosition, otherBrother.transform.position);
 
         if (distance > maxDistance) {
-            Vector3 direction = otherBrother.transform.position - transform.position;
+            Vector3 direction = otherBrother.transform.position - transformPosition;
             direction.Normalize();
             transform.position += direction * (distance - maxDistance);
         }

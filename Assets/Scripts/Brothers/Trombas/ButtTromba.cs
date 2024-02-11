@@ -41,6 +41,7 @@ public class ButtTromba : Tromba {
 	}
 
 	public override void TromboneRelease() {
+		base.TromboneRelease();
 		if (!CanAttack)
 			return;
 		audioSource.Stop();

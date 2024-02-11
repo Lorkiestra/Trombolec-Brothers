@@ -59,4 +59,16 @@ public class PlayerController : MonoBehaviour {
 		if (context.performed)
 			brother.GroundPound();
 	}
+	
+	public void SwitchControls(InputAction.CallbackContext context) {
+		if (!context.performed)
+			return;
+		
+		PlayerInput player1 = PlayerInput.all[0];
+		PlayerInput player2 = PlayerInput.all[1];
+		string tempControlScheme = player2.currentControlScheme;
+		InputDevice[] tempDevices = player2.devices.ToArray();
+		player2.SwitchCurrentControlScheme(player1.currentControlScheme, player1.devices.ToArray());
+		player1.SwitchCurrentControlScheme(tempControlScheme, tempDevices);
+	}
 }

@@ -17,9 +17,7 @@ public abstract class Tromba : MonoBehaviour {
 	
 	public bool CanAttack { get; protected set; } = true;
 
-	protected virtual void Update() {
-		Debug.DrawRay(transform.position, transform.forward, Color.yellow);
-	}
+	protected virtual void Update() { }
 
 	public virtual void TromboneStart()
 	{
@@ -32,8 +30,6 @@ public abstract class Tromba : MonoBehaviour {
 
 	public virtual void TromboneRelease()
 	{
-		if (!CanAttack)
-			return;
 		tromboneParticles.Stop();
 	}
 }
