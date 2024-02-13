@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: aff82e5e08b70734795981d333dd7817, type: 2}
+    - target: {fileID: -722109708046442032, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 144bab5ae8ea1154c9fea62e40b00714, type: 2}
     - target: {fileID: 919132149155446097, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}
       propertyPath: m_Name
       value: bolec_pierdolec
