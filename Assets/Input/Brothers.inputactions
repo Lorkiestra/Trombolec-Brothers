@@ -195,19 +195,19 @@
                 },
                 {
                     "name": "",
-                    "id": "92070065-703e-42b3-95e7-4b4a83ca5e49",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "4ba4bfac-e600-47c9-9d91-313a74ff64cd",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
+                    "groups": "Keyboard",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "08dd0514-1375-4963-95c4-c04f1c931897",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "92070065-703e-42b3-95e7-4b4a83ca5e49",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -228,6 +228,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9292d254-6337-439c-96eb-bd6fc6231e1b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "77985b20-4b93-47d2-9505-09feb5e8ec31",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -241,6 +252,17 @@
                     "name": "",
                     "id": "4a22f24a-8cd8-4adf-ae53-7f60ddb8378b",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Trombone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60c04784-60f8-4de2-9db9-0b0f2bf4b8b3",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -291,6 +313,17 @@
                     "action": "SwitchDevices",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38e7d6b1-1587-474e-a391-b6c9eaa4ed95",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SwitchDevices",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -326,8 +359,18 @@
                     "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
                 }
             ]
+        },
+        {
+            "name": "null",
+            "bindingGroup": "null",
+            "devices": []
         }
     ]
 }
