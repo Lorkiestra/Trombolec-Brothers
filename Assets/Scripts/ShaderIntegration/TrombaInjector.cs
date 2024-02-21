@@ -8,8 +8,9 @@ public class TrombaInjector : ShaderPasser
 	public float succPower2;
 	public float succSpeed1 = 3;
 	public float succSpeed2 = 3;
-	public float poundDist1 = 100;
-	public float poundDist2 = 100;
+	public float[] poundDist = {
+		100, 100
+	};
 	private float succReduction = 24f;
 	private float poundReduction = 5f;
 
@@ -50,13 +51,13 @@ public class TrombaInjector : ShaderPasser
 		}
 
 		//update groundpound animation
-		if (poundDist1 < 100)
+		if (poundDist[0] < 100)
 		{
-			poundDist1 += poundReduction * Time.deltaTime;
+			poundDist[0] += poundReduction * Time.deltaTime;
 		}
-		if (poundDist2 < 100)
+		if (poundDist[1] < 100)
 		{
-			poundDist2 += poundReduction * Time.deltaTime;
+			poundDist[1] += poundReduction * Time.deltaTime;
 		}
 	}
 
@@ -84,7 +85,7 @@ public class TrombaInjector : ShaderPasser
 		shadedMaterials[j].SetFloat(PropertyIDs[5], succPower2);
 		shadedMaterials[j].SetFloat(PropertyIDs[6], succSpeed1);
 		shadedMaterials[j].SetFloat(PropertyIDs[7], succSpeed2);
-		shadedMaterials[j].SetFloat(PropertyIDs[8], poundDist1);
-		shadedMaterials[j].SetFloat(PropertyIDs[9], poundDist2);
+		shadedMaterials[j].SetFloat(PropertyIDs[8], poundDist[0]);
+		shadedMaterials[j].SetFloat(PropertyIDs[9], poundDist[1]);
 	}
 }

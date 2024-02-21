@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
+	public int playerNumber;
 	
 	[SerializeField] private Tromba tromba;
 	
@@ -23,40 +25,35 @@ public class PlayerController : MonoBehaviour {
 			tromba.TromboneHold();
 	}
 	
-	void SetupDevicesAndSchemas() {
+	private void SetupDevicesAndSchemas() {
 		PlayerInput player1 = PlayerInput.all[0];
 		PlayerInput player2 = PlayerInput.all[1];
 		
 		if (InputManager.player1Device == null)
-			player1.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player1Device), InputManager.GetDevices().ToArray());
+			player1.SwitchCurrentControlScheme("null", InputManager.GetDevices().ToArray());
 		else if (InputManager.player1Device.displayName.Contains("Keyboard"))
 		{
 			InputDevice[] devices = {
 				InputManager.player1Device,
 				InputManager.GetMouse()
 			};
-			player1.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player1Device),
-				devices);
+			player1.SwitchCurrentControlScheme("Default", devices);
 		}
 		else
-			player1.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player1Device),
-				InputManager.player1Device);
+			player1.SwitchCurrentControlScheme("Default", InputManager.player1Device);
 
 		if (InputManager.player2Device == null)
-			player2.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player2Device),
-				InputManager.GetDevices().ToArray());
+			player2.SwitchCurrentControlScheme("null", InputManager.GetDevices().ToArray());
 		else if (InputManager.player2Device.displayName.Contains("Keyboard"))
 		{
 			InputDevice[] devices = {
 				InputManager.player2Device,
 				InputManager.GetMouse()
 			};
-			player2.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player2Device),
-				devices);
+			player2.SwitchCurrentControlScheme("Default", devices);
 		}
 		else
-			player2.SwitchCurrentControlScheme(InputManager.GetSchemaByDevice(InputManager.player2Device),
-				InputManager.GetDevices().ToArray());
+			player2.SwitchCurrentControlScheme("Default", InputManager.GetDevices().ToArray());
 	}
 
 	public void Move(InputAction.CallbackContext context) {
@@ -71,7 +68,6 @@ public class PlayerController : MonoBehaviour {
 			return;
 		
 		movement.Look(context.ReadValue<Vector2>());
-		Debug.Log(context.ReadValue<Vector2>());
 	}
 	
 	public void Jump(InputAction.CallbackContext context) {
