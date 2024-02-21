@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: tromba
       value: 
       objectReference: {fileID: 7769347857429585051}
+    - target: {fileID: 46450019602757112, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 460436541003527996, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -111,26 +115,6 @@ PrefabInstance:
     - target: {fileID: 7549607154621159120, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 2d805f20-b80f-4154-84ac-ae8fd0629180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: Game/SwitchDevices[/XInputControllerWindows/select,/Keyboard/enter]
       objectReference: {fileID: 0}
     - target: {fileID: 8572811856568252812, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
@@ -375,8 +359,9 @@ MonoBehaviour:
   succPower2: 0
   succSpeed1: 3
   succSpeed2: 3
-  poundDist1: 100
-  poundDist2: 100
+  poundDist:
+  - 100
+  - 100
 --- !u!1 &8155145489018393512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fb8b3b80b73514148ba5e52433b6e169, type: 3}

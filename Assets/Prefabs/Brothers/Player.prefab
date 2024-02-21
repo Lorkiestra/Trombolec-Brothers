@@ -5361,8 +5361,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d805f20-b80f-4154-84ac-ae8fd0629180
     m_ActionName: Game/SwitchDevices[/XInputControllerWindows/select,/Keyboard/enter]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Default
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -5378,6 +5378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356380e830042e14489ad452118d6199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   tromba: {fileID: 0}
 --- !u!114 &1777442990461816364
 MonoBehaviour:
@@ -5394,7 +5395,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 78012fbf6e0c5524c914114a48f18a55, type: 3}
   fallToDeath: {fileID: 8300000, guid: 32b90be8a092c8c45974716219c41eb0, type: 3}
   audioSourceVoice: {fileID: 7490773302636819677}
-  brotherType: 0
+  playerController: {fileID: 46450019602757112}
   otherBrother: {fileID: 0}
   animator: {fileID: 0}
   hitPoints: 3

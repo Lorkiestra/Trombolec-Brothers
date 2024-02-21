@@ -172,26 +172,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Keyboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: 2d805f20-b80f-4154-84ac-ae8fd0629180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974969147082179807, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: Game/SwitchDevices[/XInputControllerWindows/select,/Keyboard/enter]
-      objectReference: {fileID: 0}
     - target: {fileID: 8572811856568252812, guid: d6902ff2a1633ed48a22cb8888f2ec89, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.7

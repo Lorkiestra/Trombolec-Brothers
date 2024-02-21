@@ -8,7 +8,7 @@ public class Brother : MonoBehaviour {
     [SerializeField] public AudioClip fallToDeath;
     [SerializeField] public AudioSource audioSourceVoice;
     
-    [SerializeField] protected int brotherType;
+    [SerializeField] protected PlayerController playerController;
     
     // FIXME used by ClampDistance
     [SerializeField] private Brother otherBrother;
@@ -80,13 +80,7 @@ public class Brother : MonoBehaviour {
             // ground pound wave
             TrombaInjector[] distorts = c.GetComponentsInChildren<TrombaInjector>();
             foreach (var d in distorts)
-            {
-                // FIXME
-                if (brotherType == 1)
-                    d.poundDist1 = 0;
-                else
-                    d.poundDist2 = 0;
-            }
+                d.poundDist[playerController.playerNumber] = 0;
 
             Prop prop = c.GetComponent<Prop>();
             if (prop)
