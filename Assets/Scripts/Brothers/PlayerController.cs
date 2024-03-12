@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 			player2.SwitchCurrentControlScheme("Default", devices);
 		}
 		else
-			player2.SwitchCurrentControlScheme("Default", InputManager.GetDevices().ToArray());
+			player2.SwitchCurrentControlScheme("Default", InputManager.player2Device);
 	}
 
 	public void Move(InputAction.CallbackContext context) {
